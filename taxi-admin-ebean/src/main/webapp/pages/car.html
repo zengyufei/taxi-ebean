@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>car</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body{
+            padding-top: 60px;
+            padding-bottom: 50px;
+        }
+
+        .search-form{
+            padding-bottom:15px;
+            padding-top: 15px;
+        }
+        .col-center-block {
+            float: none;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .leftMenu{
+            margin:10px;
+            margin-top:5px;
+        }
+        .leftMenu .panel-heading{
+            font-size:14px;
+            padding-left:20px;
+            height:36px;
+            line-height:36px;
+            color:white;
+            position:relative;
+            cursor:pointer;
+        }/*转成手形图标*/
+        .leftMenu .panel-heading span{
+            position:absolute;
+            right:10px;
+            top:12px;
+        }
+        .img-responsive {
+            　　display: inline-block;
+            　　height: auto;
+            　　max-width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top ">
+    <div class="navbar-header">
+        <a href="#" class="navbar-brand pull-right" style="font-size: 30px"><strong>城投集团汽车出租车业务管理平台</strong></a>
+        <img src="../style/img/zzfz-logo.png" style="vertical-align: text-top">
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="col-lg-2">
+        <div class="table-responsive panel-group">
+            <div class="panel panel-primary leftMenu">
+                <div class="panel panel-heading" id="jq_panel_car" data-toggle="collapse" data-target="#jq_planel_cargroup">
+                    <h4 class="panel-title">
+                        车辆管理模块
+                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                    </h4>
+                </div>
+                <div id="jq_planel_cargroup" class="panel-collapse collapse" aria-labelledby="jq_panel_car">
+                    <ul class="list-group">
+                        <li class="list-group-item">车辆基础信息</li>
+                        <li class="list-group-item">车辆年审</li>
+                        <li class="list-group-item">车辆二级维护</li>
+                        <li class="list-group-item">车辆保险</li>
+                        <li class="list-group-item">车辆运营数据</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-primary leftMenu">
+                <div class="panel panel-heading" id="jq_panel_driver" data-toggle="collapse" data-target="#jq_planel_drivergroup">
+                    <h4 class="panel-title">
+                        驾驶员管理模块
+                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                    </h4>
+                </div>
+                <div id="jq_planel_drivergroup" class="panel-collapse collapse" aria-labelledby="jq_panel_driver">
+                    <ul class="list-group">
+                        <li class="list-group-item">驾驶员基础信息</li>
+                        <li class="list-group-item">档案管理</li>
+                        <li class="list-group-item">诚信经营服务管理</li>
+                        <li class="list-group-item">安全守法管理</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-primary leftMenu">
+                <div class="panel panel-heading" id="jq_panel_driver1" data-toggle="collapse" data-target="#jq_planel_drivergroup1">
+                    <h4 class="panel-title">
+                        驾驶员管理模块
+                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                    </h4>
+                </div>
+                <div id="jq_planel_drivergroup1" class="panel-collapse collapse" aria-labelledby="jq_panel_driver1">
+                    <ul class="list-group">
+                        <li class="list-group-item">驾驶员基础信息</li>
+                        <li class="list-group-item">档案管理</li>
+                        <li class="list-group-item">诚信经营服务管理</li>
+                        <li class="list-group-item">安全守法管理</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-10 ">
+        <div class="container-fluid search-form">
+            <form class="form-inline">
+                <button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i> 新增</button>
+                <button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-save"></i>导入</button>
+                <button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-open"></i>导出</button>
+            </form>
+        </div>
+        <div class="container-fluid search-form">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="exampleInputName2">编号</label>
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="编号">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail2">车牌号</label>
+                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="车牌号">
+                </div>
+                <button type="submit" class="btn btn-info"><i class="glyphicon glyphicon-search"></i>查询</button>
+            </form>
+        </div>
+        <div class="container-fluid ">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th class="col-md-1">编号</th>
+                        <th class="col-md-1">车牌号</th>
+                        <th class="col-md-1">车架号</th>
+                        <th class="col-md-1">发动机号</th>
+                        <th class="col-md-1">行驶证日期</th>
+                        <th class="col-md-1">车辆类型</th>
+                        <th class="col-md-1">车辆颜色</th>
+                        <th class="col-md-2">道路运输证起止日期</th>
+                        <th class="col-md-1">机动车编号</th>
+                        <th class="col-md-1">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>07550001</td>
+                        <td>Bd23</td>
+                        <td>22222</td>
+                        <td>3333333</td>
+                        <td>2016-10-20</td>
+                        <td>宝马</td>
+                        <td>白色</td>
+                        <td><a href="#"  data-toggle="modal" data-target="#jq_car_id">2016-10-01 * 2026-10-01</a>
+                            <div class="modal fade" id="jq_car_id" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">
+                                                道理运输证
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img class="img-responsive" src="../style/img/banner.jpg">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </td>
+                        <td>x01235</td>
+                        <td><button class="btn btn-sm btn-info">编辑</button><button class="btn btn-sm btn-info">报废</button> </td>
+                    </tr> <tr>
+                        <td>07550001</td>
+                        <td>Bd23</td>
+                        <td>22222</td>
+                        <td>3333333</td>
+                        <td>2016-10-20</td>
+                        <td>宝马</td>
+                        <td>白色</td>
+                        <td>2016-10-01 * 2026-10-01</td>
+                        <td>x01235</td>
+                        <td></td>
+                    </tr> <tr>
+                        <td>07550001</td>
+                        <td>Bd23</td>
+                        <td>22222</td>
+                        <td>3333333</td>
+                        <td>2016-10-20</td>
+                        <td>宝马</td>
+                        <td>白色</td>
+                        <td>2016-10-01 * 2026-10-01</td>
+                        <td>x01235</td>
+                        <td></td>
+                    </tr> <tr>
+                        <td>07550001</td>
+                        <td>Bd23</td>
+                        <td>22222</td>
+                        <td>3333333</td>
+                        <td>2016-10-20</td>
+                        <td>宝马</td>
+                        <td>白色</td>
+                        <td>2016-10-01 * 2026-10-01</td>
+                        <td>x01235</td>
+                        <td></td>
+                    </tr> <tr>
+                        <td>07550001</td>
+                        <td>Bd23</td>
+                        <td>22222</td>
+                        <td>3333333</td>
+                        <td>2016-10-20</td>
+                        <td>宝马</td>
+                        <td>白色</td>
+                        <td>2016-10-01 * 2026-10-01</td>
+                        <td>x01235</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li><a href="#">Previous</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-fixed-bottom">
+    <footer class="text-center">
+        城投集团
+    </footer>
+</nav>
+</body>
+<script src="../style/js/jquery-1.11.min.js"></script>
+<script src="../style/bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+
+        $(".panel-heading").on("click",function(){
+            /*切换折叠指示图标*/
+            var span = $(this).parent().siblings().find("span");
+            $.each(span,function(i,v){
+                if($(v).hasClass("glyphicon-chevron-up")){
+                    $(v).addClass("glyphicon-chevron-down").removeClass("glyphicon-chevron-up");
+                    $(v).parent().parent().next(".panel-collapse").collapse("hide");
+                }
+            })
+            $(this).find("span").toggleClass("glyphicon-chevron-down");
+            $(this).find("span").toggleClass("glyphicon-chevron-up");
+        });
+
+        $(".panel-collapse").collapse('hide');
+
+    });
+</script>
+</html>

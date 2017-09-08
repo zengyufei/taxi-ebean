@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context   
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+    ">
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="file:${appHome}/admin_env.properties" />
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="properties">
+			<bean class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+				<property name="location"
+					value="classpath:/taxiAdminConfigDefault/admin_env.properties" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean name="engineToCenterGateway" class="github.mappingrpc.core.CoreEngine" init-method="start">
+		<constructor-arg value="false" />
+		<property name="serverList">
+			<props>
+				<prop key="${server.ip}">${server.rpc.port}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<util:map id="coreServerConfigUtilMap">
+		<entry key="serverIP" value="${server.ip}" />
+		<entry key="serverPort" value="${server.port}" />
+		<entry key="serverRpcPort" value="${server.rpc.port}" />
+		<entry key="serverDomain" value="${server.domain}" />
+	</util:map>
+	
+	<bean name="sysMemberService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.rbac.SysMemberService" />
+	</bean>
+	<bean name="sysRoleService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.rbac.SysRoleService" />
+	</bean>
+	<bean name="sysResourceService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.rbac.SysResourceService" />
+	</bean>
+	<bean name="sysOrganizationService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.rbac.SysOrganizationService" />
+	</bean>
+	<bean name="watchAdminLogService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.rbac.WatchAdminLogService" />
+	</bean>
+
+	<!-- car -->
+	<bean name="annualVerificationService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.car.AnnualVerificationService" />
+	</bean>
+	<bean name="carService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.car.CarService" />
+	</bean>
+	<bean name="carOperateLogService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.car.CarOperateLogService" />
+	</bean>
+	<bean name="insuranceService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.car.InsuranceService" />
+	</bean>
+	<bean name="maintainService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.car.MaintainService" />
+	</bean>
+	
+	<!-- finance -->
+	<bean name="monthQuotaService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.finance.MonthQuotaService" />
+	</bean>
+	<bean name="nonBusinessIncomeService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.finance.NonBusinessIncomeService" />
+	</bean>
+	<bean name="reserveMoneyService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.finance.ReserveMoneyService" />
+	</bean>
+	<bean name="securityDepositService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.finance.SecurityDepositService" />
+	</bean>
+	<bean name="subtractAmountService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.finance.SubtractAmountService" />
+	</bean>
+
+	<!-- driver -->
+	<bean name="driverCreditLogService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.driver.DriverCreditLogService" />
+	</bean>
+	<bean name="driverService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.driver.DriverService" />
+	</bean>
+	<bean name="punishInfoService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.driver.PunishInfoService" />
+	</bean>
+	<bean name="trafficAccidentService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.driver.TrafficAccidentService" />
+	</bean>
+	<bean name="trafficViolationService" factory-bean="engineToCenterGateway" factory-method="createConsumerProxy">
+		<constructor-arg value="com.zzsim.taxi.core.common.service.rw.driver.TrafficViolationService" />
+	</bean>
+	
+</beans>

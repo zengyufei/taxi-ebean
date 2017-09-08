@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <title>增加车辆基本信息</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../style/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../style/datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <link href="../style/validator/css/bootstrapValidator.min.css" rel="stylesheet">
+    <style>
+        body{
+            padding-top: 60px;
+            padding-bottom: 50px;
+        }
+
+        .leftMenu{
+            margin:10px;
+            margin-top:5px;
+        }
+        .leftMenu .panel-heading{
+            font-size:14px;
+            padding-left:20px;
+            height:36px;
+            line-height:36px;
+            color:white;
+            position:relative;
+            cursor:pointer;
+        }/*转成手形图标*/
+        .leftMenu .panel-heading span{
+            position:absolute;
+            right:10px;
+            top:12px;
+        }
+
+        .form-control{
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top ">
+    <div class="navbar-header">
+        <a href="#" class="navbar-brand pull-right" style="font-size: 30px"><strong>城投集团汽车出租车业务管理平台</strong></a>
+        <img src="../style/img/zzfz-logo.png" style="vertical-align: text-top">
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="col-lg-2">
+        <div class="table-responsive panel-group">
+            <div class="panel panel-primary leftMenu">
+                <div class="panel panel-heading" id="jq_panel_car" data-toggle="collapse" data-target="#jq_planel_cargroup">
+                    <h4 class="panel-title">
+                        车辆管理模块
+                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                    </h4>
+                </div>
+                <div id="jq_planel_cargroup" class="panel-collapse collapse" aria-labelledby="jq_panel_car">
+                    <ul class="list-group">
+                        <li class="list-group-item">车辆基础信息</li>
+                        <li class="list-group-item">车辆年审</li>
+                        <li class="list-group-item">车辆二级维护</li>
+                        <li class="list-group-item">车辆保险</li>
+                        <li class="list-group-item">车辆运营数据</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-primary leftMenu">
+                <div class="panel panel-heading" id="jq_panel_driver" data-toggle="collapse" data-target="#jq_planel_drivergroup">
+                    <h4 class="panel-title">
+                        驾驶员管理模块
+                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                    </h4>
+                </div>
+                <div id="jq_planel_drivergroup" class="panel-collapse collapse" aria-labelledby="jq_panel_driver">
+                    <ul class="list-group">
+                        <li class="list-group-item">驾驶员基础信息</li>
+                        <li class="list-group-item">档案管理</li>
+                        <li class="list-group-item">诚信经营服务管理</li>
+                        <li class="list-group-item">安全守法管理</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="panel panel-primary leftMenu">
+                <div class="panel panel-heading" id="jq_panel_driver1" data-toggle="collapse" data-target="#jq_planel_drivergroup1">
+                    <h4 class="panel-title">
+                        驾驶员管理模块
+                        <span class="glyphicon glyphicon-chevron-down right"></span>
+                    </h4>
+                </div>
+                <div id="jq_planel_drivergroup1" class="panel-collapse collapse" aria-labelledby="jq_panel_driver1">
+                    <ul class="list-group">
+                        <li class="list-group-item">驾驶员基础信息</li>
+                        <li class="list-group-item">档案管理</li>
+                        <li class="list-group-item">诚信经营服务管理</li>
+                        <li class="list-group-item">安全守法管理</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-lg-10">
+        <form id="carForm" class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2">自编号</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="carNo" name="carNo" autofocus placeholder="格式0755-0010"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">车牌号</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="plateNumber" name="plateNumber" placeholder="甘T12345"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">车牌号照片</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" id="" name="" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">车架号</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="carFrame" name="carFrame" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">发动机号</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="engineNumber" name="engineNumber" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">行驶证登记日期</label>
+                <div class="col-sm-10">
+                    <input class="form-control" size="16" id="datetimepicker" name="" value=""  readonly>
+                    <span class="add-on"><i class="icon-calendar"></i></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">车辆类型</label>
+                <div class="col-sm-10 radio">
+                    <label><input name="carType" type="radio"/>比亚迪E5</label>
+                    <label><input name="carType" type="radio"/>比亚迪E6</label>
+                    <label><input name="carType" type="radio"/>北汽EU220</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">车身颜色</label>
+                <div class="col-sm-10 radio">
+                    <label><input name="carColor" type="radio"/>蓝色</label>
+                    <label><input name="carColor" type="radio"/>红色</label>
+                    <label><input name="carColor" type="radio"/>绿色</label>
+                    <label><input name="carColor" type="radio"/>白色</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">车辆运营状态</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option>待营运</option>
+                        <option>营运中</option>
+                        <option>事故维修</option>
+                        <option>事故报废</option>
+                        <option>公务用车</option>
+                        <option>长途租赁</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-10 col-sm-offset-2">
+                    <button id="save_car_btn" class="btn btn-info">保存</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<nav class="navbar navbar-fixed-bottom">
+    <footer class="text-center">
+        城投集团
+    </footer>
+</nav>
+</body>
+<script src="../style/js/jquery-1.11.min.js"></script>
+<script src="../style/bootstrap/js/bootstrap.min.js"></script>
+<script src="../style/datetimepicker/js/bootstrap-datetimepicker.min.js"  charset="UTF-8"></script>
+<script src="../style/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../style/validator/js/bootstrapValidator.min.js"></script>
+<script>
+    $(function(){
+
+        $("#carForm").bootstrapValidator({
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                carNo: {
+                    validators: {
+                        notEmpty: {//非空验证：提示消息
+                            message: '自编号不能为空'
+                        },
+                        regexp: {
+                            regexp: /^\d{4}\-?\d{4}$/,
+                            message: '请输入正确的自编号格式:0755-0010'
+                        }
+                    }
+                },
+                plateNumber:{
+                    validators:{
+                        notEmpty:{
+                            message:"车牌号不能为空"
+                        }
+                    }
+                }
+            }
+        });
+        
+        $("#save_car_btn").on("click",function () {
+            var validate = $("#carForm").data("bootstrapValidator");
+            validate.validate();
+            if(validate.isValid()){
+                alert("success")
+            }
+
+        })
+
+        $('#datetimepicker').datetimepicker({
+            format:"yyyy-mm-dd",
+            autoclose:true,
+            minView:2,
+            todayBtn:true,
+            todayHighlight:true,
+            language:'zh-CN'
+        });
+
+        $(".panel-heading").on("click",function(){
+            /*切换折叠指示图标*/
+            var span = $(this).parent().siblings().find("span");
+            $.each(span,function(i,v){
+                if($(v).hasClass("glyphicon-chevron-up")){
+                    $(v).addClass("glyphicon-chevron-down").removeClass("glyphicon-chevron-up");
+                    $(v).parent().parent().next(".panel-collapse").collapse("hide");
+                }
+            })
+            $(this).find("span").toggleClass("glyphicon-chevron-down");
+            $(this).find("span").toggleClass("glyphicon-chevron-up");
+        });
+
+        $(".panel-collapse").collapse('hide');
+
+    });
+</script>
+</html>

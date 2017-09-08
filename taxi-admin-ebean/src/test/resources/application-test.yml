@@ -1,0 +1,15 @@
+logging:
+  config: classpath:config/logback-dev.xml
+  level:
+    io:
+      ebean:
+        Ebean:
+           SQL: INFO
+           TXN: INFO
+server:
+  port: 8080
+
+ebeans:
+  dbName: db
+  packages: com.zzsim.taxi.core.common.entity
+

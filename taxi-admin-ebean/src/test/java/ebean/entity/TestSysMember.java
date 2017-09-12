@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="test_sys_member")
-public class TestSysMember extends BaseEntity{
+public class TestSysMember extends BaseEntity {
 
     private String account;
     private String password;

@@ -1,10 +1,12 @@
 package com.zzsim.taxi.admin;
 
+import com.google.common.base.Preconditions;
 import io.ebean.EbeanServer;
 import io.ebean.EbeanServerFactory;
 import io.ebean.config.ServerConfig;
 import io.ebean.config.UnderscoreNamingConvention;
 import io.ebean.spring.txn.SpringJdbcTransactionManager;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -20,6 +22,9 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_SING
 @SpringBootApplication
 public class Application {
 
+	@Value("${spring.profiles.active}")
+	private String env;
+
 	@Value("${ebeans.packages}")
 	private String packages;
 
@@ -29,11 +34,12 @@ public class Application {
 	@Bean(autowire = Autowire.BY_TYPE)
 	@Scope(SCOPE_SINGLETON)
 	public EbeanServer getEbeanServer()  {
+		boolean isGenerateSqlTxt = !"db".equals(dbName) || "create".equals(env);
 		ServerConfig config = new ServerConfig();
-		config.setName(dbName);
+		config.setName(StringUtils.isNotBlank(dbName) ?  dbName : "db");
 		config.loadFromProperties();
-		config.setDdlGenerate(!"db".equals(dbName));
-		config.setDdlRun(!"db".equals(dbName));
+		config.setDdlGenerate(isGenerateSqlTxt);
+		config.setDdlRun(isGenerateSqlTxt);
 		config.addPackage(packages);
 		config.setExternalTransactionManager(new SpringJdbcTransactionManager());// 事务支持
 		config.setNamingConvention(new UnderscoreNamingConvention());// 下划线

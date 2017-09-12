@@ -28,7 +28,7 @@ http:
 
 ebeans:
   dbName: db
-  packages: com.zzsim.taxi.core.common.entity
+  packages: com.zzsim.taxi.core.common.entitys
   
 taxi:
   tempPath: /home/zzfz/mfs/static/taxi/temp/

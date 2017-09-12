@@ -11,5 +11,5 @@ server:
 
 ebeans:
   dbName: db
-  packages: com.zzsim.taxi.core.common.entity
+  packages: com.zzsim.taxi.core.common.entitys
 

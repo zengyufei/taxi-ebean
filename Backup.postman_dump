@@ -1,0 +1,660 @@
+{
+	"version": 1,
+	"collections": [
+		{
+			"id": "53ce6496-c6b7-280f-c6f1-8118ba65d467",
+			"name": "角色管理",
+			"description": "角色管理",
+			"order": [
+				"f067f7d8-259a-504c-28e3-98186a0a1053",
+				"48ad0241-78e7-f140-f8be-147afa844f2e",
+				"c33f5521-4966-a39d-56e3-27c930d0f5b4",
+				"f46f1850-1e2e-4841-1ec9-dca789e4ac5a",
+				"94df8abc-c42a-0a53-eb1e-476db3e1e3a4"
+			],
+			"folders": [],
+			"timestamp": 1505294543097,
+			"synced": true,
+			"remote_id": 0,
+			"owner": "2258726",
+			"sharedWithTeam": false,
+			"subscribed": false,
+			"remoteLink": "",
+			"public": false,
+			"createdAt": 1505294543097,
+			"updatedAt": 1505294553442,
+			"write": true,
+			"requests": [
+				{
+					"id": "48ad0241-78e7-f140-f8be-147afa844f2e",
+					"headers": "",
+					"url": "http://localhost:8080/sysRole/update",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "POST",
+					"data": [
+						{
+							"key": "roleName",
+							"value": "中智管理员",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "orgNo",
+							"value": "sz-001",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "description",
+							"value": "adsassdfsdfsdf",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "resourceList",
+							"value": "1,2,3,4",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505294977838,
+					"name": "修改",
+					"description": "http://localhost:8080/sysOrg/update",
+					"collectionId": "53ce6496-c6b7-280f-c6f1-8118ba65d467",
+					"responses": []
+				},
+				{
+					"id": "94df8abc-c42a-0a53-eb1e-476db3e1e3a4",
+					"headers": "",
+					"url": "http://localhost:8080/sysRole/deleteById?id=1",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505294890866,
+					"name": "删除",
+					"description": "http://localhost:8080/sysOrg/deleteById",
+					"collectionId": "53ce6496-c6b7-280f-c6f1-8118ba65d467",
+					"responses": []
+				},
+				{
+					"id": "c33f5521-4966-a39d-56e3-27c930d0f5b4",
+					"headers": "",
+					"url": "http://localhost:8080/sysRole/queryAll",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505294886722,
+					"name": "查询",
+					"description": "http://localhost:8080/sysOrg/queryAll",
+					"collectionId": "53ce6496-c6b7-280f-c6f1-8118ba65d467",
+					"responses": []
+				},
+				{
+					"id": "f067f7d8-259a-504c-28e3-98186a0a1053",
+					"headers": "",
+					"url": "http://localhost:8080/sysRole/insert",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "POST",
+					"data": [
+						{
+							"key": "roleName",
+							"value": "管理员",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "orgNo",
+							"value": "sz-001",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "description",
+							"value": "adsassdfsdfsdf",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "resourceList",
+							"value": "1,2,3,4",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505294959510,
+					"name": "新增",
+					"description": "http://localhost:8080/sysOrg/insert",
+					"collectionId": "53ce6496-c6b7-280f-c6f1-8118ba65d467",
+					"responses": []
+				},
+				{
+					"id": "f46f1850-1e2e-4841-1ec9-dca789e4ac5a",
+					"headers": "",
+					"url": "http://localhost:8080/sysRole/queryPage",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505294963686,
+					"name": "分页查询",
+					"description": "http://localhost:8080/sysOrg/queryPage",
+					"collectionId": "53ce6496-c6b7-280f-c6f1-8118ba65d467",
+					"responses": []
+				}
+			]
+		},
+		{
+			"id": "8dd3d30e-cbf4-a37f-05d0-f8c8cde6cc3f",
+			"name": "组织机构管理",
+			"description": "组织机构管理",
+			"order": [
+				"49a31cba-3f8f-fc62-5ff0-bc7d16f8620b",
+				"acba2723-2e26-ac0e-ee81-b6f0b866eb4e",
+				"7da504e0-4ecb-dbb5-5ecb-e2c1473fca44",
+				"1991a910-fd33-4cbf-c645-8e05334ac3c3",
+				"7b40166f-46ee-1ca0-1d76-a23bfd1c0d9c"
+			],
+			"folders": [],
+			"timestamp": 1505292003259,
+			"synced": false,
+			"remote_id": 0,
+			"owner": "2258726",
+			"sharedWithTeam": false,
+			"subscribed": false,
+			"remoteLink": "",
+			"public": false,
+			"createdAt": 1505292003259,
+			"updatedAt": 1505292266444,
+			"write": true,
+			"requests": [
+				{
+					"id": "1991a910-fd33-4cbf-c645-8e05334ac3c3",
+					"headers": "",
+					"url": "http://localhost:8080/sysOrg/queryPage",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505292245034,
+					"name": "分页查询",
+					"description": "http://localhost:8080/sysOrg/queryPage",
+					"collectionId": "8dd3d30e-cbf4-a37f-05d0-f8c8cde6cc3f",
+					"responses": []
+				},
+				{
+					"id": "49a31cba-3f8f-fc62-5ff0-bc7d16f8620b",
+					"headers": "",
+					"url": "http://localhost:8080/sysOrg/insert",
+					"pathVariables": {},
+					"preRequestScript": null,
+					"method": "POST",
+					"collectionId": "8dd3d30e-cbf4-a37f-05d0-f8c8cde6cc3f",
+					"data": [
+						{
+							"key": "orgNo",
+							"value": "sz-001",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "parentOrgNo",
+							"value": "-1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "orgName",
+							"value": "中智2",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "province",
+							"value": "44",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "city",
+							"value": "4406",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "address",
+							"value": "sadadasdasd",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "description",
+							"value": "梵蒂冈的分公司电饭锅",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"dataMode": "urlencoded",
+					"name": "新增",
+					"description": "http://localhost:8080/sysOrg/insert",
+					"descriptionFormat": "html",
+					"time": 1505292049308,
+					"version": 2,
+					"responses": [],
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {}
+				},
+				{
+					"id": "7b40166f-46ee-1ca0-1d76-a23bfd1c0d9c",
+					"headers": "",
+					"url": "http://localhost:8080/sysOrg/deleteById?id=1",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505292276475,
+					"name": "删除",
+					"description": "http://localhost:8080/sysOrg/deleteById",
+					"collectionId": "8dd3d30e-cbf4-a37f-05d0-f8c8cde6cc3f",
+					"responses": []
+				},
+				{
+					"id": "7da504e0-4ecb-dbb5-5ecb-e2c1473fca44",
+					"headers": "",
+					"url": "http://localhost:8080/sysOrg/queryAll",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505292210906,
+					"name": "查询",
+					"description": "http://localhost:8080/sysOrg/queryAll",
+					"collectionId": "8dd3d30e-cbf4-a37f-05d0-f8c8cde6cc3f",
+					"responses": []
+				},
+				{
+					"id": "acba2723-2e26-ac0e-ee81-b6f0b866eb4e",
+					"headers": "",
+					"url": "http://localhost:8080/sysOrg/update",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "POST",
+					"data": [
+						{
+							"key": "orgNo",
+							"value": "sz-002",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "parentOrgNo",
+							"value": "-1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "orgName",
+							"value": "中智3",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "province",
+							"value": "44",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "city",
+							"value": "4406",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "address",
+							"value": "ffffffffffffffffff",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "description",
+							"value": "梵蒂冈的分公司电饭锅",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505292173674,
+					"name": "修改",
+					"description": "http://localhost:8080/sysOrg/update",
+					"collectionId": "8dd3d30e-cbf4-a37f-05d0-f8c8cde6cc3f",
+					"responses": []
+				}
+			]
+		},
+		{
+			"id": "c4d71683-88a9-18fd-a798-a77d84535331",
+			"name": "用户管理",
+			"description": "用户管理",
+			"order": [
+				"c9f6853f-a003-321b-a903-0bb92a08ac0a",
+				"f59e5b25-6981-2d35-f219-3ad6556bd8f2",
+				"9c19adb9-064e-ee51-9c39-753a5626444f",
+				"3bf31e63-1386-8232-a569-1d496cec27bb",
+				"703e1c73-d875-1a13-32cd-c6a6ed423da8"
+			],
+			"folders": [],
+			"timestamp": 1505293272428,
+			"synced": true,
+			"remote_id": 0,
+			"owner": "2258726",
+			"sharedWithTeam": false,
+			"subscribed": false,
+			"remoteLink": "",
+			"public": false,
+			"createdAt": 1505293272428,
+			"updatedAt": 1505293280531,
+			"write": true,
+			"requests": [
+				{
+					"id": "3bf31e63-1386-8232-a569-1d496cec27bb",
+					"headers": "",
+					"url": "http://localhost:8080/sysMember/queryPage",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505293318674,
+					"name": "分页查询",
+					"description": "http://localhost:8080/sysOrg/queryPage",
+					"collectionId": "c4d71683-88a9-18fd-a798-a77d84535331",
+					"responses": []
+				},
+				{
+					"id": "703e1c73-d875-1a13-32cd-c6a6ed423da8",
+					"headers": "",
+					"url": "http://localhost:8080/sysMember/deleteById?id=1",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505293321314,
+					"name": "删除",
+					"description": "http://localhost:8080/sysOrg/deleteById",
+					"collectionId": "c4d71683-88a9-18fd-a798-a77d84535331",
+					"responses": []
+				},
+				{
+					"id": "9c19adb9-064e-ee51-9c39-753a5626444f",
+					"headers": "",
+					"url": "http://localhost:8080/sysMember/queryAll",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505293316090,
+					"name": "查询",
+					"description": "http://localhost:8080/sysOrg/queryAll",
+					"collectionId": "c4d71683-88a9-18fd-a798-a77d84535331",
+					"responses": []
+				},
+				{
+					"id": "c9f6853f-a003-321b-a903-0bb92a08ac0a",
+					"headers": "",
+					"url": "http://localhost:8080/sysMember/insert",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "POST",
+					"data": [
+						{
+							"key": "account",
+							"value": "admin",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "realName",
+							"value": "真正管理员",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "identity",
+							"value": "441381199101122444",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "13480555111",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "email",
+							"value": "31263620@qq.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "qq",
+							"value": "312636208",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "roleId",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "orgNo",
+							"value": "sz-001",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "sex",
+							"value": "Male",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "remark",
+							"value": "adsassdfsdfsdf",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505294601981,
+					"name": "新增",
+					"description": "http://localhost:8080/sysOrg/insert",
+					"collectionId": "c4d71683-88a9-18fd-a798-a77d84535331",
+					"responses": []
+				},
+				{
+					"id": "f59e5b25-6981-2d35-f219-3ad6556bd8f2",
+					"headers": "",
+					"url": "http://localhost:8080/sysMember/update",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "POST",
+					"data": [
+						{
+							"key": "account",
+							"value": "admin",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "realName",
+							"value": "真正管理员2",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "identity",
+							"value": "441381199101122444",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "mobile",
+							"value": "13480555111",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "email",
+							"value": "31263620@qq.com",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "qq",
+							"value": "312636208",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "roleId",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "orgNo",
+							"value": "sz-002",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "sex",
+							"value": "Male",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "remark",
+							"value": "adsassdfsdfsdf",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text",
+							"enabled": true
+						}
+					],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": null,
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505294610284,
+					"name": "修改",
+					"description": "http://localhost:8080/sysOrg/update",
+					"collectionId": "c4d71683-88a9-18fd-a798-a77d84535331",
+					"responses": []
+				}
+			]
+		}
+	],
+	"environments": [],
+	"headerPresets": [],
+	"globals": []
+}

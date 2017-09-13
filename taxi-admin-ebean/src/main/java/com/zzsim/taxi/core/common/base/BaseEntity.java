@@ -1,47 +1,56 @@
 package com.zzsim.taxi.core.common.base;
 
-import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zzsim.taxi.core.common.base.ExtensionFeatures;
-import io.ebean.Model;
-import io.ebean.annotation.*;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zzsim.taxi.admin.validate.groups.DeleteById;
+import com.zzsim.taxi.admin.validate.groups.QueryById;
+import com.zzsim.taxi.admin.validate.groups.Update;
+import io.ebean.Model;
+import io.ebean.annotation.*;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 public class BaseEntity extends Model implements ExtensionFeatures {
 
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Min(value = 1, message = "id 不能为空", groups = { QueryById.class, Update.class, DeleteById.class })
     private Long id;
 
     @SoftDelete
+    @DbComment("数据状态")
     private Boolean flag = false;
 
     /**特征对象JSON字段*/
+    @DbJson
+    @DbComment("额外字段")
     protected JSONObject features = new JSONObject();
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")//页面输出时格式化
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @WhenCreated
     @CreatedTimestamp
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
+    @Column(columnDefinition = "datetime not null")
+    @DbComment("创建时间")
     protected LocalDateTime createTime;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @WhenModified
     @UpdatedTimestamp
-    @Temporal(TemporalType.TIME)
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(columnDefinition = "datetime not null")
+    @DbComment("修改时间")
     protected LocalDateTime updateTime;
 
     @Override

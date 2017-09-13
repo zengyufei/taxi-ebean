@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: test
+    active: create
 
   mvc:
     date-format: yyyy-MM-dd HH:mm:ss

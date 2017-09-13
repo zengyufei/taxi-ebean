@@ -1,7 +1,7 @@
 package com.zzsim.taxi.admin.base;
 
+import com.zzsim.taxi.core.common.base.BaseEntity;
 import com.zzsim.taxi.core.common.base.Page;
-import com.zzsim.taxi.core.common.entitys.rbac.SysOrg;
 import io.ebean.Ebean;
 import io.ebean.ExpressionList;
 import io.ebean.PagedList;
@@ -9,7 +9,9 @@ import io.ebean.PagedList;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.List;
+import java.util.Optional;
+
+import static com.google.common.base.Preconditions.checkArgument;
 
 public abstract class BaseController {
 
@@ -29,7 +31,8 @@ public abstract class BaseController {
 			} catch (InvocationTargetException e) {
 				e.printStackTrace();
 			}
-			if(value != null){
+			Optional<Object> optional = Optional.ofNullable(value);
+			if(optional.isPresent()){
 				where.eq(field.getName(), value);
 			}
 		}
@@ -64,4 +67,5 @@ public abstract class BaseController {
 		page.setTotalPageCount(pagedList.getTotalPageCount());
 		return page;
 	}
+
 }

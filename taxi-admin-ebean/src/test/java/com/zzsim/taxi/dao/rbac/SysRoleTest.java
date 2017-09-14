@@ -31,7 +31,12 @@ public class SysRoleTest {
 		sysRole.setRoleName("管理员");
 		sysRole.setOrgNo("sz-001");
 		sysRole.setDescription("adsassdfsdfsdf");
-		sysRole.setResourceList("1,2,3,4");
+		List<String> resourceList = sysRole.getResourceList();
+		resourceList.add("1");
+		resourceList.add("2");
+		resourceList.add("3");
+		resourceList.add("4");
+		// sysRole.setResourceList("1,2,3,4");
 		return sysRole;
 	}
 

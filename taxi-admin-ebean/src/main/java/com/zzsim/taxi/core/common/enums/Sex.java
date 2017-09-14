@@ -1,8 +1,6 @@
 package com.zzsim.taxi.core.common.enums;
 
 import com.zzsim.taxi.core.common.base.DescriptionID;
-import io.ebean.annotation.DbEnumType;
-import io.ebean.annotation.DbEnumValue;
 
 /**
  * 性别

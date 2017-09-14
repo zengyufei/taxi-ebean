@@ -1,12 +1,11 @@
 package com.zzsim.taxi.admin.util;
 
+import org.apache.commons.lang3.StringUtils;
+
+import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Logger;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.lang3.StringUtils;
 
 public class IpHelper {
 	private static final Logger logger = Logger.getLogger("IpHelper");

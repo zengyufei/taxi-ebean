@@ -1,6 +1,5 @@
 package com.zzsim.taxi.admin;
 
-import com.google.common.base.Preconditions;
 import io.ebean.EbeanServer;
 import io.ebean.EbeanServerFactory;
 import io.ebean.config.ServerConfig;
@@ -13,6 +12,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
+import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_SINGLETON;
 
@@ -44,6 +44,14 @@ public class Application {
 		config.setExternalTransactionManager(new SpringJdbcTransactionManager());// 事务支持
 		config.setNamingConvention(new UnderscoreNamingConvention());// 下划线
 		return EbeanServerFactory.create(config);
+	}
+
+	/**
+	 * 方法级别的单个参数验证
+	 */
+	@Bean
+	public MethodValidationPostProcessor methodValidationPostProcessor() {
+		return new MethodValidationPostProcessor();
 	}
 
 	public static void main(String[] args) {

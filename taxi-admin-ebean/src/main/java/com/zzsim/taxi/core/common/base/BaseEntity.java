@@ -16,18 +16,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-public class BaseEntity extends Model implements ExtensionFeatures {
+public class BaseEntity<T> extends Model implements ExtensionFeatures {
 
     @Id
     // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(value = 1, message = "id 不能为空", groups = { QueryById.class, Update.class, DeleteById.class })
+    @NotNull(message = "id 不能为空", groups = { QueryById.class, Update.class, DeleteById.class })
     private Long id;
 
     @SoftDelete
     @DbComment("数据状态")
+    @Column(columnDefinition = "tinyint(1)")
     private Boolean flag = false;
 
     /**特征对象JSON字段*/

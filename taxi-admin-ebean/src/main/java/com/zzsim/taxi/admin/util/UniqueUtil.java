@@ -1,7 +1,6 @@
 package com.zzsim.taxi.admin.util;
 
 import java.time.Instant;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.LongAdder;
 
 public class UniqueUtil {

@@ -1,9 +1,6 @@
 package com.zzsim.taxi.admin.validate.factory;
 
-import com.google.common.base.Enums;
 import com.zzsim.taxi.admin.validate.annotation.Matche;
-import com.zzsim.taxi.core.common.base.DescriptionID;
-import com.zzsim.taxi.core.common.utils.EnumUtils;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.validation.ConstraintValidator;

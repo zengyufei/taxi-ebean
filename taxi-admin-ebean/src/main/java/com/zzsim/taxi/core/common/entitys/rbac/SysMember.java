@@ -4,8 +4,12 @@ import com.zzsim.taxi.admin.validate.annotation.Matche;
 import com.zzsim.taxi.admin.validate.annotation.Matches;
 import com.zzsim.taxi.admin.validate.groups.Insert;
 import com.zzsim.taxi.admin.validate.groups.Update;
+import com.zzsim.taxi.core.common.annotations.OptionField;
+import com.zzsim.taxi.core.common.annotations.OptionFieldLike;
 import com.zzsim.taxi.core.common.base.BaseEntity;
 import com.zzsim.taxi.core.common.enums.Sex;
+import io.ebean.annotation.DbComment;
+import io.ebean.annotation.Formula;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -24,20 +28,51 @@ import javax.persistence.Table;
 })
 public class SysMember extends BaseEntity {
 
+	@OptionFieldLike
+	@DbComment("账号")
 	private String account;
+	@DbComment("密码")
 	private String password;
+	@DbComment("真实姓名")
+	@OptionField
 	private String realName;
+	@DbComment("身份证")
+	@OptionField
 	private String identity;
+	@DbComment("手机号")
+	@OptionField
 	private String mobile;
+	@DbComment("邮箱")
 	private String email;
+	@DbComment("QQ")
 	private String qq;
+	@DbComment("备注")
 	private String remark;
-
+	@OptionField
+	@DbComment("性别")
 	private Sex sex;
-
+	@OptionField
+	@DbComment("角色 id")
 	private Long roleId;
-
+	@OptionField
+	@DbComment("组织机构编号")
 	private String orgNo;
+
+	/*
+		1. ${ta} 默认代表this。
+		2. coalesce相当于或判断，如果不用，会null，给它 '' 默认值。
+		3. 必须用left join 否则查不到数据，整个this 都为空。
+	*/
+	@Formula(select = "coalesce(t1.role_name, '')", join = "left join t_sys_role t1 on t1.id = ${ta}.role_id")
+	private String roleName;
+
+	/*
+		1. ${ta} 默认代表this。
+		2. coalesce相当于或判断，如果不用，会null，给它 '' 默认值。
+		3. 必须用left join 否则查不到数据，整个this 都为空。
+	*/
+	@Formula(select = "coalesce(t.org_name, '')", join = "left join t_sys_org t on t.org_no = ${ta}.org_no")
+	private String orgName;
 
 	public String getAccount() {
 		return account;
@@ -125,5 +160,21 @@ public class SysMember extends BaseEntity {
 
 	public void setSex(Sex sex) {
 		this.sex = sex;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
 	}
 }

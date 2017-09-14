@@ -1,12 +1,11 @@
 package com.zzsim.taxi.admin.interceptor;
 
-import java.time.LocalDateTime;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
+import java.time.LocalDateTime;
 
 public class AuthInterceptor implements HandlerInterceptor {
 

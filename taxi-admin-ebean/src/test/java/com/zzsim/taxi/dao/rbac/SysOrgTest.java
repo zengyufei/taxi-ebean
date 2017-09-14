@@ -3,6 +3,7 @@ package com.zzsim.taxi.dao.rbac;
 import com.zzsim.taxi.admin.Application;
 import com.zzsim.taxi.core.common.entitys.rbac.SysOrg;
 import io.ebean.EbeanServer;
+import io.ebean.Query;
 import io.ebean.annotation.Transactional;
 import org.junit.*;
 import org.junit.runner.RunWith;

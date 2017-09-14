@@ -1,8 +1,6 @@
 package com.zzsim.taxi.admin.validate.annotation;
 
 import com.zzsim.taxi.admin.validate.factory.MatcheValidator;
-import com.zzsim.taxi.core.common.base.DescriptionID;
-import com.zzsim.taxi.core.common.enums.Sex;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -36,4 +34,11 @@ public @interface Matche {
 
 	Class<? extends Enum> enumType() default Enum.class;
 
+	@Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+	@Retention(RetentionPolicy.RUNTIME)
+	@Documented
+	@interface List {
+
+		Matche[] value();
+	}
 }

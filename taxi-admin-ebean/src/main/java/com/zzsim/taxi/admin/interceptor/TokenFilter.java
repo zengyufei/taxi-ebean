@@ -1,15 +1,12 @@
 package com.zzsim.taxi.admin.interceptor;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.web.filter.AccessControlFilter;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.SimplePrincipalCollection;
-import org.apache.shiro.web.filter.AccessControlFilter;
-import org.apache.shiro.web.subject.support.WebDelegatingSubject;
 
 
 /**

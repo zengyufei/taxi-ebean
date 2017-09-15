@@ -13,6 +13,7 @@ import com.zzsim.taxi.core.common.base.Page;
 import io.ebean.Ebean;
 import io.ebean.ExpressionList;
 import io.ebean.PagedList;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Validated
@@ -108,6 +111,25 @@ public abstract class BaseController<T extends BaseEntity> {
 	public Msg deleteByIdForDeleteMapping(@IdCheck Long id) {
 		Ebean.deletePermanent(entityClass, id);
 		return Msg.ok("物理删除成功");
+	}
+
+	@GetMapping("queryByIds")
+	public Msg queryByIds(@NotBlank(message = "id 集合不能为空") String ids) {
+		List<T> list = Ebean.find(entityClass)
+				.where()
+				.idIn(Arrays.asList(ids.split(",")))
+				.findList();
+		return Msg.ok(list);
+	}
+
+	@GetMapping("queryByIdsed")
+	public Msg queryByIdsed(@NotBlank(message = "id 集合不能为空") String ids) {
+		List<T> list = Ebean.find(entityClass)
+				.setIncludeSoftDeletes()
+				.where()
+				.idIn(Arrays.asList(ids.split(",")))
+				.findList();
+		return Msg.ok(list);
 	}
 
 	protected void setParams(ExpressionList where, T t) {

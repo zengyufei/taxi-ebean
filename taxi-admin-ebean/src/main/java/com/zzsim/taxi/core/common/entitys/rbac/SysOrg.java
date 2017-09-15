@@ -7,13 +7,10 @@ import com.zzsim.taxi.admin.validate.groups.Update;
 import com.zzsim.taxi.core.common.annotations.OptionField;
 import com.zzsim.taxi.core.common.annotations.OptionFieldLike;
 import com.zzsim.taxi.core.common.base.BaseEntity;
-import io.ebean.Finder;
 import io.ebean.annotation.Cache;
 import io.ebean.annotation.DbComment;
 
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import java.io.Serializable;
 

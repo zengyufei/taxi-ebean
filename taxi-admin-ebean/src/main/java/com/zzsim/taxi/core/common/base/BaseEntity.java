@@ -23,15 +23,15 @@ import java.time.LocalDateTime;
 public class BaseEntity<T> extends Model implements ExtensionFeatures {
 
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Min(value = 1, message = "id 不能为空", groups = { QueryById.class, Update.class, DeleteById.class })
     @NotNull(message = "id 不能为空", groups = { QueryById.class, Update.class, DeleteById.class })
     private Long id;
 
     @SoftDelete
     @DbComment("数据状态")
-    @Column(columnDefinition = "tinyint(1)")
-    private Boolean flag = false;
+    @Column(columnDefinition = "BOOLEAN DEFAULT FALSE")
+    private boolean deleted = false;
 
     /**特征对象JSON字段*/
     @DbJson
@@ -108,12 +108,12 @@ public class BaseEntity<T> extends Model implements ExtensionFeatures {
         this.id = id;
     }
 
-    public Boolean getFlag() {
-        return flag;
+    public boolean isDeleted() {
+        return deleted;
     }
 
-    public void setFlag(Boolean flag) {
-        this.flag = flag;
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public void setFeatures(JSONObject features) {

@@ -12,7 +12,7 @@ create table t_sys_member (
   sex                           integer comment '性别',
   role_id                       bigint comment '角色 id',
   org_no                        varchar(255) comment '组织机构编号',
-  flag                          tinyint(1) not null comment '数据状态',
+  deleted                       BOOLEAN DEFAULT FALSE not null comment '数据状态',
   create_time                   datetime not null not null comment '创建时间',
   update_time                   datetime not null not null comment '修改时间',
   constraint ck_t_sys_member_sex check ( sex in (0,1,2)),
@@ -29,7 +29,7 @@ create table t_sys_org (
   city                          integer comment '城市',
   address                       varchar(255) comment '地址',
   description                   varchar(255) comment '描述',
-  flag                          tinyint(1) not null comment '数据状态',
+  deleted                       BOOLEAN DEFAULT FALSE not null comment '数据状态',
   create_time                   datetime not null not null comment '创建时间',
   update_time                   datetime not null not null comment '修改时间',
   constraint pk_t_sys_org primary key (id)
@@ -42,7 +42,7 @@ create table t_sys_role (
   description                   varchar(255) comment '描述',
   org_no                        varchar(255) comment '组织机构编号',
   resource_list                 varchar(1000) comment '权限集合',
-  flag                          tinyint(1) not null comment '数据状态',
+  deleted                       BOOLEAN DEFAULT FALSE not null comment '数据状态',
   create_time                   datetime not null not null comment '创建时间',
   update_time                   datetime not null not null comment '修改时间',
   constraint pk_t_sys_role primary key (id)

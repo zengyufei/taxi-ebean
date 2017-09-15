@@ -7,9 +7,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import static junit.framework.Assert.assertEquals;

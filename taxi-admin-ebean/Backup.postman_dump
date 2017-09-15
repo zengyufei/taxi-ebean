@@ -57,7 +57,8 @@
 						"debd5f08-31f9-cafd-229b-c1d532a7d620",
 						"53dd7041-e427-6d59-79d9-9856371059c5",
 						"a42fff8a-4391-e9dc-9135-320c953347d0",
-						"ac20d633-e501-4304-959e-737bcb153728"
+						"ac20d633-e501-4304-959e-737bcb153728",
+						"5289ca17-e85a-c5b7-d319-8179228019e1"
 					],
 					"collection": "8741bae4-e956-3e30-05ae-d42631861d30",
 					"owner": "2258726",
@@ -94,7 +95,8 @@
 						"1b62ef18-9257-65bf-f667-db34e916d3eb",
 						"f2afffa1-ec9f-9ca1-ac9b-ae8ba729d945",
 						"ee72e94e-6542-8bc6-feb8-afd0951a6cb4",
-						"2a2a8a46-a1ef-293a-0a51-937ee584976b"
+						"2a2a8a46-a1ef-293a-0a51-937ee584976b",
+						"3c51a19a-bda5-66ba-9666-50dc495c0582"
 					],
 					"collection": "8741bae4-e956-3e30-05ae-d42631861d30",
 					"owner": "2258726",
@@ -128,9 +130,8 @@
 			"remoteLink": "",
 			"public": false,
 			"createdAt": 1505377901437,
-			"updatedAt": 1505377901437,
+			"updatedAt": 1505437063572,
 			"write": true,
-			"hasRequests": true,
 			"requests": [
 				{
 					"id": "0f79e1df-453c-fba7-727f-daede758b7b0",
@@ -431,6 +432,25 @@
 					"folder": "d5a46d96-fc9f-c798-947c-2547731176ba"
 				},
 				{
+					"id": "3c51a19a-bda5-66ba-9666-50dc495c0582",
+					"headers": "",
+					"url": "{{url}}/{{uri}}/queryByIdsed?ids=1,2,3,4,5",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": "const { codeTip, timeoutTip, codeName, msgName, resultName } = globals;\nconst { successCode, errorCode, timeout } = globals;\n\nconst code = +successCode;\nconst timeoutTime = +timeout;\nvar jsonData = JSON.parse(responseBody);\n\ntests[codeTip] = responseCode.code === code && jsonData[codeName] === code;\ntests[timeoutTip + timeoutTime +\"ms\"] = responseTime < timeoutTime;\n\nvar schema = {\n    required: [codeName, resultName],\n    properties: {\n\t\t[codeName]: {\"type\": \"integer\"},\n\t\t[resultName]: {\"type\": \"array\"}\n\t}\n};\n\nconsole.log(tv4.error);\ntests[\"验证数据格式\"] = tv4.validate(jsonData, schema);",
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505436929595,
+					"name": "查询id集合ed",
+					"description": "查询id集合，包括删除",
+					"collectionId": "8741bae4-e956-3e30-05ae-d42631861d30",
+					"responses": []
+				},
+				{
 					"id": "3ff6535e-80f2-1151-df54-f9cfc144b2fd",
 					"headers": "",
 					"url": "{{url}}/{{uri}}/queryPaged?pageNo=2&pageSize=2",
@@ -451,6 +471,25 @@
 					"synced": true,
 					"folder": "b20c1f96-8471-a5b6-469f-16aa1c992da5",
 					"owner": "2258726"
+				},
+				{
+					"id": "5289ca17-e85a-c5b7-d319-8179228019e1",
+					"headers": "",
+					"url": "{{url}}/{{uri}}/queryByIds?ids=1,2,3,4,5",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": "const { codeTip, timeoutTip, codeName, msgName, resultName } = globals;\nconst { successCode, errorCode, timeout } = globals;\n\nconst code = +successCode;\nconst timeoutTime = +timeout;\nvar jsonData = JSON.parse(responseBody);\n\ntests[codeTip] = responseCode.code === code && jsonData[codeName] === code;\ntests[timeoutTip + timeoutTime +\"ms\"] = responseTime < timeoutTime;\n\nvar schema = {\n    required: [codeName, resultName],\n    properties: {\n\t\t[codeName]: {\"type\": \"integer\"},\n\t\t[resultName]: {\"type\": \"array\"}\n\t}\n};\n\nconsole.log(tv4.error);\ntests[\"验证数据格式\"] = tv4.validate(jsonData, schema);",
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505436650069,
+					"name": "查询id集合",
+					"description": "查询id集合",
+					"collectionId": "8741bae4-e956-3e30-05ae-d42631861d30",
+					"responses": []
 				},
 				{
 					"id": "53dd7041-e427-6d59-79d9-9856371059c5",
@@ -1196,12 +1235,13 @@
 						"61fd1bb5-25da-143f-2914-96cbb218d9da",
 						"50487d3f-9a37-5abe-3f47-91e2959df42d",
 						"4ae82315-58c7-262f-1edb-be6ae5c0ac23",
-						"722d9417-4b29-1b6f-b799-c23bf6b5bbd0"
+						"722d9417-4b29-1b6f-b799-c23bf6b5bbd0",
+						"eeeaaa17-48d7-4e73-19b1-045de6a6f13a"
 					],
-					"collection": "8741bae4-e956-3e30-05ae-d42631861d30",
+					"collection": "e8916395-bb2e-1abb-384e-7ce929337cb3",
 					"owner": "2258726",
 					"collection_id": "e8916395-bb2e-1abb-384e-7ce929337cb3",
-					"collectionId": "2d50050c-f6e5-8fbf-0f21-1b3a15ac50ac"
+					"collectionId": "e8916395-bb2e-1abb-384e-7ce929337cb3"
 				},
 				{
 					"id": "310d4300-0d80-2ec9-95a9-efe480d6d4f9",
@@ -1233,9 +1273,10 @@
 						"381fabdd-bde8-d477-a271-976a74c36032",
 						"ac3e5d04-fa51-1caa-6105-eb3f95862566",
 						"0e8b6429-f3f7-983c-95f0-586f0e0723ed",
-						"824a5894-8ce1-e857-9822-67d69ecd7ff9"
+						"824a5894-8ce1-e857-9822-67d69ecd7ff9",
+						"16886586-4c50-ff99-a22c-137ee0066e14"
 					],
-					"collection": "8741bae4-e956-3e30-05ae-d42631861d30",
+					"collection": "e8916395-bb2e-1abb-384e-7ce929337cb3",
 					"owner": "2258726",
 					"collection_id": "e8916395-bb2e-1abb-384e-7ce929337cb3",
 					"collectionId": "2d50050c-f6e5-8fbf-0f21-1b3a15ac50ac"
@@ -1267,7 +1308,7 @@
 			"remoteLink": "",
 			"public": false,
 			"createdAt": 1505377979636,
-			"updatedAt": 1505378689706,
+			"updatedAt": 1505437122503,
 			"write": true,
 			"requests": [
 				{
@@ -1293,6 +1334,25 @@
 					"write": true,
 					"collection": "e8916395-bb2e-1abb-384e-7ce929337cb3",
 					"folder": "2704b373-5ad0-12da-1ffb-18755faa55de"
+				},
+				{
+					"id": "16886586-4c50-ff99-a22c-137ee0066e14",
+					"headers": "",
+					"url": "{{url}}/{{uri}}/queryByIdsed?ids=1,2,3,4,5",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": "const { codeTip, timeoutTip, codeName, msgName, resultName } = globals;\nconst { successCode, errorCode, timeout } = globals;\n\nconst code = +successCode;\nconst timeoutTime = +timeout;\nvar jsonData = JSON.parse(responseBody);\n\ntests[codeTip] = responseCode.code === code && jsonData[codeName] === code;\ntests[timeoutTip + timeoutTime +\"ms\"] = responseTime < timeoutTime;\n\nvar schema = {\n    required: [codeName, resultName],\n    properties: {\n\t\t[codeName]: {\"type\": \"integer\"},\n\t\t[resultName]: {\"type\": \"array\"}\n\t}\n};\n\nconsole.log(tv4.error);\ntests[\"验证数据格式\"] = tv4.validate(jsonData, schema);",
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505437149720,
+					"name": "查询id集合ed",
+					"description": "查询id集合，包括删除",
+					"collectionId": "e8916395-bb2e-1abb-384e-7ce929337cb3",
+					"responses": []
 				},
 				{
 					"id": "230c88d8-c212-6849-5707-e220cde54a5b",
@@ -2281,6 +2341,29 @@
 					"folder": "2a8b3d39-81eb-ab08-f7f1-f77ee2d0efdc"
 				},
 				{
+					"id": "eeeaaa17-48d7-4e73-19b1-045de6a6f13a",
+					"headers": "",
+					"url": "{{url}}/{{uri}}/queryByIds?ids=1,2,3,4,5",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": "const { codeTip, timeoutTip, codeName, msgName, resultName } = globals;\nconst { successCode, errorCode, timeout } = globals;\n\nconst code = +successCode;\nconst timeoutTime = +timeout;\nvar jsonData = JSON.parse(responseBody);\n\ntests[codeTip] = responseCode.code === code && jsonData[codeName] === code;\ntests[timeoutTip + timeoutTime +\"ms\"] = responseTime < timeoutTime;\n\nvar schema = {\n    required: [codeName, resultName],\n    properties: {\n\t\t[codeName]: {\"type\": \"integer\"},\n\t\t[resultName]: {\"type\": \"array\"}\n\t}\n};\n\nconsole.log(tv4.error);\ntests[\"验证数据格式\"] = tv4.validate(jsonData, schema);",
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505436650069,
+					"name": "查询id集合",
+					"description": "查询id集合",
+					"collectionId": "e8916395-bb2e-1abb-384e-7ce929337cb3",
+					"responses": [],
+					"synced": true,
+					"folder": "2a8b3d39-81eb-ab08-f7f1-f77ee2d0efdc",
+					"collection": "e8916395-bb2e-1abb-384e-7ce929337cb3",
+					"owner": "2258726"
+				},
+				{
 					"id": "f0840895-e36b-c731-5fbf-8ea792bcab51",
 					"headers": "",
 					"url": "{{url}}/{{uri}}/update",
@@ -2442,12 +2525,13 @@
 						"10b909e5-c06e-bd62-b618-d6a938fee72b",
 						"9feab743-48cc-927d-2620-f788fcad9ee7",
 						"0993f06b-12f0-d14e-2aee-6674840e6fca",
-						"e4fcfafd-41d6-50e7-4afd-703e756c87dd"
+						"e4fcfafd-41d6-50e7-4afd-703e756c87dd",
+						"38928744-a583-d9df-10ca-5231fa5caa7a"
 					],
-					"collection": "8741bae4-e956-3e30-05ae-d42631861d30",
+					"collection": "ff15f7ee-8612-5489-6b23-8841224eacd8",
 					"owner": "2258726",
 					"collection_id": "ff15f7ee-8612-5489-6b23-8841224eacd8",
-					"collectionId": "2d50050c-f6e5-8fbf-0f21-1b3a15ac50ac"
+					"collectionId": "ff15f7ee-8612-5489-6b23-8841224eacd8"
 				},
 				{
 					"id": "68701d5f-f368-056b-3f13-1c64e627656c",
@@ -2479,12 +2563,13 @@
 						"a36f752a-ce5b-dee5-3529-e042f2e37600",
 						"a20257c6-ad4d-ab7a-c54f-ae4081e32506",
 						"756916c4-2aee-784c-6f55-5ab02a8c495d",
-						"147257b7-f3f4-6b1a-d5cb-a904f92a612e"
+						"147257b7-f3f4-6b1a-d5cb-a904f92a612e",
+						"8015d06d-2733-64a8-1430-b7b5a04e7611"
 					],
-					"collection": "8741bae4-e956-3e30-05ae-d42631861d30",
+					"collection": "ff15f7ee-8612-5489-6b23-8841224eacd8",
 					"owner": "2258726",
 					"collection_id": "ff15f7ee-8612-5489-6b23-8841224eacd8",
-					"collectionId": "2d50050c-f6e5-8fbf-0f21-1b3a15ac50ac"
+					"collectionId": "ff15f7ee-8612-5489-6b23-8841224eacd8"
 				},
 				{
 					"id": "abb7301d-c109-5347-dca1-4ba0d105309d",
@@ -2513,7 +2598,7 @@
 			"remoteLink": "",
 			"public": false,
 			"createdAt": 1505379244580,
-			"updatedAt": 1505379253812,
+			"updatedAt": 1505437107105,
 			"write": true,
 			"requests": [
 				{
@@ -2959,6 +3044,29 @@
 					"folder": "abb7301d-c109-5347-dca1-4ba0d105309d"
 				},
 				{
+					"id": "38928744-a583-d9df-10ca-5231fa5caa7a",
+					"headers": "",
+					"url": "{{url}}/{{uri}}/queryByIds?ids=1,2,3,4,5",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": "const { codeTip, timeoutTip, codeName, msgName, resultName } = globals;\nconst { successCode, errorCode, timeout } = globals;\n\nconst code = +successCode;\nconst timeoutTime = +timeout;\nvar jsonData = JSON.parse(responseBody);\n\ntests[codeTip] = responseCode.code === code && jsonData[codeName] === code;\ntests[timeoutTip + timeoutTime +\"ms\"] = responseTime < timeoutTime;\n\nvar schema = {\n    required: [codeName, resultName],\n    properties: {\n\t\t[codeName]: {\"type\": \"integer\"},\n\t\t[resultName]: {\"type\": \"array\"}\n\t}\n};\n\nconsole.log(tv4.error);\ntests[\"验证数据格式\"] = tv4.validate(jsonData, schema);",
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505436650069,
+					"name": "查询id集合",
+					"description": "查询id集合",
+					"collectionId": "ff15f7ee-8612-5489-6b23-8841224eacd8",
+					"responses": [],
+					"synced": true,
+					"folder": "41071cd2-d87e-5a5a-e9c0-5427e593cf2c",
+					"collection": "ff15f7ee-8612-5489-6b23-8841224eacd8",
+					"owner": "2258726"
+				},
+				{
 					"id": "440805d2-5148-4e5e-dc4f-ee289bda3bff",
 					"headers": "",
 					"url": "{{url}}/{{uri}}/deleteByIded?id=",
@@ -3250,6 +3358,29 @@
 					"write": true,
 					"collection": "e8916395-bb2e-1abb-384e-7ce929337cb3",
 					"folder": "76056d88-2fa4-846f-684f-ad1a6ad76041"
+				},
+				{
+					"id": "8015d06d-2733-64a8-1430-b7b5a04e7611",
+					"headers": "",
+					"url": "{{url}}/{{uri}}/queryByIdsed?ids=1,2,3,4,5",
+					"preRequestScript": null,
+					"pathVariables": {},
+					"method": "GET",
+					"data": [],
+					"dataMode": "urlencoded",
+					"version": 2,
+					"tests": "const { codeTip, timeoutTip, codeName, msgName, resultName } = globals;\nconst { successCode, errorCode, timeout } = globals;\n\nconst code = +successCode;\nconst timeoutTime = +timeout;\nvar jsonData = JSON.parse(responseBody);\n\ntests[codeTip] = responseCode.code === code && jsonData[codeName] === code;\ntests[timeoutTip + timeoutTime +\"ms\"] = responseTime < timeoutTime;\n\nvar schema = {\n    required: [codeName, resultName],\n    properties: {\n\t\t[codeName]: {\"type\": \"integer\"},\n\t\t[resultName]: {\"type\": \"array\"}\n\t}\n};\n\nconsole.log(tv4.error);\ntests[\"验证数据格式\"] = tv4.validate(jsonData, schema);",
+					"currentHelper": "normal",
+					"helperAttributes": {},
+					"time": 1505436929595,
+					"name": "查询id集合ed",
+					"description": "查询id集合，包括删除",
+					"collectionId": "ff15f7ee-8612-5489-6b23-8841224eacd8",
+					"responses": [],
+					"synced": true,
+					"folder": "76056d88-2fa4-846f-684f-ad1a6ad76041",
+					"collection": "ff15f7ee-8612-5489-6b23-8841224eacd8",
+					"owner": "2258726"
 				},
 				{
 					"id": "8656218a-09f1-1689-25c8-02094788a6ce",

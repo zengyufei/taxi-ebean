@@ -87,7 +87,7 @@ public class Msg<T>  {
 		}
 
 		public <T> Msg<T> body(T result) {
-			return new Msg(this.code, this.message, result);
+			return new Msg(this.code, this.message, result == null ? new Object() : result);
 		}
 
 		@Override

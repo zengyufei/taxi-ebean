@@ -13,6 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * 测试连接 or 建表专用
+ * 建表：
+ * 	1，打开 application.yml
+ * 	2，修改 spring.profiles.active: create
+ * 	3，运行该测试类 ok
+ */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 public class ConnectTest {

@@ -8,12 +8,14 @@ import com.zzsim.taxi.core.common.annotations.OptionField;
 import com.zzsim.taxi.core.common.annotations.OptionFieldLike;
 import com.zzsim.taxi.core.common.base.BaseEntity;
 import com.zzsim.taxi.core.common.enums.Sex;
+import io.ebean.annotation.Cache;
 import io.ebean.annotation.DbComment;
 import io.ebean.annotation.Formula;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Cache(enableQueryCache = true)
 @Entity
 @Table(name = "t_sys_member")
 @Matches({
@@ -63,6 +65,7 @@ public class SysMember extends BaseEntity {
 		2. coalesce相当于或判断，如果不用，会null，给它 '' 默认值。
 		3. 必须用left join 否则查不到数据，整个this 都为空。
 	*/
+	// @Formula(select = "(select t1.role_name from t_sys_role t1 where t1.id = ${ta}.role_id)") // 这种写法为空只能null
 	@Formula(select = "coalesce(t1.role_name, '')", join = "left join t_sys_role t1 on t1.id = ${ta}.role_id")
 	private String roleName;
 

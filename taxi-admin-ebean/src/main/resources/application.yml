@@ -16,6 +16,8 @@ spring:
   http:
     converters:
       preferred-json-mapper: fastjson
+springMvc:
+  static-view-name: /api=redirect:/swagger-ui.html
 
 http:
   encoding:
@@ -31,3 +33,19 @@ http:
 ebeans:
   dbName: db
   packages: com.zzsim.taxi.core.common.entitys
+
+
+swagger:
+  enabled: true
+  title: api
+  description: api
+  version: 1.0.0.RELEASE
+  license: Apache License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfServiceUrl: https://github.com/dyc87112/spring-boot-starter-swagger
+  contact.name: zengyufei
+  contact.url: http://blog.didispace.com
+  contact.email: 31263620@qq.com
+  base-package: com.zzsim.taxi.admin.controller
+  base-path: /**
+  exclude-path: /error, /ops/**

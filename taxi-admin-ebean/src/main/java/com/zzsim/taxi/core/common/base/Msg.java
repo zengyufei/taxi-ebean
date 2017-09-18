@@ -1,12 +1,22 @@
 package com.zzsim.taxi.core.common.base;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel(value = "返回结果集")
 public class Msg<T>  {
+
+	public static final int SUCCESS_CODE = 200;
+	public static final int ERROR_CODE = 501;
+
+	@ApiModelProperty(value = "结果集", example = "{}",position = 3, dataType = "string/object/array")
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private T result;
+	@ApiModelProperty(value = "消息", example = "成功",position = 2, dataType = "string")
 	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private String msg;
+	@ApiModelProperty(value = "代码", example = "200",position = 1, required = true, dataType = "int")
 	private Object code;
 
 	public T getResult() {
@@ -36,7 +46,7 @@ public class Msg<T>  {
 	}
 
 	public static Msg.BodyBuilder ok() {
-		return status(200);
+		return status(SUCCESS_CODE);
 	}
 
 	public static <T> Msg<T> ok(T result) {
@@ -55,7 +65,7 @@ public class Msg<T>  {
 	}
 
 	public static Msg.BodyBuilder fail() {
-		return status(501);
+		return status(ERROR_CODE);
 	}
 
 	public static <T> Msg<T> fail(T result) {

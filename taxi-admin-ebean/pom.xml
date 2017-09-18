@@ -25,10 +25,36 @@
 		<fastjson.version>1.2.32</fastjson.version>
 		<shiro.version>1.2.5</shiro.version>
 		<poi.version>3.10.1</poi.version>
+		<version.feilong-platform>1.10.5</version.feilong-platform>
 
     </properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>com.googlecode.log4jdbc</groupId>
+			<artifactId>log4jdbc</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.feilong.platform</groupId>
+			<artifactId>feilong-core</artifactId>
+			<version>${version.feilong-platform}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
+		<!-- JSON 日期格式化 -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.module</groupId>
 			<artifactId>jackson-module-jaxb-annotations</artifactId>
@@ -52,39 +78,35 @@
 			<version>3.6</version>
 		</dependency>
 
-
+		<!-- ebean 套件-->
 		<dependency>
 			<groupId>io.ebean</groupId>
 			<artifactId>ebean</artifactId>
 			<version>10.2.2</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/io.ebean/ebean-spring-txn -->
 		<dependency>
 			<groupId>io.ebean</groupId>
 			<artifactId>ebean-spring-txn</artifactId>
 			<version>10.1.1</version>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/io.ebean/ebean-jackson -->
 		<dependency>
 			<groupId>io.ebean</groupId>
 			<artifactId>ebean-jackson</artifactId>
 			<version>10.1.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.ebean/persistence-api -->
 		<dependency>
 			<groupId>io.ebean</groupId>
 			<artifactId>persistence-api</artifactId>
 			<version>2.2.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.ebean/ebean-annotation -->
 		<dependency>
 			<groupId>io.ebean</groupId>
 			<artifactId>ebean-annotation</artifactId>
 			<version>2.3</version>
 		</dependency>
 
+		<!-- shiro 套件-->
 		<dependency>
 			<groupId>org.apache.shiro</groupId>
 			<artifactId>shiro-ehcache</artifactId>
@@ -213,5 +235,12 @@
 			</properties>
 		</profile>
 	</profiles>
+
+	<repositories>
+		<repository>
+			<id>feilong-repository</id>
+			<url>https://raw.github.com/venusdrogon/feilong-platform/repository</url>
+		</repository>
+	</repositories>
 
 </project>

@@ -7,4 +7,5 @@ logging:
            SQL: INFO
            TXN: INFO
 server:
+  dbName: dev
   port: 8080

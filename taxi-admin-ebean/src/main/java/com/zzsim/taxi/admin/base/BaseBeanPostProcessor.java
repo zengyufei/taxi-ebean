@@ -8,7 +8,7 @@ import org.springframework.context.ApplicationContext;
 import java.util.regex.Pattern;
 
 // @Component
-public class MyBeanPostProcessor implements BeanPostProcessor{
+public class BaseBeanPostProcessor implements BeanPostProcessor{
 
 	@Autowired
 	private ApplicationContext applicationContext;

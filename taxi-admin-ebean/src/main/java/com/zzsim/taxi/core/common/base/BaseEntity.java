@@ -11,6 +11,10 @@ import com.zzsim.taxi.admin.validate.groups.QueryById;
 import com.zzsim.taxi.admin.validate.groups.Update;
 import io.ebean.Model;
 import io.ebean.annotation.*;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,6 +23,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
+@Data
 @MappedSuperclass
 public class BaseEntity<T> extends Model implements ExtensionFeatures {
 
@@ -36,6 +41,8 @@ public class BaseEntity<T> extends Model implements ExtensionFeatures {
     /**特征对象JSON字段*/
     @DbJson
     @DbComment("额外字段")
+    @Setter(value = AccessLevel.NONE)
+    @Getter(value = AccessLevel.NONE)
     protected JSONObject features = new JSONObject();
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")//页面输出时格式化
@@ -100,39 +107,4 @@ public class BaseEntity<T> extends Model implements ExtensionFeatures {
         return serializer.getWriter().toString();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public boolean isDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        this.deleted = deleted;
-    }
-
-    public void setFeatures(JSONObject features) {
-        this.features = features;
-    }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
 }

@@ -15,7 +15,7 @@ import io.ebean.annotation.Formula;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Cache(enableQueryCache = true)
+// @Cache(enableQueryCache = true)
 @Entity
 @Table(name = "t_sys_member")
 @Matches({

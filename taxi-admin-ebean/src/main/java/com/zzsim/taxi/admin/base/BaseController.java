@@ -109,48 +109,72 @@ public abstract class BaseController<T extends BaseEntity> {
 		return Msg.ok(setPage(setParams(t).setIncludeSoftDeletes().where(), pageNo, pageSize));
 	}
 
+	@ApiOperation(value = "新增", notes = "新增", httpMethod = "POST", produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@ApiResponse(code = Msg.SUCCESS_CODE, message = "新增成功", response = Msg.class)
+	@ApiImplicitParam(value = "实体", required = true, name = "obj", paramType = "body")
 	@PostMapping("insert")
 	public Msg insert(@Validated(value = Insert.class) T obj) {
 		obj.insert();
 		return Msg.ok("新增成功");
 	}
 
+	@ApiOperation(value = "新增", notes = "新增", httpMethod = "PUT", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponse(code = Msg.SUCCESS_CODE, message = "新增成功", response = Msg.class)
+	@ApiImplicitParam(value = "实体", required = true, name = "obj")
 	@PutMapping("insert")
 	public Msg insertJSON(@Validated(value = Insert.class) @RequestBody T obj) {
 		obj.insert();
 		return Msg.ok("新增成功");
 	}
 
+	@ApiOperation(value = "修改", notes = "修改", httpMethod = "POST", produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@ApiResponse(code = Msg.SUCCESS_CODE, message = "修改成功", response = Msg.class)
+	@ApiImplicitParam(value = "实体", required = true, name = "obj", paramType = "body")
 	@PostMapping("update")
 	public Msg update(@Validated(value = Update.class) T obj) {
 		obj.update();
 		return Msg.ok("修改成功");
 	}
 
+	@ApiOperation(value = "修改", notes = "修改", httpMethod = "PUT", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponse(code = Msg.SUCCESS_CODE, message = "修改成功", response = Msg.class)
+	@ApiImplicitParam(value = "实体", required = true, name = "obj")
 	@PatchMapping("update")
 	public Msg updateJSON(@Validated(value = Update.class) @RequestBody T obj) {
 		obj.update();
 		return Msg.ok("修改成功");
 	}
 
+	@ApiOperation(value = "删除", notes = "删除", httpMethod = "GET", produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@ApiResponse(code = Msg.SUCCESS_CODE, message = "删除成功", response = Msg.class)
+	@ApiImplicitParam(value = "序号", required = true, name = "id", paramType = "query")
 	@GetMapping("remoteById")
 	public Msg remoteById(@IdCheck Long id) {
 		Ebean.delete(entityClass, id);
 		return Msg.ok("删除成功");
 	}
 
+	@ApiOperation(value = "删除", notes = "删除", httpMethod = "DELETE", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponse(code = Msg.SUCCESS_CODE, message = "删除成功", response = Msg.class)
+	@ApiImplicitParam(value = "序号", required = true, name = "id")
 	@DeleteMapping("remoteById")
 	public Msg remoteByIdForDeleteMapping(@IdCheck Long id) {
 		Ebean.delete(entityClass, id);
 		return Msg.ok("删除成功");
 	}
 
+	@ApiOperation(value = "物理删除", notes = "物理删除", httpMethod = "GET", produces = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	@ApiResponse(code = Msg.SUCCESS_CODE, message = "物理删除成功", response = Msg.class)
+	@ApiImplicitParam(value = "序号", required = true, name = "id", paramType = "query")
 	@GetMapping("deleteByIded")
 	public Msg deleteByIded(@IdCheck Long id) {
 		Ebean.deletePermanent(entityClass, id);
 		return Msg.ok("物理删除成功");
 	}
 
+	@ApiOperation(value = "物理删除", notes = "物理删除", httpMethod = "DELETE", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponse(code = Msg.SUCCESS_CODE, message = "物理删除成功", response = Msg.class)
+	@ApiImplicitParam(value = "序号", required = true, name = "id")
 	@DeleteMapping("deleteByIded")
 	public Msg deleteByIdForDeleteMapping(@IdCheck Long id) {
 		Ebean.deletePermanent(entityClass, id);

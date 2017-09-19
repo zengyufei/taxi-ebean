@@ -17,7 +17,7 @@ import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-@Cache(enableQueryCache = true)
+// @Cache(enableQueryCache = true)
 @Entity
 @Table(name = "t_sys_role")
 @Matches({

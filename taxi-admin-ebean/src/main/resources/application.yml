@@ -1,3 +1,7 @@
+server:
+  port: 8082
+  tomcat:
+    uri-encoding: UTF-8
 spring:
   profiles:
     active: @profileActive@
@@ -16,8 +20,6 @@ spring:
   http:
     converters:
       preferred-json-mapper: fastjson
-springMvc:
-  static-view-name: /api=redirect:/swagger-ui.html
 
 http:
   encoding:
@@ -49,3 +51,8 @@ swagger:
   base-package: com.zzsim.taxi.admin.controller
   base-path: /**
   exclude-path: /error, /ops/**
+
+sys:
+ token:
+  timeout: 2 * 60 * 60
+  liveTime: 1 * 60 * 60

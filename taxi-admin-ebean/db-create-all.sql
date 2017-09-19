@@ -35,6 +35,18 @@ create table t_sys_org (
   constraint pk_t_sys_org primary key (id)
 );
 
+create table t_sys_resource (
+  id                            bigint auto_increment not null,
+  features                      longtext comment '额外字段',
+  parent_id                     bigint comment '父id',
+  name                          varchar(255) comment '权限名称',
+  permission                    varchar(255) comment '权限标识',
+  deleted                       BOOLEAN DEFAULT FALSE not null comment '数据状态',
+  create_time                   datetime not null not null comment '创建时间',
+  update_time                   datetime not null not null comment '修改时间',
+  constraint pk_t_sys_resource primary key (id)
+);
+
 create table t_sys_role (
   id                            bigint auto_increment not null,
   features                      longtext comment '额外字段',

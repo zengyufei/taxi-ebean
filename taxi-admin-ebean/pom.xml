@@ -32,17 +32,26 @@
 	<dependencies>
 
 		<dependency>
+			<!-- 字节码增强工具，免去 POJO 手动添加 getter、setter -->
+			<!-- 说明： http://www.iteye.com/topic/1113871 -->
+			<!-- 较全说明： http://www.aichengxu.com/other/24590677.htm -->
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.14</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.googlecode.log4jdbc</groupId>
 			<artifactId>log4jdbc</artifactId>
 			<version>1.2</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>com.feilong.platform</groupId>
 			<artifactId>feilong-core</artifactId>
 			<version>${version.feilong-platform}</version>
 		</dependency>
-
+-->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>

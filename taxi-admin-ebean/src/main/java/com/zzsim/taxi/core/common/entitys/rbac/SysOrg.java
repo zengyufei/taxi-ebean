@@ -17,7 +17,7 @@ import java.io.Serializable;
 /**
  * 支持 NamedQuery 和 Finder 查询类，用意是将 sql 相关查询放在实体中，不需要放在 dao 层
  */
-@Cache(enableQueryCache = true)
+// @Cache(enableQueryCache = true)
 @Entity
 @Table(name = "t_sys_org")
 @Matches({

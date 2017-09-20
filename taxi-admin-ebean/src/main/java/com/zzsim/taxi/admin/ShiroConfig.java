@@ -6,11 +6,9 @@ import com.zzsim.taxi.admin.base.shiroRealm.CustomSubjectFactory;
 import com.zzsim.taxi.admin.base.shiroRealm.ShiroDbRealm;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
-import org.apache.shiro.mgt.SessionStorageEvaluator;
 import org.apache.shiro.session.mgt.DefaultSessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -58,16 +56,13 @@ public class ShiroConfig {
 
 		Map<String, Filter> filters = new HashMap<>();
 		filters.put("authToken", getTokenFilter());
-		filters.put("authc", getCustomAuthenticationFilter());
 		bean.setFilters(filters);
 
-		bean.setFilterChainDefinitions("/login.htm = anon\n" +
+		bean.setFilterChainDefinitions("" +
+				"/login* = anon\n" +
 				"/#/** = anon\n" +
-				"\n" +
 				"/common/**.htm = anon\n" +
-				"\n" +
-				"/page/** = authc\n" +
-				"/** = authToken,authc");
+				"/** = authToken\n");
 		return bean;
 	}
 

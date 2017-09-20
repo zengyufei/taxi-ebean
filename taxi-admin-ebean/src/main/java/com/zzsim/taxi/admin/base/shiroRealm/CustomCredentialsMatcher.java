@@ -13,7 +13,8 @@ public class CustomCredentialsMatcher extends SimpleCredentialsMatcher {
             AuthenticationInfo info) {  
 		  
 		UsernamePasswordToken usertoken = (UsernamePasswordToken) token;
-		String tokenCredentials = Md5.hash(usertoken.getUsername()+String.valueOf(usertoken.getPassword()));
+		// String tokenCredentials = Md5.hash(usertoken.getUsername()+String.valueOf(usertoken.getPassword()));
+		String tokenCredentials = String.valueOf(usertoken.getPassword());
 		String accountCredentials = (String)info.getCredentials();
 		return equals(tokenCredentials, accountCredentials);
 	

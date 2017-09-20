@@ -40,6 +40,7 @@ create table t_sys_resource (
   features                      longtext comment '额外字段',
   parent_id                     bigint comment '父id',
   name                          varchar(255) comment '权限名称',
+  level                         integer comment '菜单等级',
   permission                    varchar(255) comment '权限标识',
   deleted                       BOOLEAN DEFAULT FALSE not null comment '数据状态',
   create_time                   datetime not null not null comment '创建时间',

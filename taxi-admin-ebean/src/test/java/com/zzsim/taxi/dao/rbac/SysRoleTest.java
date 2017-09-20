@@ -30,10 +30,7 @@ public class SysRoleTest {
 		sysRole.setOrgNo("sz-001");
 		sysRole.setDescription("adsassdfsdfsdf");
 		List<String> resourceList = sysRole.getResourceList();
-		resourceList.add("1");
-		resourceList.add("2");
-		resourceList.add("3");
-		resourceList.add("4");
+		resourceList.add("all");
 		// sysRole.setResourceList("1,2,3,4");
 		return sysRole;
 	}

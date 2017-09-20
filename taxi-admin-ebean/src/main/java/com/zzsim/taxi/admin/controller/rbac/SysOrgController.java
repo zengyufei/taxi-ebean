@@ -8,6 +8,7 @@ import com.zzsim.taxi.core.common.base.Msg;
 import com.zzsim.taxi.core.common.entitys.rbac.SysOrg;
 import io.ebean.Ebean;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+@Slf4j
 @Api(value = "组织机构", description = "组织机构管理", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RestFullController("sysOrg")
 public class SysOrgController extends BaseController<SysOrg> {

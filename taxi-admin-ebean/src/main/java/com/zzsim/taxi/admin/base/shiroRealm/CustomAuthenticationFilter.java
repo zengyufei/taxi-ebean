@@ -47,7 +47,7 @@ public class CustomAuthenticationFilter extends AuthenticationFilter   {
         Subject subject = getSubject(request, response);
         if (subject.getPrincipal() == null) {
         	if(!isAjax){
-        		saveRequestAndRedirectToLogin(request, response);
+        		// saveRequestAndRedirectToLogin(request, response);
         	}else{
         		String loginfailure = "/";
     		    WebUtils.issueRedirect(request, response, loginfailure);

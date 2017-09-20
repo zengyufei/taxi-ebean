@@ -1,0 +1,3 @@
+insert into t_sys_member (id, features, account, password, real_name, identity, mobile, email, qq, remark, sex, role_id, org_no, deleted, create_time, update_time) values (1, "{}","admin","admin","管理员","","","","","",1,1,"sz-001",0,now(),now()) ON DUPLICATE KEY UPDATE account='admin', real_name='管理员';
+
+INSERT INTO t_sys_role (`id`, `features`, `role_name`, `description`, `org_no`, `resource_list`, `deleted`, `create_time`, `update_time`) VALUES ('1', '{}', '管理员', '管理角色', 'sz-001', '[all]', '0', '2017-09-20 15:42:55', '2017-09-20 15:42:55') ON DUPLICATE KEY UPDATE org_no='sz-001', role_name='管理员';

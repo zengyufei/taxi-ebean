@@ -1,10 +1,9 @@
 package com.zzsim.taxi.admin.base.interceptors;
 
+import com.zzsim.taxi.admin.base.shiroRealm.Token;
 import com.zzsim.taxi.admin.util.AESSecret;
-import com.zzsim.taxi.admin.util.TockenUtil;
+import com.zzsim.taxi.admin.util.TokenUtils;
 import com.zzsim.taxi.core.common.entitys.rbac.SysMember;
-import io.ebean.Ebean;
-import io.ebeaninternal.server.util.Md5;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.SimplePrincipalCollection;
@@ -30,57 +29,45 @@ public class TokenFilter extends AccessControlFilter {
     protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse res = (HttpServletResponse) servletResponse;
-        
-        String token = req.getHeader("token");
-        if(StringUtils.isBlank(token) || "null".equals(token)){
-        	token = req.getParameter("token");
+
+        if("OPTIONS".equalsIgnoreCase(req.getMethod())){
+            return true;
         }
-        if(StringUtils.isBlank(token)){
+        
+        String headerToken = req.getHeader("token");
+        if(StringUtils.isBlank(headerToken) || "null".equals(headerToken)){
+            headerToken = req.getParameter("token");
+        }
+        if(StringUtils.isBlank(headerToken)){
             //返回401未授权状态码
             WebUtils.toHttp(res).sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return false;
         }
         try {
-            String content = AESSecret.decrypt(token);
-            if(StringUtils.isBlank(token)){
-                //返回401未授权状态码
-                WebUtils.toHttp(res).sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                return false;
-            }
-            long memberId = Long.valueOf(StringUtils.split(content, "|")[0]);
-            long expireTime = Long.valueOf(StringUtils.split(content, "|")[1]);
-            String account = StringUtils.split(content, "|")[2];
-            String md5Code = StringUtils.split(content, "|")[3];
-            if(!md5Code.equals(Md5.hash(memberId+expireTime+account))){//MD5校对，防止伪装token
-                //返回401未授权状态码
-                WebUtils.toHttp(res).sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                return false;
-            }
-            
-            long nowTime = Instant.now().toEpochMilli();
-            if(nowTime > expireTime){
+            Token token = TokenUtils.getToken(headerToken);
+            if(token == null){
                 //返回401未授权状态码
                 WebUtils.toHttp(res).sendError(HttpServletResponse.SC_UNAUTHORIZED);
                 return false;
             }
 
-            SysMember member = Ebean.find(SysMember.class, memberId);
+            SysMember member = TokenUtils.getMember(token);
             if(member == null){
                 //返回401未授权状态码
                 WebUtils.toHttp(res).sendError(HttpServletResponse.SC_UNAUTHORIZED);
                 return false;
             }
-            
-            if (expireTime - nowTime < TockenUtil.liveTime) {//时间小于过期时间的一半才刷新token
-                res.setHeader("token", TockenUtil.getToken(member));//刷新token
+
+            long nowTime = Instant.now().toEpochMilli();
+            if (token.getExpireTime() - nowTime < TokenUtils.liveTime) {//时间小于过期时间的一半才刷新token
+                res.setHeader("token", TokenUtils.getTokenStr(member));//刷新token
             }else{
-            	res.setHeader("token", token);
+            	res.setHeader("token", headerToken);
             }
             
-            WebDelegatingSubject subject = getWebSubject(req, res, member);//刷新cookie
+            WebDelegatingSubject subject = getWebSubject(req, res, member);
             ThreadContext.bind(subject);
         } catch (Exception e) {
-            e.printStackTrace();
             //返回401未授权状态码
             WebUtils.toHttp(res).sendError(HttpServletResponse.SC_UNAUTHORIZED);
             return false;

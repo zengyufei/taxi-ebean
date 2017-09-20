@@ -1,5 +1,7 @@
 package com.zzsim.taxi.admin.base.interceptors;
 
+import org.springframework.stereotype.Component;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
@@ -9,6 +11,7 @@ import java.io.IOException;
  * 请求支持跨域
  */
 @WebFilter
+@Component
 public class AllowOriginFilter implements Filter {
 
 	@Override
@@ -27,9 +30,9 @@ public class AllowOriginFilter implements Filter {
 				|| request.getLocalAddr().startsWith("0:0:0")
 				) {
 			HttpServletResponse resp = (HttpServletResponse) response;
-			resp.addHeader("Access-Control-Allow-Credentials", "true");
 			resp.addHeader("Access-Control-Allow-Origin", "*");
-			resp.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+			resp.addHeader("Access-Control-Allow-Credentials", "true");
+			resp.addHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
 			resp.addHeader("Access-Control-Request-Headers", "token");
 			resp.addHeader("Access-Control-Expose-Headers", "token");
 			resp.addHeader("Access-Control-Allow-Headers", "DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,Accept,token");

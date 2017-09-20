@@ -8,7 +8,6 @@ import com.zzsim.taxi.core.common.annotations.OptionField;
 import com.zzsim.taxi.core.common.annotations.OptionFieldLike;
 import com.zzsim.taxi.core.common.base.BaseEntity;
 import com.zzsim.taxi.core.common.enums.Sex;
-import io.ebean.annotation.Cache;
 import io.ebean.annotation.DbComment;
 import io.ebean.annotation.Formula;
 

@@ -25,7 +25,7 @@ public class AESSecret {
      * @create_time 2017年3月31日 下午11:49:17
      */
     public static String decrypt(String content) throws Exception{
-        return decrypt(EnCryptHelper.hexStr2Bytes(content), AESKey.secretKey());
+        return decrypt(Hex.hexStr2Bytes(content), AESKey.secretKey());
     }
 	
 	public static String encrypt(String content, String secureKey) throws Exception{
@@ -42,7 +42,7 @@ public class AESSecret {
 	    byte[] byteContent = content.getBytes("utf-8");
 	    cipher.init(Cipher.ENCRYPT_MODE, key);
 	    byte[] result = cipher.doFinal(byteContent);			
-	    return EnCryptHelper.byte2HexStr(result);
+	    return Hex.byte2HexStr(result);
 	}
 
 	public static String decrypt(byte[] content, String secureKey) throws Exception {

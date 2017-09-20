@@ -12,9 +12,18 @@
 		</layout>
 	</appender>
 
-	<root level="info">
+	<root level="error">
 		<appender-ref ref="LOGFILE"/>
 	</root>
 
-	<logger name="com.dengpao" level="ERROR"/>
+	<logger name="com.zzsim.taxi" level="INFO" addtivity="false"/>
+	<logger name="io.ebean" level="DEBUG" addtivity="false" />
+	<logger name="org.springframework.context.support.PostProcessorRegistrationDelegate" level="INFO" addtivity="false"/>
+	<logger name="org.springframework.context.support.FilterRegistrationBean" level="INFO" addtivity="false"/>
+	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="DEBUG" addtivity="false"/>
+	<logger name="org.apache.coyote.http11" level="DEBUG" addtivity="false"/>
+	<logger name="org.springframework.boot.context.embedded.tomcat" level="DEBUG" addtivity="false"/>
+	<logger name="springfox.documentation.swagger2.web.ClassOrApiAnnotationResourceGrouping" level="error" addtivity="false"/>
+	<logger name="springfox.documentation.spring.web.caching.CachingAspect" level="error" addtivity="false"/>
+
 </configuration>

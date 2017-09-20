@@ -203,6 +203,7 @@
 					<include>ebean.properties</include>
 					<include>application-${profileActive}.yml</include>
 					<include>config/logback-${profileActive}.xml</include>
+					<include>sql/init.sql</include>
 				</includes>
 			</resource>
 		</resources>

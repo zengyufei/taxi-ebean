@@ -1,11 +1,5 @@
 import com.zzsim.taxi.admin.util.AESSecret;
-import io.ebeaninternal.extraddl.model.ExtraDdlXmlReader;
 import org.junit.Test;
-
-import java.io.*;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by admin on 2017/9/19.

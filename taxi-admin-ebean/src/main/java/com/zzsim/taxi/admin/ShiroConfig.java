@@ -59,6 +59,11 @@ public class ShiroConfig {
 		bean.setFilters(filters);
 
 		bean.setFilterChainDefinitions("" +
+				"/swagger** = anon\n" +
+				"/webjars/** = anon\n" +
+				"/v2/** = anon\n" +
+				"/images/** = anon\n" +
+				"/configuration/** = anon\n" +
 				"/login* = anon\n" +
 				"/#/** = anon\n" +
 				"/common/**.htm = anon\n" +

@@ -1,6 +1,6 @@
 package ebean.entity;
 
-import com.zzsim.taxi.core.common.base.BaseEntity;
+import com.zzsim.taxi.core.common.base.entiry.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

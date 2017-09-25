@@ -1,7 +1,6 @@
 package com.zzsim.taxi.admin.base.interceptors;
 
 import com.zzsim.taxi.admin.base.shiroRealm.Token;
-import com.zzsim.taxi.admin.util.AESSecret;
 import com.zzsim.taxi.admin.util.TokenUtils;
 import com.zzsim.taxi.core.common.entitys.rbac.SysMember;
 import org.apache.commons.lang3.StringUtils;

@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 @ApiModel(value = "返回结果集")
-public class Msg<T>  {
+public class Msg<T>  implements Serializable {
 
 	public static final int SUCCESS_CODE = 200;
 	public static final int ERROR_CODE = 501;

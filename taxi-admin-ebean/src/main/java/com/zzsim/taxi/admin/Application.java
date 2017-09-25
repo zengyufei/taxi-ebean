@@ -8,12 +8,16 @@ import io.ebean.config.ServerConfig;
 import io.ebean.config.UnderscoreNamingConvention;
 import io.ebean.dbmigration.ddl.DdlRunner;
 import io.ebean.spring.txn.SpringJdbcTransactionManager;
+import lombok.Cleanup;
+import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.context.annotation.Scope;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -24,6 +28,7 @@ import java.sql.SQLException;
 
 import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_SINGLETON;
 
+@EnableAspectJAutoProxy(proxyTargetClass=true)
 @EnableSwagger2
 @SpringBootApplication
 public class Application {
@@ -51,23 +56,21 @@ public class Application {
 		config.setNamingConvention(new UnderscoreNamingConvention());// 下划线
 		config.setCurrentUserProvider(new CurrentUser());
 		EbeanServer ebeanServer = EbeanServerFactory.create(config);
-		runScript(false, ebeanServer);
+		if (!"create".equals(env)) {
+			runScript(false, ebeanServer);
+		}
 		return ebeanServer;
 	}
 
-	private void runScript(boolean expectErrors, EbeanServer ebeanServer){
+	@SneakyThrows
+	private void runScript(boolean expectErrors, EbeanServer ebeanServer) {
 		StringBuffer sb = new StringBuffer();
-		try(InputStream stream = Application.class.getClassLoader().getResourceAsStream("sql/init.sql");
-		java.util.Scanner scan = new java.util.Scanner(stream)) {
-			// scan.useDelimiter("\\s");
-			while (scan.hasNext()){
-				sb.append(scan.nextLine());
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String sql1 = addSql("sql/init.sql");
+		String sql2 = addSql("sql/t_area.sql");
+		sb.append(sql1);
+		sb.append(sql2);
 
-		DdlRunner runner = new DdlRunner(expectErrors, "sql/init.sql");
+		DdlRunner runner = new DdlRunner(expectErrors, "init");
 
 		Transaction transaction = ebeanServer.createTransaction();
 		Connection connection = transaction.getConnection();
@@ -75,7 +78,7 @@ public class Application {
 			if (expectErrors) {
 				connection.setAutoCommit(true);
 			}
-			int count = runner.runAll(sb.toString(), connection);
+			runner.runAll(sb.toString(), connection);
 			if (expectErrors) {
 				connection.setAutoCommit(false);
 			}
@@ -87,6 +90,17 @@ public class Application {
 		} finally {
 			transaction.end();
 		}
+	}
+
+	@SneakyThrows
+	private String addSql(String path) {
+		StringBuffer sb = new StringBuffer();
+		@Cleanup InputStream stream = Application.class.getClassLoader().getResourceAsStream(path);
+		@Cleanup java.util.Scanner scan = new java.util.Scanner(stream);
+		while (scan.hasNext()) {
+			sb.append(scan.nextLine().concat("\n"));
+		}
+		return sb.toString();
 	}
 
 	public static void main(String[] args) {

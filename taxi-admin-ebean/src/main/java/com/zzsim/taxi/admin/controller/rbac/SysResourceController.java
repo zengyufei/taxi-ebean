@@ -1,7 +1,7 @@
 package com.zzsim.taxi.admin.controller.rbac;
 
-import com.zzsim.taxi.admin.base.BaseController;
 import com.zzsim.taxi.admin.base.annotations.RestFullController;
+import com.zzsim.taxi.admin.base.control.BaseController;
 import com.zzsim.taxi.core.common.base.Msg;
 import com.zzsim.taxi.core.common.entitys.rbac.SysMember;
 import com.zzsim.taxi.core.common.entitys.rbac.SysResource;
@@ -39,7 +39,7 @@ public class SysResourceController extends BaseController<SysResource> {
 					.idIn(resourceList)
 					.findList();
 		}
-		List<Long> ids = sysResources.stream().map(e -> e.getId()).collect(Collectors.toList());
+		List<String> ids = sysResources.stream().map(e -> e.getPermission()).collect(Collectors.toList());
 		return Msg.ok(ids);
 	}
 }

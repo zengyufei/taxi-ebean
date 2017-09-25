@@ -1,9 +1,5 @@
 package ebean.connect;
 
-/**
- * Created by zengyufei on 2017/7/20.
- */
-
 import com.zzsim.taxi.admin.Application;
 import io.ebean.EbeanServer;
 import org.junit.Assert;

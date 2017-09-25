@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
 	<appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<File>log/server-prod.log</File>
 		<rollingPolicy
@@ -13,17 +19,10 @@
 	</appender>
 
 	<root level="error">
+		<appender-ref ref="stdout"/>
 		<appender-ref ref="LOGFILE"/>
 	</root>
 
 	<logger name="com.zzsim.taxi" level="INFO" addtivity="false"/>
-	<logger name="io.ebean" level="DEBUG" addtivity="false" />
-	<logger name="org.springframework.context.support.PostProcessorRegistrationDelegate" level="INFO" addtivity="false"/>
-	<logger name="org.springframework.context.support.FilterRegistrationBean" level="INFO" addtivity="false"/>
-	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="DEBUG" addtivity="false"/>
-	<logger name="org.apache.coyote.http11" level="DEBUG" addtivity="false"/>
-	<logger name="org.springframework.boot.context.embedded.tomcat" level="DEBUG" addtivity="false"/>
-	<logger name="springfox.documentation.swagger2.web.ClassOrApiAnnotationResourceGrouping" level="error" addtivity="false"/>
-	<logger name="springfox.documentation.spring.web.caching.CachingAspect" level="error" addtivity="false"/>
 
 </configuration>

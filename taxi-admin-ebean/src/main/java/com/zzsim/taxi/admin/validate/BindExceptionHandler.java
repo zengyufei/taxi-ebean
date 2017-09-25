@@ -1,6 +1,7 @@
 package com.zzsim.taxi.admin.validate;
 
 import com.zzsim.taxi.core.common.base.Msg;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
@@ -15,24 +16,24 @@ import javax.validation.ConstraintViolationException;
 /**
  * BindExceptionHandler
  */
+@Slf4j
 @ControllerAdvice
 @Component
 public class BindExceptionHandler {
-	// private static final Logger logger = Logger.getLogger(BindExceptionHandler.class);
 
-    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED)
+    @ResponseStatus(value = HttpStatus.OK)
     @ExceptionHandler(BindException.class)
     public @ResponseBody Msg handleBindException(BindException e) {
         return Msg.fail(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());
     }
 
-    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED)
+    @ResponseStatus(value = HttpStatus.OK)
     @ExceptionHandler(ConstraintViolationException.class)
     public @ResponseBody Msg handleConstraintViolationException(ConstraintViolationException e) {
         return Msg.fail(e.getConstraintViolations().iterator().next().getMessageTemplate());
     }
 
-    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED)
+    @ResponseStatus(value = HttpStatus.OK)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public @ResponseBody Msg handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         return Msg.fail(e.getBindingResult().getAllErrors().get(0).getDefaultMessage());

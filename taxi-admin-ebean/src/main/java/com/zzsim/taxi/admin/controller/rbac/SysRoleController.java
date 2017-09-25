@@ -1,7 +1,7 @@
 package com.zzsim.taxi.admin.controller.rbac;
 
-import com.zzsim.taxi.admin.base.BaseController;
 import com.zzsim.taxi.admin.base.annotations.RestFullController;
+import com.zzsim.taxi.admin.base.control.D.DRUCQ;
 import com.zzsim.taxi.core.common.base.Msg;
 import com.zzsim.taxi.core.common.entitys.rbac.SysMember;
 import com.zzsim.taxi.core.common.entitys.rbac.SysRole;
@@ -11,14 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Slf4j
 @Api(value = "角色", description = "角色管理", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RestFullController("sysRole")
-public class SysRoleController extends BaseController<SysRole> {
+public class SysRoleController extends DRUCQ<SysRole> {
 
 	@GetMapping("getRole")
 	public Msg getRole() {

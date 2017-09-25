@@ -16,6 +16,7 @@
 	
 	<properties>
 		<!--一些默认值设置-->
+		<encoding>UTF-8</encoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
@@ -32,12 +33,20 @@
 	<dependencies>
 
 		<dependency>
+			<!-- 将 DO 赋值给 VO 的一款工具框架 -->
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.5.1</version>
+		</dependency>
+
+		<dependency>
 			<!-- 字节码增强工具，免去 POJO 手动添加 getter、setter -->
 			<!-- 说明： http://www.iteye.com/topic/1113871 -->
 			<!-- 较全说明： http://www.aichengxu.com/other/24590677.htm -->
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.14</version>
+			<version>1.16.18</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -203,7 +212,7 @@
 					<include>ebean.properties</include>
 					<include>application-${profileActive}.yml</include>
 					<include>config/logback-${profileActive}.xml</include>
-					<include>sql/init.sql</include>
+					<include>sql/*</include>
 				</includes>
 			</resource>
 		</resources>
@@ -224,6 +233,19 @@
 					<skip>true</skip>
 					<useSystemClassLoader>false</useSystemClassLoader>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok-maven-plugin</artifactId>
+				<version>1.16.8.0</version>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>delombok</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

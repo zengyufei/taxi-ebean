@@ -1,6 +1,5 @@
 package com.zzsim.taxi.admin.base.shiroRealm;
 
-import io.ebeaninternal.server.util.Md5;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;

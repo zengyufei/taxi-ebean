@@ -2,7 +2,8 @@ package com.zzsim.taxi.dao.rbac;
 
 import com.zzsim.taxi.admin.Application;
 import com.zzsim.taxi.core.common.entitys.rbac.SysMember;
-import com.zzsim.taxi.core.common.enums.Sex;
+import com.zzsim.taxi.core.common.enums.SexEnum;
+import com.zzsim.taxi.core.common.enums.SexEnum;
 import io.ebean.EbeanServer;
 import io.ebean.annotation.Transactional;
 import org.junit.Assert;
@@ -36,7 +37,7 @@ public class SysMemberTest {
 		sysMember.setRoleId(1L);
 
 		sysMember.setOrgNo("sz-001");
-		sysMember.setSex(Sex.Male);
+		sysMember.setSexEnum(SexEnum.Male);
 		sysMember.setRemark("adsassdfsdfsdf");
 		return sysMember;
 	}

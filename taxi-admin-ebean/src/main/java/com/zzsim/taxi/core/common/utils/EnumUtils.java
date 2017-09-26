@@ -1,6 +1,6 @@
 package com.zzsim.taxi.core.common.utils;
 
-import com.zzsim.taxi.core.common.base.DescriptionID;
+import com.zzsim.taxi.core.common.base.MarkId;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class EnumUtils {
      * @throws AssertionError
      * 	若提供的索引在枚举中没有对映的映射,抛出此断言错误
      */
-    public static <I extends DescriptionID> I getEnum(Class<I> type, int index) {
+    public static <I extends MarkId> I getEnum(Class<I> type, int index) {
         I[] types = type.getEnumConstants();
         for (I t : types) {
             if (t.getIndex() == index) {
@@ -44,10 +44,10 @@ public class EnumUtils {
      * @throws AssertionError
      * 	若提供的枚举描述在枚举中没有对映的映射,抛出此断言错误
      */
-    public static <I extends DescriptionID> I getEnum(Class<I> type, String description) {
+    public static <I extends MarkId> I getEnum(Class<I> type, String description) {
         I[] types = type.getEnumConstants();
         for (I t : types) {
-            if (t.getDescription().equals(description)) {
+            if (t.getMark().equals(description)) {
                 return t;
             }
         }
@@ -61,11 +61,11 @@ public class EnumUtils {
      * 枚举类的Class
      * @return
      */
-    public static <I extends DescriptionID> List<String> getDescriptions(Class<I> type) {
+    public static <I extends MarkId> List<String> getDescriptions(Class<I> type) {
         I[] types = type.getEnumConstants();
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         for (I t : types) {
-            result.add(t.getDescription());
+            result.add(t.getMark());
         }
         return result;
     }

@@ -12,7 +12,7 @@
 	<groupId>com.zzsim.taxi.admin</groupId>
 	<artifactId>taxi-admin-ebean</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	
 	<properties>
 		<!--一些默认值设置-->

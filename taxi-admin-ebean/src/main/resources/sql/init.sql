@@ -1,4 +1,4 @@
-insert into t_sys_member (id, features, account, password, real_name, identity, mobile, email, qq, remark, sex, role_id, org_no, deleted, create_time, who_created, who_modified) values (1, "{}","admin","admin","管理员","","","","","",1,1,"sz-001",0,now(), "", "") ON DUPLICATE KEY UPDATE account='admin', real_name='管理员';
+insert into t_sys_member (id, features, account, password, real_name, identity, mobile, email, qq, remark, sex_enum, role_id, org_no, deleted, create_time, who_created, who_modified) values (1, "{}","admin","admin","管理员","","","","","",1,1,"sz-001",0,now(), "", "") ON DUPLICATE KEY UPDATE account='admin', real_name='管理员';
 
 INSERT INTO t_sys_role (`id`, `role_name`, `description`, `org_no`, `resource_list`, `deleted`, `create_time`, who_created, who_modified) VALUES ('1', '管理员', '管理角色', 'sz-001', '[\"all\"]', '0', now(), "", "") ON DUPLICATE KEY UPDATE org_no='sz-001', role_name='管理员';
 
@@ -67,3 +67,13 @@ INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permi
 INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (31, 28, '修改', 3, 'community:building:update');
 
 INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (32, 28, '删除', 3, 'community:building:delete');
+
+INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (33, 22, '单元信息管理', 2, 'community:unit:*');
+
+INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (34, 33, '查看', 3, 'community:unit:query');
+
+INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (35, 33, '添加', 3, 'community:unit:insert');
+
+INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (36, 33, '修改', 3, 'community:unit:update');
+
+INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (37, 33, '删除', 3, 'community:unit:delete');

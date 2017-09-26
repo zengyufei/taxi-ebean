@@ -49,7 +49,7 @@ create table t_sys_member (
   email                         varchar(255) comment '邮箱',
   qq                            varchar(255) comment 'QQ',
   remark                        varchar(255) comment '备注',
-  sex                           integer comment '性别',
+  sex_enum                      integer comment '性别',
   role_id                       bigint comment '角色 id',
   org_no                        varchar(255) comment '组织机构编号',
   deleted                       BOOLEAN DEFAULT FALSE not null comment '数据状态',
@@ -57,7 +57,7 @@ create table t_sys_member (
   who_modified                  varchar(255) not null comment '修改者',
   create_time                   datetime DEFAULT CURRENT_TIMESTAMP not null comment '创建时间',
   update_time                   datetime DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP not null comment '修改时间',
-  constraint ck_t_sys_member_sex check ( sex in (0,1,2)),
+  constraint ck_t_sys_member_sex_enum check ( sex_enum in (0,1,2)),
   constraint pk_t_sys_member primary key (id)
 ) comment='后台用户';
 

@@ -7,7 +7,8 @@ import com.zzsim.taxi.admin.validate.groups.Update;
 import com.zzsim.taxi.core.common.annotations.OptionField;
 import com.zzsim.taxi.core.common.annotations.OptionFieldLike;
 import com.zzsim.taxi.core.common.base.entiry.BaseEntity;
-import com.zzsim.taxi.core.common.enums.Sex;
+import com.zzsim.taxi.core.common.enums.SexEnum;
+import com.zzsim.taxi.core.common.enums.SexEnum;
 import io.ebean.annotation.DbComment;
 import io.ebean.annotation.Formula;
 import lombok.Data;
@@ -27,7 +28,7 @@ import javax.persistence.Table;
 		@Matche(field = "realName", notBlank = true, message = "真实姓名不能为空", groups = { Insert.class, Update.class }),
 		@Matche(field = "identity", notBlank = true, message = "身份证不能为空", groups = { Insert.class, Update.class }),
 		@Matche(field = "mobile", notBlank = true, message = "手机不能为空", groups = { Insert.class, Update.class }),
-		@Matche(field = "sex", notNull = true, enumType = Sex.class, message = "性别错误", groups = { Insert.class, Update.class }),
+		@Matche(field = "sex", notNull = true, enumType = SexEnum.class, message = "性别错误", groups = { Insert.class, Update.class }),
 		@Matche(field = "roleId", notNull = true, min = 1, message = "角色不能为空", groups = { Insert.class, Update.class }),
 		@Matche(field = "orgNo", notBlank = true, message = "组织机构编号不能为空", groups = { Insert.class, Update.class }),
 })
@@ -58,7 +59,7 @@ public class SysMember extends BaseEntity {
 	String remark;
 	@OptionField
 	@DbComment("性别")
-	Sex sex;
+	SexEnum sexEnum;
 	@OptionField
 	@DbComment("角色 id")
 	Long roleId;

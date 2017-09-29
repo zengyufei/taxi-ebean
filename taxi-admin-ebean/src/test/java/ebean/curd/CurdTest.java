@@ -1,6 +1,6 @@
 package ebean.curd;
 
-import com.zzsim.taxi.admin.Application;
+import com.ys.admin.Application;
 import ebean.entity.TestSysMember;
 import io.ebean.EbeanServer;
 import io.ebean.annotation.Transactional;

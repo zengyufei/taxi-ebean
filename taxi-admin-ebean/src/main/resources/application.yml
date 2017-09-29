@@ -35,7 +35,7 @@ http:
 
 ebeans:
   dbName: db
-  packages: com.zzsim.taxi.core.common.entitys
+  packages: com.ys.common.entitys
 
 
 swagger:
@@ -49,7 +49,7 @@ swagger:
   contact.name: zengyufei
   contact.url: http://blog.didispace.com
   contact.email: 31263620@qq.com
-  base-package: com.zzsim.taxi.admin.controller
+  base-package: com.ys.admin.controller
   base-path: /**
   exclude-path: /error, /ops/**
 

@@ -1,4 +1,4 @@
-import com.zzsim.taxi.admin.util.AESSecret;
+import com.ys.admin.util.AESSecret;
 import org.junit.Test;
 
 /**

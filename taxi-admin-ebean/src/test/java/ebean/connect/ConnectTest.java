@@ -1,6 +1,6 @@
 package ebean.connect;
 
-import com.zzsim.taxi.admin.Application;
+import com.ys.admin.Application;
 import io.ebean.EbeanServer;
 import org.junit.Assert;
 import org.junit.Test;

@@ -18,11 +18,11 @@
 		</layout>
 	</appender>
 
-	<root level="error">
+	<root level="debug">
 		<appender-ref ref="stdout"/>
 		<appender-ref ref="LOGFILE"/>
 	</root>
 
-	<logger name="com.zzsim.taxi" level="INFO" addtivity="false"/>
+	<logger name="com.ys" level="INFO" addtivity="false"/>
 
 </configuration>

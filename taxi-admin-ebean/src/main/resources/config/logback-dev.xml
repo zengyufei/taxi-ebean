@@ -11,7 +11,7 @@
 		<appender-ref ref="stdout"/>
 	</root>
 
-	<logger name="com.zzsim.taxi" level="INFO" addtivity="false"/>
+	<logger name="com.ys" level="INFO" addtivity="false"/>
 	<logger name="io.ebean" level="DEBUG" addtivity="false" />
 	<logger name="org.springframework.context.support.PostProcessorRegistrationDelegate" level="INFO" addtivity="false"/>
 	<logger name="org.springframework.context.support.FilterRegistrationBean" level="INFO" addtivity="false"/>

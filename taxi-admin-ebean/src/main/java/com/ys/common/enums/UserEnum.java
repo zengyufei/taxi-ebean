@@ -6,13 +6,14 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 成功失败枚举
+ * 用户类型
  */
 @AllArgsConstructor
-public enum SuccessFailEnum implements MarkId {
+public enum UserEnum implements MarkId {
 
-    Success(1, "成功"),
-    Fail(2, "失败");
+    Tourists(1, "待审核"),
+    Member(2, "未通过"),
+    Owner(3, "已通过");
 
     @Setter
     @Getter

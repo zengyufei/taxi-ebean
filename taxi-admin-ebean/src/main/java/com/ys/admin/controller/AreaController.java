@@ -1,6 +1,6 @@
 package com.ys.admin.controller;
 
-import com.ys.common.entitys.Area;
+import com.ys.common.entitys.other.Area;
 import com.ys.admin.base.annotations.RestFullController;
 import io.swagger.annotations.Api;
 import lombok.*;

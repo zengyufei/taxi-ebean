@@ -67,9 +67,9 @@ public class Application extends SpringBootServletInitializer {
 	private void runScript(boolean expectErrors, EbeanServer ebeanServer) {
 		StringBuffer sb = new StringBuffer();
 		String sql1 = addSql("sql/init.sql");
-		String sql2 = addSql("sql/t_area.sql");
+		//String sql2 = addSql("sql/t_area.sql");
 		sb.append(sql1);
-		sb.append(sql2);
+		//sb.append(sql2);
 
 		DdlRunner runner = new DdlRunner(expectErrors, "init");
 

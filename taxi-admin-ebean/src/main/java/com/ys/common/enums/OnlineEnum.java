@@ -11,8 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum OnlineEnum implements MarkId {
 
-    offline(1, "离线"),
-    online(2, "在线");
+    Offline(1, "离线"),
+    Online(2, "在线");
 
     @Setter
     @Getter

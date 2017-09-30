@@ -21,7 +21,7 @@ import javax.persistence.MappedSuperclass;
 @Accessors(chain=true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @MappedSuperclass
-public abstract class DeletedAbstractEntity<T> extends IdAbstractEntity<T> {
+public abstract class DeletedAbstractEntity<T> extends FeaturesAbstractEntity<T> {
 
     @SoftDelete
     @DbComment("数据状态")

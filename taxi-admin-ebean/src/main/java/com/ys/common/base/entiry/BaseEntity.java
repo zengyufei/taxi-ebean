@@ -7,6 +7,6 @@ import javax.persistence.MappedSuperclass;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @MappedSuperclass
-public abstract class BaseEntity<T> extends AbstractEntity<T> {
+public abstract class BaseEntity<T> extends DeletedAbstractEntity<T> {
 
 }

@@ -1,4 +1,4 @@
-package com.ys.common.entitys;
+package com.ys.common.entitys.other;
 
 import com.ys.common.base.entiry.IdAbstractEntity;
 import io.ebean.annotation.Cache;

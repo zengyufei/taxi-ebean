@@ -1,6 +1,7 @@
-package com.ys.common.entitys.house;
+package com.ys.common.entitys.device;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ys.common.base.entiry.AbstractEntity;
 import com.ys.common.enums.CardEnum;
 import com.ys.common.enums.SuccessFailEnum;
 import io.ebean.annotation.DbComment;
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @Data
 @DbComment("开门记录")
-public class OpenDoorLog {
+public class OpenDoorLog extends AbstractEntity {
 
 	@DbComment("所属小区编号")
 	Long communityId;

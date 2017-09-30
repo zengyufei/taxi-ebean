@@ -1,4 +1,4 @@
-package com.ys.common.entitys.community;
+package com.ys.common.entitys.device;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.common.collect.Lists;
@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "t_card_permission")
+@Table(name = "t_card")
 @Matches({
 		@Matche(field = "cardNo", notBlank = true, message = "卡号不能为空", groups = {Insert.class, Update.class}),
 		@Matche(field = "cardEnum", notNull = true, enumType = CardEnum.class, message = "设备类型不能为空", groups = {Insert.class, Update.class}),

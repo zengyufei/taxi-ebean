@@ -1,25 +1,21 @@
-package com.ys.common.entitys.house;
+package com.ys.common.entitys.device;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ys.common.base.entiry.AbstractEntity;
 import com.ys.common.enums.CatchPhotoEnum;
 import io.ebean.annotation.DbComment;
 import io.ebean.annotation.Formula;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "t_catch_photo")
 @Accessors(chain = true)
 @Data
 @DbComment("留影记录")
-public class CatchPhoto {
+public class CatchPhoto extends AbstractEntity {
 
 	@DbComment("所属小区编号")
 	Long communityId;

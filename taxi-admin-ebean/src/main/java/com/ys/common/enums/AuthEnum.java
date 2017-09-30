@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum AuthEnum implements MarkId {
 
-    pending(1, "待审核"),
+    Pending(1, "待审核"),
     NotPass(2, "未通过"),
     Pass(3, "已通过");
 

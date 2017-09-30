@@ -1,4 +1,4 @@
-package com.ys.common.entitys.community;
+package com.ys.common.entitys.other;
 
 import com.google.common.collect.Lists;
 import com.ys.admin.validate.annotation.Matches;

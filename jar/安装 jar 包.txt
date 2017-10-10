@@ -1,0 +1,7 @@
+
+# 安装 jar 到 maven（推荐）
+mvn install:install-file -DgroupId=com.zyf -DartifactId=lombok -Dversion=0.0.1 -Dpackaging=jar -Dfile=lombok-0.0.1.jar
+
+
+# 发布 jar 到 nexus
+mvn deploy:deploy-file -DgroupId=com.zyf -DartifactId=lombok -Dversion=0.0.1 -Dpackaging=jar -DrepositoryId=nexus -Dfile=lombok-0.0.1.jar -Durl=http://192.168.150.200:3000/repository/maven-releases/ -DgeneratePom=false

@@ -1,0 +1,6 @@
+logging:
+  config: classpath:config/logback-prod.xml
+
+server:
+  dbName: db
+  port: 80

@@ -2,9 +2,7 @@ package com.ys.admin.controller.device;
 
 import com.ys.admin.base.annotations.RestFullController;
 import com.ys.admin.base.control.CommunityBaseController;
-import com.ys.common.entitys.community.Room;
 import com.ys.common.entitys.device.Card;
-import com.ys.common.entitys.device.Device;
 import io.swagger.annotations.Api;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;

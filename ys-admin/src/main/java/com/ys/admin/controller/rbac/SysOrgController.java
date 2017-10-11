@@ -1,10 +1,10 @@
 package com.ys.admin.controller.rbac;
 
-import com.ys.admin.base.control.BaseController;
 import com.ys.admin.base.annotations.RestFullController;
+import com.ys.admin.base.control.BaseController;
 import com.ys.admin.service.rbac.SysOrgService;
-import com.zyf.result.Msg;
 import com.ys.common.entitys.rbac.SysOrg;
+import com.zyf.result.Msg;
 import io.ebean.Ebean;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

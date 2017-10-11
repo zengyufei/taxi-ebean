@@ -4,13 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ys.admin.validate.annotation.Matche;
 import com.ys.admin.validate.annotation.Matches;
 import com.ys.common.base.entiry.BaseEntity;
-import com.ys.common.enums.AuthEnum;
 import com.ys.common.enums.RepairEnum;
 import com.zyf.valid.Insert;
 import com.zyf.valid.Update;
 import io.ebean.annotation.DbComment;
+import io.ebean.annotation.Formula;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -45,4 +44,8 @@ public class Repair extends BaseEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@DbComment("业主约定处理时间")
 	LocalDateTime promiseTime;
+
+	@Formula(select = "*", join = "left join t_user_info t1 on t1.user_id = ${ta}.user_id") // 注解用法参照 sysMember
+	UserInfo userInfo;
+
 }

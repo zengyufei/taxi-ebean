@@ -30,7 +30,7 @@ import java.util.List;
 })
 @Accessors(chain = true)
 @Data
-@DbComment("刷卡开门的卡")
+@DbComment("物理卡")
 public class Card  extends BaseEntity {
 
 	@DbComment("所属小区编号")

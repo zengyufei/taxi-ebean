@@ -2,6 +2,8 @@ package com.ys.common.entitys.device;
 
 import com.ys.admin.validate.annotation.Matche;
 import com.ys.admin.validate.annotation.Matches;
+import com.ys.common.annotations.OptionField;
+import com.ys.common.annotations.OptionFieldIn;
 import com.ys.common.base.entiry.BaseEntity;
 import com.ys.common.enums.EquEnum;
 import com.ys.common.enums.OnlineEnum;
@@ -48,6 +50,7 @@ public class Device extends BaseEntity {
 	@DbComment("蓝牙开门灵敏度")
 	Integer keenNumb;
 
+	@OptionField
 	@DbComment("所属小区编号")
 	Long communityId;
 	@DbComment("所属楼栋编号")
@@ -65,5 +68,17 @@ public class Device extends BaseEntity {
 	String unitName;
 	@Formula(select = "coalesce(t4.name, '')", join = "left join t_room t4 on t4.id = ${ta}.room_id") // 注解用法参照 sysMember
 	String roomName;
+
+
+	@Accessors(chain = true)
+	@Data
+	public static class Option {
+		@OptionFieldIn(fieldName = "buildingId")
+		String buildingIds;
+		@OptionFieldIn(fieldName = "unitId")
+		String unitIds;
+		@OptionFieldIn(fieldName = "roomId")
+		String roomIds;
+	}
 
 }

@@ -1,8 +1,8 @@
 package com.ys.admin.base.shiroRealm;
 
 import com.google.common.collect.Lists;
-import com.ys.common.entitys.rbac.SysResource;
 import com.ys.common.entitys.rbac.SysMember;
+import com.ys.common.entitys.rbac.SysResource;
 import com.ys.common.entitys.rbac.SysRole;
 import io.ebean.Ebean;
 import org.apache.commons.lang3.StringUtils;
@@ -15,7 +15,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShiroDbRealm extends AuthorizingRealm {

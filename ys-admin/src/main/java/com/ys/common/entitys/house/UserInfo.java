@@ -16,10 +16,7 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,20 +42,18 @@ public class UserInfo extends BaseEntity {
 	@DbComment("所属楼栋编号")
 	Long buildingId;
 	@DbComment("所属单元编号")
-	Long UnitId;
-	@DbComment("已绑定房间号")
-	String roomNo;
+	Long unitId;
+	@DbComment("所属单房间号")
+	Long roomId;
 
-	@DbComment("关联的用户编号")
-	Long userId;
 	@DbComment("认证")
 	Boolean authFlag;
 	@DbComment("绑定电话呼叫")
 	Boolean bindCallFlag;
 	@DbComment("详情")
 	String mark;
-	@DbComment("开门权限")
-	List<Long> unitIds = Lists.newArrayList();
+/*	@DbComment("开门权限")
+	List<Long> unitIds = Lists.newArrayList();*/
 
 	@DbComment("常住")
 	StayEnum stayEnum;
@@ -77,5 +72,12 @@ public class UserInfo extends BaseEntity {
 	String buildingName;
 	@Formula(select = "coalesce(t3.name, '')", join = "left join t_unit t3 on t3.id = ${ta}.unit_id") // 注解用法参照 sysMember
 	String unitName;
+	@Formula(select = "coalesce(t4.name, '')", join = "left join t_room t4 on t4.id = ${ta}.room_id") // 注解用法参照 sysMember
+	String roomName;
+
+	@DbComment("关联的用户编号")
+	@OneToOne(optional = false, cascade = CascadeType.REFRESH)
+	@PrimaryKeyJoinColumn
+	User user;
 
 }

@@ -1,5 +1,7 @@
 package com.ys.common.entitys.house;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ys.admin.validate.annotation.Matche;
 import com.ys.admin.validate.annotation.Matches;
 import com.ys.common.base.entiry.BaseEntity;
@@ -11,8 +13,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -48,5 +49,11 @@ public class User extends BaseEntity {
 	String idCard;
 	@DbComment("身份证照片")
 	String idCardImg;
+
+	@JsonIgnore
+	@JSONField(serialize=false)
+	@DbComment("关联的住户信息")
+	@OneToOne(optional = true, cascade = CascadeType.ALL, mappedBy="user")
+	UserInfo userInfo;
 
 }

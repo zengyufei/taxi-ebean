@@ -1,12 +1,9 @@
 package com.ys.admin.base.control;
 
-import com.ys.common.annotations.OptionFieldLike;
-import com.ys.common.annotations.OptionFieldLikeRight;
-import com.zyf.result.Msg;
-import com.ys.common.annotations.OptionField;
-import com.ys.common.annotations.OptionFieldLikeLeft;
+import com.ys.common.annotations.*;
 import com.ys.common.base.Page;
 import com.ys.common.base.entiry.IdAbstractEntity;
+import com.zyf.result.Msg;
 import io.ebean.Ebean;
 import io.ebean.ExpressionList;
 import io.ebean.PagedList;
@@ -31,7 +28,7 @@ public abstract class AbstractController<T extends IdAbstractEntity> {
 			@ApiResponse(code = Msg.ERROR_CODE, message = "系统错误", response = Msg.class)
 	})
 	@ApiImplicitParams({
-			@ApiImplicitParam(value = "条件", required = false, name = "t", paramType = "query"),
+			@ApiImplicitParam(value = "条件", name = "t", paramType = "query"),
 			@ApiImplicitParam(value = "当前页", name = "pageNo", defaultValue = "1", paramType = "query", dataType = "int"),
 			@ApiImplicitParam(value = "每页页数", name = "pageSize", defaultValue = "1", paramType = "query", dataType = "int"),
 	})
@@ -48,7 +45,7 @@ public abstract class AbstractController<T extends IdAbstractEntity> {
 			@ApiResponse(code = Msg.ERROR_CODE, message = "系统错误", response = Msg.class)
 	})
 	@ApiImplicitParams({
-			@ApiImplicitParam(value = "条件", required = false, name = "t", paramType = "query"),
+			@ApiImplicitParam(value = "条件", name = "t", paramType = "query"),
 			@ApiImplicitParam(value = "当前页", name = "pageNo", defaultValue = "1", paramType = "query", dataType = "int"),
 			@ApiImplicitParam(value = "每页页数", name = "pageSize", defaultValue = "1", paramType = "query", dataType = "int"),
 	})
@@ -68,23 +65,8 @@ public abstract class AbstractController<T extends IdAbstractEntity> {
 			boolean isOptionField = optionField != null;
 			boolean isOptionFieldLike = optionFieldLike != null || optionFieldLikeLeft != null || optionFieldLikeRight != null;
 			if (isOptionField || isOptionFieldLike) {
-				Method method = null;
-				try {
-					method = t.getClass().getMethod("get" + field.getName().substring(0, 1).toUpperCase().concat(field.getName().substring(1)));
-				} catch (NoSuchMethodException e) {
-					e.printStackTrace();
-				}
-				Object value = null;
-				try {
-					value = method.invoke(t);
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					e.printStackTrace();
-				}
-				Optional<Object> optional = Optional.ofNullable(value);
-				if (optional.isPresent()) {
-					String val = String.valueOf(value).trim();
+				String val = getValue(t, field);
+				if (val != null) {
 					if (isOptionFieldLike) {
 						if (optionFieldLike != null)
 							val = "%" + val + "%";
@@ -101,9 +83,69 @@ public abstract class AbstractController<T extends IdAbstractEntity> {
 		}
 	}
 
+	protected void setParams(ExpressionList where, Object obj) {
+		for (Field field : obj.getClass().getDeclaredFields()) {
+			OptionField optionField = field.getAnnotation(OptionField.class);
+			OptionFieldLike optionFieldLike = field.getAnnotation(OptionFieldLike.class);
+			OptionFieldIn optionFieldIn = field.getAnnotation(OptionFieldIn.class);
+			OptionFieldLikeLeft optionFieldLikeLeft = field.getAnnotation(OptionFieldLikeLeft.class);
+			OptionFieldLikeRight optionFieldLikeRight = field.getAnnotation(OptionFieldLikeRight.class);
+			boolean isOptionField = optionField != null;
+			boolean isOptionFieldLike = optionFieldLike != null || optionFieldLikeLeft != null || optionFieldLikeRight != null;
+			if (isOptionField || isOptionFieldLike) {
+				String val = getValue(obj, field);
+				if (val != null) {
+					if (isOptionFieldLike) {
+						if (optionFieldLike != null)
+							val = "%" + val + "%";
+						else if (optionFieldLikeLeft != null)
+							val = val + "%";
+						else if (optionFieldLikeRight != null)
+							val = "%" + val;
+						where.ilike(field.getName(), val);
+					} else {
+						where.eq(field.getName(), val);
+					}
+				}
+			} else if (optionFieldIn != null) {
+				String val = getValue(obj, field);
+				if (val != null) {
+					where.in(optionFieldIn.fieldName(), val);
+				}
+			}
+		}
+	}
+
+	private String getValue(Object obj, Field field) {
+		Method method = null;
+		try {
+			method = obj.getClass().getMethod("get" + field.getName().substring(0, 1).toUpperCase().concat(field.getName().substring(1)));
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		}
+		Object value = null;
+		try {
+			value = method.invoke(obj);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+		Optional<Object> optional = Optional.ofNullable(value);
+		String val = null;
+		if (optional.isPresent()) {
+			val = String.valueOf(value).trim();
+		}
+		return val;
+	}
+
 	protected ExpressionList<?> setParams(T t) {
 		ExpressionList<T> where = Ebean.find(entityClass).where();
 		setParams(where, t);
+		return where;
+	}
+
+	protected ExpressionList<?> setParams(Object obj) {
+		ExpressionList<T> where = Ebean.find(entityClass).where();
+		setParams(where, obj);
 		return where;
 	}
 

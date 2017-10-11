@@ -1,6 +1,0 @@
-logging:
-  config: classpath:config/logback-dev.xml
-
-server:
-  dbName: dev
-  port: 8080

@@ -1,8 +1,8 @@
 package com.ys.admin.controller.rbac;
 
+import com.ys.admin.base.annotations.RestFullController;
 import com.ys.admin.base.control.BaseController;
 import com.ys.common.entitys.rbac.SysMember;
-import com.ys.admin.base.annotations.RestFullController;
 import io.swagger.annotations.Api;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;

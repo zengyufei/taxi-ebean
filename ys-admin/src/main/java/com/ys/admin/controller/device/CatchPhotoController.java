@@ -3,7 +3,6 @@ package com.ys.admin.controller.device;
 import com.ys.admin.base.annotations.RestFullController;
 import com.ys.admin.base.control.CommunityBaseController;
 import com.ys.common.entitys.device.CatchPhoto;
-import com.ys.common.entitys.device.OpenDoorLog;
 import io.swagger.annotations.Api;
 import lombok.QueryAll;
 import lombok.extern.slf4j.Slf4j;

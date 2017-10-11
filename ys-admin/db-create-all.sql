@@ -42,7 +42,7 @@ create table t_card (
   who_modified                  varchar(255) not null comment '修改者',
   constraint ck_t_card_card_enum check ( card_enum in (0,1)),
   constraint pk_t_card primary key (id)
-) comment='刷卡开门的卡';
+) comment='物理卡';
 
 create table t_catch_photo (
   id                            bigint auto_increment not null,
@@ -79,6 +79,7 @@ create table t_complain (
   user_id                       bigint comment '业主',
   content                       varchar(255) comment '内容',
   complain_enum                 integer comment '投诉类型',
+  user_mark                     varchar(255) comment '业主反馈',
   create_time                   timestamp DEFAULT CURRENT_TIMESTAMP not null comment '创建时间',
   update_time                   TIMESTAMP DEFAULT '1970-01-01 00:00:01.000000' ON UPDATE CURRENT_TIMESTAMP not null comment '修改时间',
   deleted                       BOOLEAN DEFAULT FALSE not null comment '数据状态',
@@ -135,6 +136,7 @@ create table t_repair (
   features                      longtext comment '额外字段',
   repair_enum                   integer comment '报修类型',
   repair_type                   varchar(255) comment '如报修类型不够，则字符串辅助',
+  mark                          varchar(255) comment '报修备注',
   user_id                       bigint comment '报修人',
   promise_time                  datetime(6) comment '业主约定处理时间',
   create_time                   timestamp DEFAULT CURRENT_TIMESTAMP not null comment '创建时间',
@@ -284,14 +286,14 @@ create table t_user_info (
   community_id                  bigint comment '所属小区编号',
   building_id                   bigint comment '所属楼栋编号',
   unit_id                       bigint comment '所属单元编号',
-  room_no                       varchar(255) comment '已绑定房间号',
-  user_id                       bigint comment '关联的用户编号',
+  room_id                       bigint comment '所属单房间号',
   auth_flag                     tinyint(1) default 0 comment '认证',
   bind_call_flag                tinyint(1) default 0 comment '绑定电话呼叫',
   mark                          varchar(255) comment '详情',
   stay_enum                     integer comment '常住',
   auth_enum                     integer comment '状态',
   application_time              datetime(6) comment '申请时间',
+  user_id                       bigint not null,
   create_time                   timestamp DEFAULT CURRENT_TIMESTAMP not null comment '创建时间',
   update_time                   TIMESTAMP DEFAULT '1970-01-01 00:00:01.000000' ON UPDATE CURRENT_TIMESTAMP not null comment '修改时间',
   deleted                       BOOLEAN DEFAULT FALSE not null comment '数据状态',
@@ -299,6 +301,9 @@ create table t_user_info (
   who_modified                  varchar(255) not null comment '修改者',
   constraint ck_t_user_info_stay_enum check ( stay_enum in (0,1)),
   constraint ck_t_user_info_auth_enum check ( auth_enum in (0,1,2)),
+  constraint uq_t_user_info_user_id unique (user_id),
   constraint pk_t_user_info primary key (id)
 ) comment='住户信息';
+
+alter table t_user_info add constraint fk_t_user_info_user_id foreign key (user_id) references t_user (id) on delete restrict on update restrict;
 

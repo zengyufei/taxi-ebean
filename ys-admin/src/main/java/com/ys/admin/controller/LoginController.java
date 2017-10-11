@@ -1,8 +1,8 @@
 package com.ys.admin.controller;
 
 import com.ys.admin.util.TokenUtils;
-import com.zyf.result.Msg;
 import com.ys.common.entitys.rbac.SysMember;
+import com.zyf.result.Msg;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;

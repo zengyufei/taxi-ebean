@@ -2,7 +2,6 @@ package com.ys.admin.controller.other;
 
 import com.ys.admin.base.annotations.RestFullController;
 import com.ys.admin.base.control.BaseController;
-import com.ys.common.entitys.house.Complain;
 import com.ys.common.entitys.other.Sms;
 import io.swagger.annotations.Api;
 import lombok.*;

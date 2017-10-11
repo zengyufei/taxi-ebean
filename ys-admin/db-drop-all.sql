@@ -1,3 +1,5 @@
+alter table t_user_info drop foreign key fk_t_user_info_user_id;
+
 drop table if exists t_area;
 
 drop table if exists t_building;

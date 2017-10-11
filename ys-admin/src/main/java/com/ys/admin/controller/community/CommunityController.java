@@ -1,22 +1,23 @@
 package com.ys.admin.controller.community;
 
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.ys.admin.base.control.BaseController;
-import com.ys.common.entitys.community.Room;
-import com.ys.common.entitys.community.Unit;
 import com.ys.admin.base.annotations.RestFullController;
-import com.zyf.result.Msg;
+import com.ys.admin.base.control.BaseController;
 import com.ys.common.entitys.community.Building;
 import com.ys.common.entitys.community.Community;
+import com.ys.common.entitys.community.Room;
+import com.ys.common.entitys.community.Unit;
+import com.zyf.result.Msg;
 import io.ebean.Ebean;
 import io.swagger.annotations.Api;
-import lombok.*;
+import lombok.Insert;
+import lombok.QueryAll;
+import lombok.QueryById;
+import lombok.Update;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Slf4j

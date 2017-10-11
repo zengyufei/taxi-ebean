@@ -1,7 +1,6 @@
 package com.ys.admin.base.control;
 
 import com.ys.common.base.entiry.IdAbstractEntity;
-import com.ys.common.entitys.community.Room;
 import com.zyf.result.Msg;
 import io.ebean.Ebean;
 import org.springframework.web.bind.annotation.GetMapping;

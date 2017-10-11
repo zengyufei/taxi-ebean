@@ -1,9 +1,9 @@
 package com.ys.admin.controller;
 
-import com.ys.common.entitys.other.Area;
 import com.ys.admin.base.annotations.RestFullController;
+import com.ys.common.entitys.other.Area;
 import io.swagger.annotations.Api;
-import lombok.*;
+import lombok.QueryAll;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 

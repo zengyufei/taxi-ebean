@@ -1,7 +1,6 @@
 package com.ys.admin.controller.community;
 
 import com.ys.admin.base.annotations.RestFullController;
-import com.ys.admin.base.control.BaseController;
 import com.ys.admin.base.control.UnitBaseController;
 import com.ys.common.entitys.community.Room;
 import com.zyf.result.Msg;

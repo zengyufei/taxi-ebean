@@ -7,7 +7,7 @@
 		</encoder>
 	</appender>
 
-	<root level="error">
+	<root level="info">
 		<appender-ref ref="stdout"/>
 	</root>
 
@@ -16,8 +16,8 @@
 	<logger name="org.springframework.context.support.PostProcessorRegistrationDelegate" level="INFO" addtivity="false"/>
 	<logger name="org.springframework.context.support.FilterRegistrationBean" level="INFO" addtivity="false"/>
 	<logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="DEBUG" addtivity="false"/>
-	<logger name="org.apache.coyote.http11.Http11NioProtocol" level="DEBUG" addtivity="false"/>
-	<logger name="org.apache.coyote.http11.Http11InputBuffer" level="DEBUG" addtivity="false"/>
+	<logger name="org.apache.coyote.http11.Http11NioProtocol" level="error" addtivity="false"/>
+	<logger name="org.apache.coyote.http11.Http11InputBuffer" level="error" addtivity="false"/>
 	<logger name="org.springframework.boot.context.embedded.tomcat" level="DEBUG" addtivity="false"/>
 	<logger name="springfox.documentation.swagger2.web.ClassOrApiAnnotationResourceGrouping" level="error" addtivity="false"/>
 	<logger name="springfox.documentation.spring.web.caching.CachingAspect" level="error" addtivity="false"/>

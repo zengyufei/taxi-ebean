@@ -3,7 +3,6 @@ package com.ys.common.utils;
 import com.google.common.collect.Lists;
 import com.ys.common.base.MarkId;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

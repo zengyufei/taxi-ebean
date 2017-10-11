@@ -1,7 +1,7 @@
 package com.ys.dao.rbac;
 
-import com.ys.common.entitys.rbac.SysResource;
 import com.ys.admin.Application;
+import com.ys.common.entitys.rbac.SysResource;
 import io.ebean.EbeanServer;
 import io.ebean.annotation.Transactional;
 import org.junit.Assert;

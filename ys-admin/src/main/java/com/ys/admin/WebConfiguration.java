@@ -5,11 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.ys.admin.base.converters.StringToLocalDateConverter;
 import com.ys.admin.base.converters.StringToLocalDateTimeConverter;
-import com.ys.admin.base.interceptors.AllowOriginFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.support.GenericConversionService;
@@ -26,7 +24,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import java.nio.charset.Charset;
 

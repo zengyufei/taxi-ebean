@@ -44,5 +44,7 @@ public class OpenDoorLog extends AbstractEntity {
 	@Formula(select = "coalesce(t1.name, '')", join = "left join t_community t1 on t1.id = ${ta}.community_id") // 注解用法参照 sysMember
 	String communityName;
 	@Formula(select = "coalesce(t2.name, '')", join = "left join t_device t2 on t2.id = ${ta}.device_id") // 注解用法参照 sysMember
-	Long deviceName;
+	String deviceName;
+	@Formula(select = "coalesce(t5.real_name, '')", join = "left join t_user t5 on t5.id = ${ta}.user_id") // 注解用法参照 sysMember
+	String userName;
 }

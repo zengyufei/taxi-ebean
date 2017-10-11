@@ -4,76 +4,78 @@ INSERT INTO t_sys_role (`id`, `role_name`, `description`, `org_no`, `resource_li
 
 INSERT INTO t_sys_org (`id`, `features`, `parent_org_no`, `org_no`, `org_name`, `province`, `city`, `address`, `description`, `deleted`, `create_time`, who_created, who_modified) VALUES ('1', '{}', '-1', 'sz-001', '云哨智能', '44', '4401', '广仁大楼', '云哨', '0', now(), "", "") ON DUPLICATE KEY UPDATE parent_org_no='-1', org_no='sz-001', org_name='云哨智能';
 
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (1, -1, '系统管理', 1, 'sys:*');
 
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (2, 1, '组织机构', 2, 'sys:sysOrg:*');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (3, 2, '查看', 3, 'sys:sysOrg:query');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (4, 2, '添加', 3, 'sys:sysOrg:insert');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (5, 2, '修改', 3, 'sys:sysOrg:update');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (6, 2, '删除', 3, 'sys:sysOrg:delete');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (7, 1, '用户管理', 2, 'sys:sysMember:*');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (8, 7, '查看', 3, 'sys:sysMember:query');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (9, 7, '添加', 3, 'sys:sysMember:insert');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (10, 7, '修改', 3, 'sys:sysMember:update');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (11, 7, '删除', 3, 'sys:sysMember:delete');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (12, 1, '角色管理', 2, 'sys:sysRole:*');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (13, 12, '查看', 3, 'sys:sysRole:query');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (14, 12, '添加', 3, 'sys:sysRole:insert');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (15, 12, '修改', 3, 'sys:sysRole:update');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (16, 12, '删除', 3, 'sys:sysRole:delete');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (17, 1, '资源管理', 2, 'sys:sysResource:*');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (18, 17, '查看', 3, 'sys:sysResource:query');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (19, 17, '添加', 3, 'sys:sysResource:insert');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (20, 17, '修改', 3, 'sys:sysResource:update');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (21, 17, '删除', 3, 'sys:sysResource:delete');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (22, -1, '小区管理', 1, 'community:*');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (23, 22, '小区信息管理', 2, 'community:community:*');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (24, 22, '查看', 3, 'community:community:query');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (25, 22, '添加', 3, 'community:community:insert');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (26, 22, '修改', 3, 'community:community:update');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (27, 22, '删除', 3, 'community:community:delete');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (28, 22, '楼栋信息管理', 2, 'community:building:*');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (29, 28, '查看', 3, 'community:building:query');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (30, 28, '添加', 3, 'community:building:insert');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (31, 28, '修改', 3, 'community:building:update');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (32, 28, '删除', 3, 'community:building:delete');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (33, 22, '单元信息管理', 2, 'community:unit:*');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (34, 33, '查看', 3, 'community:unit:query');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (35, 33, '添加', 3, 'community:unit:insert');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (36, 33, '修改', 3, 'community:unit:update');
-
-INSERT IGNORE INTO `t_sys_resource` (`id`,  `parent_id`, `name`, `level`, `permission`) VALUES (37, 33, '删除', 3, 'community:unit:delete');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('1', '系统管理', '1', 'sys:*', '-1');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('2', '组织机构', '2', 'sys:sysOrg:*', '1');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('3', '查看', '3', 'sys:sysOrg:query', '2');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('4', '添加', '3', 'sys:sysOrg:insert', '2');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('5', '修改', '3', 'sys:sysOrg:update', '2');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('6', '删除', '3', 'sys:sysOrg:delete', '2');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('7', '用户管理', '2', 'sys:sysMember:*', '1');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('8', '查看', '3', 'sys:sysMember:query', '7');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('9', '添加', '3', 'sys:sysMember:insert', '7');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('10', '修改', '3', 'sys:sysMember:update', '7');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('11', '删除', '3', 'sys:sysMember:delete', '7');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('12', '角色管理', '2', 'sys:sysRole:*', '1');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('13', '查看', '3', 'sys:sysRole:query', '12');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('14', '添加', '3', 'sys:sysRole:insert', '12');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('15', '修改', '3', 'sys:sysRole:update', '12');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('16', '删除', '3', 'sys:sysRole:delete', '12');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('17', '资源管理', '2', 'sys:sysResource:*', '1');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('18', '查看', '3', 'sys:sysResource:query', '17');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('19', '添加', '3', 'sys:sysResource:insert', '17');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('20', '修改', '3', 'sys:sysResource:update', '17');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('21', '删除', '3', 'sys:sysResource:delete', '17');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('22', '小区管理', '1', 'community:*', '-1');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('23', '小区信息管理', '2', 'community:community:*', '22');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('24', '查看', '3', 'community:community:query', '22');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('25', '添加', '3', 'community:community:insert', '22');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('26', '修改', '3', 'community:community:update', '22');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('27', '删除', '3', 'community:community:delete', '22');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('28', '楼栋信息管理', '2', 'community:building:*', '22');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('29', '查看', '3', 'community:building:query', '28');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('30', '添加', '3', 'community:building:insert', '28');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('31', '修改', '3', 'community:building:update', '28');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('32', '删除', '3', 'community:building:delete', '28');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('33', '单元信息管理', '2', 'community:unit:*', '22');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('34', '查看', '3', 'community:unit:query', '33');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('35', '添加', '3', 'community:unit:insert', '33');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('36', '修改', '3', 'community:unit:update', '33');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('37', '删除', '3', 'community:unit:delete', '33');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('38', '房间信息管理', '2', 'community:room:*', '22');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('39', '查看', '3', 'community:room:query', '38');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('40', '添加', '3', 'community:room:insert', '38');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('41', '修改', '3', 'community:room:update', '38');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('42', '删除', '3', 'community:room:delete', '38');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('43', '设备管理', '1', 'device:*', '-1');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('44', '设备信息', '2', 'device:device:*', '43');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('45', '查看', '3', 'device:device:query', '44');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('46', '添加', '3', 'device:device:insert', '44');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('47', '修改', '3', 'device:device:update', '44');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('48', '删除', '3', 'device:device:delete', '44');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('49', '开门记录', '2', 'device:openDoorLog:*', '43');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('50', '查看', '3', 'device:openDoorLog:query', '49');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('51', '添加', '3', 'device:openDoorLog:insert', '49');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('52', '修改', '3', 'device:openDoorLog:update', '49');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('53', '删除', '3', 'device:openDoorLog:delete', '49');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('54', '留影记录', '2', 'device:catchPhoto:*', '43');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('55', '查看', '3', 'device:catchPhoto:query', '54');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('56', '添加', '3', 'device:catchPhoto:insert', '54');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('57', '修改', '3', 'device:catchPhoto:update', '54');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('58', '删除', '3', 'device:catchPhoto:delete', '54');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('64', '住户管理', '1', 'house:*', '-1');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('65', '住户信息', '2', 'house:userInfo:*', '64');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('66', '查看', '3', 'house:userInfo:query', '64');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('67', '添加', '3', 'house:userInfo:insert', '64');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('68', '修改', '3', 'house:userInfo:update', '64');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('69', '删除', '3', 'house:userInfo:delete', '64');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('70', '报修信息', '2', 'house:repair:*', '64');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('71', '查看', '3', 'house:repair:query', '70');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('72', '添加', '3', 'house:repair:insert', '70');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('73', '修改', '3', 'house:repair:update', '70');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('74', '删除', '3', 'house:repair:delete', '70');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('75', '投诉信息', '2', 'house:complain:*', '64');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('76', '查看', '3', 'house:complain:query', '75');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('77', '添加', '3', 'house:complain:insert', '75');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('78', '修改', '3', 'house:complain:update', '75');
+INSERT INTO `t_sys_resource` (`id`, `name`, `level`, `permission`, `parent_id`) VALUES ('79', '删除', '3', 'house:complain:delete', '75');

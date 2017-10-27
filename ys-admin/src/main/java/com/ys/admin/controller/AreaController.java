@@ -1,3 +1,4 @@
+/*
 package com.ys.admin.controller;
 
 import com.ys.admin.base.annotations.RestFullController;
@@ -14,3 +15,4 @@ import org.springframework.http.MediaType;
 public class AreaController {
 
 }
+*/

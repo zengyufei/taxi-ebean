@@ -10,6 +10,6 @@ server:
   port: 8080
 
 ebeans:
-  dbName: test
+  dbName: db
   packages: ebean.entity
 

@@ -11,4 +11,3 @@ export { default as SearchBar } from './components/SearchBar'
 export { default as Utils } from './utils'
 
 export { default as Model } from './utils/model'
-

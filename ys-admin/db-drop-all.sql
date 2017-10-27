@@ -1,6 +1,8 @@
-alter table t_user_info drop foreign key fk_t_user_info_user_id;
+alter table t_complain drop foreign key fk_t_complain_user_info_id;
 
-drop table if exists t_area;
+alter table t_repair drop foreign key fk_t_repair_user_info_id;
+
+alter table t_user_info drop foreign key fk_t_user_info_user_id;
 
 drop table if exists t_building;
 

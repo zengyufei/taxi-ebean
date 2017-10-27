@@ -11,8 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum ComplainEnum implements MarkId {
 
-	Theme(1, "主题"),
-	Reply(2, "回复");
+	Theme(0, "主题"),
+	Reply(1, "回复");
 
 	@Setter
 	@Getter

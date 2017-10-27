@@ -1,123 +1,41 @@
 package ebean.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.ys.common.base.entiry.BaseEntity;
+import com.ys.common.enums.EquEnum;
+import io.ebean.annotation.DbComment;
+import lombok.AccessLevel;
+import lombok.Data;
+import lombok.experimental.Accessors;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Data
+@Accessors(chain = true)
 @Entity
 @Table(name="test_sys_member")
 public class TestSysMember extends BaseEntity {
 
-    private String account;
-    private String password;
+    @Excel(name = "账号", height = 10, width = 20)
+    String account;
+    @Excel(name = "密码", height = 10, width = 20)
+    String password;
+    @Excel(name = "设备类型", replace = { "门口_DoorMachine", "中心_CenterMachine", "围墙_WallMachine", "室内_IndoorMachine" }, suffix = "机", height = 10, width = 10)
+    @DbComment("设备类型")
+    EquEnum equEnum;
+    String realName;
+    String identity;
+    String mobile;
+    String email;
+    String qq;
+    String remark;
 
-    private String realName;
-    private String identity;
-    private String mobile;
-    private String email;
-    private String qq;
-    private String remark;
+    long roleId;
+    String roleName;
 
-    private long roleId;
-    private String roleName;
-
-    private long orgNo;
-    private String orgName;
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getRealName() {
-        return realName;
-    }
-
-    public void setRealName(String realName) {
-        this.realName = realName;
-    }
-
-    public String getIdentity() {
-        return identity;
-    }
-
-    public void setIdentity(String identity) {
-        this.identity = identity;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(long roleId) {
-        this.roleId = roleId;
-    }
-
-    public String getRoleName() {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
-    }
-
-    public long getOrgNo() {
-        return orgNo;
-    }
-
-    public void setOrgNo(long orgNo) {
-        this.orgNo = orgNo;
-    }
-
-    public String getOrgName() {
-        return orgName;
-    }
-
-    public void setOrgName(String orgName) {
-        this.orgName = orgName;
-    }
+    long orgNo;
+    String orgName;
 }

@@ -11,8 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum SuccessFailEnum implements MarkId {
 
-    Success(1, "成功"),
-    Fail(2, "失败");
+    Fail(0, "失败"),
+    Success(1, "成功");
 
     @Setter
     @Getter

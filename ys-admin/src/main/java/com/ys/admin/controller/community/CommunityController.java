@@ -9,25 +9,41 @@ import com.ys.common.entitys.community.Room;
 import com.ys.common.entitys.community.Unit;
 import com.zyf.result.Msg;
 import io.ebean.Ebean;
-import io.swagger.annotations.Api;
+import io.swagger.annotations.*;
 import lombok.Insert;
 import lombok.QueryAll;
 import lombok.QueryById;
-import lombok.Update;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Slf4j
 @Api(value = "小区", description = "小区管理", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 @RestFullController("community")
-@Update(Community.class)
-@Insert(Community.class)
+@Insert(value = Community.class, vo = Community.Vo.class)
 @QueryAll(Community.class)
 @QueryById(Community.class)
 public class CommunityController extends BaseController<Community> {
+
+	@ApiOperation(value = "条件查询分页，不包括删除", notes = "条件查询分页，不包括删除", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponses(value = {
+			@ApiResponse(code = Msg.SUCCESS_CODE, message = "查询成功", response = Msg.class),
+			@ApiResponse(code = Msg.ERROR_CODE, message = "系统错误", response = Msg.class)
+	})
+	@ApiImplicitParams({
+			@ApiImplicitParam(value = "条件", name = "vo", paramType = "query"),
+			@ApiImplicitParam(value = "当前页", name = "pageNo", defaultValue = "1", paramType = "query", dataType = "int"),
+			@ApiImplicitParam(value = "每页页数", name = "pageSize", defaultValue = "1", paramType = "query", dataType = "int"),
+	})
+	@GetMapping("queryPage")
+	public Msg queryPage(Community.Vo vo,
+	                     @RequestParam(required = false, defaultValue = "1") int pageNo,
+	                     @RequestParam(required = false, defaultValue = "10") int pageSize) {
+		return Msg.ok(setPage(setParams(vo), pageNo, pageSize));
+	}
 
 	@GetMapping("queryDefaultCommunityId")
 	public Msg queryDefaultCommunityId() {
@@ -39,18 +55,19 @@ public class CommunityController extends BaseController<Community> {
 		return Msg.status(200).body(id);
 	}
 
-	void insertAfter(Community obj) {
-		Long communityId = obj.getId();
-		Integer buildMax = obj.getBuildMax();
-		Integer unitMax = obj.getUnitMax();
-		Integer roomMax = obj.getRoomMax();
+	String insertAfter(Community community) {
+		Long communityId = community.getId();
+		Integer buildMax = community.getBuildMax();
+		Integer unitMax = community.getUnitMax();
+		Integer floorMax = community.getFloorMax();
+		Integer roomMax = community.getRoomMax();
 		List<Building> batchInsertBuilding = Lists.newArrayList();
 		List<Unit> batchInsertUnit = Lists.newArrayList();
 		List<Room> batchInsertRoom = Lists.newArrayList();
 		// 批量新增楼栋
 		for (int i = 1; i <= buildMax; i++) {
 			batchInsertBuilding.add(new Building()
-					.setName(i + "栋")
+					.setName(i + " 栋")
 					.setAlias(convert(i) + "栋")
 					.setCommunityId(communityId));
 		}
@@ -61,7 +78,7 @@ public class CommunityController extends BaseController<Community> {
 			Building building = batchInsertBuilding.get(i);
 			for (int j = 1; j <= unitMax; j++) {
 				batchInsertUnit.add(new Unit()
-						.setName(j + "单元")
+						.setName(j + " 单元")
 						.setAlias(convert(j) + "单元")
 						.setBuildingId(building.getId())
 						.setCommunityId(communityId));
@@ -70,18 +87,21 @@ public class CommunityController extends BaseController<Community> {
 		Ebean.insertAll(batchInsertUnit);
 
 		// 批量新增房间
-		for (int i = 0; i < unitMax; i++) {
+		for (int i = 0; i < batchInsertUnit.size(); i++) {
 			Unit unit = batchInsertUnit.get(i);
-			for (int j = 1; j <= roomMax; j++) {
-				batchInsertRoom.add(new Room()
-						.setName(j + "房间")
-						.setAlias(convert(j) + "房间")
-						.setBuildingId(unit.getBuildingId())
-						.setUnitId(unit.getId())
-						.setCommunityId(communityId));
+			for (int j = 1; j <= floorMax; j++) {
+				for (int k = 1; k <= roomMax; k++) {
+					batchInsertRoom.add((Room) new Room()
+							.setName(j + "0" + k + " 房")
+							.setAlias(convert(Integer.parseInt(j + "0" + k)) + "房")
+							.setBuildingId(unit.getBuildingId())
+							.setUnitId(unit.getId())
+							.setCommunityId(communityId));
+				}
 			}
 		}
 		Ebean.insertAll(batchInsertRoom);
+		return "";
 	}
 
 	private static String convert(double inputMonney) {
@@ -105,6 +125,14 @@ public class CommunityController extends BaseController<Community> {
 			money = money / 10;
 		}
 		//使用replaceAll替换掉“零+'人民币单位'”,replaceAll里面的old字符串可以是正则表达式
-		return sbf.toString().replaceAll("零[千百拾]", "零").replaceAll("零+万", "万").replaceAll("零+亿", "亿").replaceAll("亿万", "亿零").replaceAll("零+", "零").replaceAll("零元", "元").replaceAll("零[角分]", "").replaceAll("元", "");
+		return sbf.toString().replaceAll("零[千百拾]", "零")
+				.replaceAll("零+万", "万")
+				.replaceAll("零+亿", "亿")
+				.replaceAll("亿万", "亿零")
+				.replaceAll("零+", "零")
+				.replaceAll("零元", "元")
+				.replaceAll("零[角分]", "")
+				.replaceAll("元", "")
+				.replaceAll("百零十", "零");
 	}
 }

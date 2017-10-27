@@ -4,7 +4,8 @@ import com.google.common.collect.Lists;
 import com.ys.admin.validate.annotation.Matche;
 import com.ys.admin.validate.annotation.Matches;
 import com.ys.common.annotations.OptionField;
-import com.ys.common.annotations.OptionFieldLike;
+import com.ys.common.annotations.VoFieldLike;
+import com.ys.common.base.entiry.AbstractVoEntity;
 import com.ys.common.base.entiry.BaseEntity;
 import com.zyf.valid.DeleteById;
 import com.zyf.valid.Insert;
@@ -16,6 +17,7 @@ import io.ebean.annotation.Formula;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -26,16 +28,12 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "t_sys_role")
-@Matches({
-		@Matche(field = "roleName", notBlank = true, message = "角色名称不能为空", groups = {Insert.class, Update.class}),
-		@Matche(field = "orgNo", notBlank = true, message = "组织机构编号不能为空", groups = {Insert.class, Update.class}),
-})
 @Accessors(chain=true)
 @Data
 @DbComment("角色")
 public class SysRole extends BaseEntity {
 
-	@OptionFieldLike
+	@VoFieldLike
 	@DbComment("角色名称")
 	String roleName;
 	@DbComment("描述")
@@ -48,7 +46,7 @@ public class SysRole extends BaseEntity {
 	List<String> resourceList = Lists.newArrayList();
 
 	@DbComment("父id")
-	@Min(value = 1, message = "id 不能为空", groups = { QueryById.class, Update.class, DeleteById.class })
+	// @Min(value = 1, message = "id 不能为空", groups = { QueryById.class, Update.class, DeleteById.class })
 	Long parentId;
 
 	/*
@@ -58,5 +56,18 @@ public class SysRole extends BaseEntity {
 	*/
 	@Formula(select = "coalesce(t.org_name, '')", join = "left join t_sys_org t on t.org_no = ${ta}.org_no")
 	String orgName;
+
+	@Data
+	@Matches({
+			@Matche(field = "roleName", notBlank = true, message = "角色名称不能为空", groups = {Insert.class, Update.class}),
+			@Matche(field = "orgNo", notBlank = true, message = "组织机构编号不能为空", groups = {Insert.class, Update.class}),
+	})
+	public static class Vo extends AbstractVoEntity {
+		String roleName;
+		String description;
+		String orgNo;
+		List<String> resourceList = Lists.newArrayList();
+		Long parentId;
+	}
 
 }

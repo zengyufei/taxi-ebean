@@ -1,6 +1,6 @@
 package com.ys.dao.rbac;
 
-import com.ys.admin.Application;
+import com.ys.Application;
 import com.ys.common.entitys.rbac.SysMember;
 import com.ys.common.enums.SexEnum;
 import io.ebean.EbeanServer;

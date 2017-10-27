@@ -6,18 +6,17 @@ const tokenNameKey = 'token'
 const loginUrl = '/login'
 
 export default extend({
-  namespace: `${prefix}Store`,
-  state: {},
-  subscriptions: {},
-  effects: {
-    * login(payload, { postMessage, put, sessionCache }) {
-      const { code, result } = yield postMessage(loginUrl, payload)
-      if (code === 200) {
-        sessionCache.set(tokenNameKey, result)
-        yield put('appStore/loadRole')
-      }
+    namespace: `${prefix}Store`,
+    state: {},
+    subscriptions: {},
+    effects: {
+        * login(payload, { postMessage, put, sessionCache }) {
+            const { code, result } = yield postMessage(loginUrl, payload)
+            if (code === 200) {
+                sessionCache.set(tokenNameKey, result)
+                yield put('appStore/loadRole')
+            }
+        },
     },
-
-  },
-  reducers: {},
+    reducers: {},
 })

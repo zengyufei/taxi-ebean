@@ -103,6 +103,7 @@ public class Msg<T>  implements Serializable {
 			this.message = message;
 		}
 
+		@Override
 		public <T> Msg<T> body(T result) {
 			if(result instanceof Number){
 				return new Msg(this.code, this.message, result);

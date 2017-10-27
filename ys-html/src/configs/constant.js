@@ -1,11 +1,10 @@
 module.exports = {
-  tokenSessionKey: 'token',
+    tokenSessionKey: 'token',
 
-  memberSessionKey: 'currentMember',
-  roleSessionKey: 'currentRole',
-  resourceSessionKey: 'currentResource',
+    memberSessionKey: 'currentMember',
+    roleSessionKey: 'currentRole',
+    resourceSessionKey: 'currentResource',
 
-  redirectLoginUrl: '/#/login',
-  redirectNotPermissionUrl: '/#/403',
-
+    redirectLoginUrl: '/#/login',
+    redirectNotPermissionUrl: '/#/403',
 }

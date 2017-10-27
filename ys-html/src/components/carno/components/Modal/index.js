@@ -10,72 +10,70 @@ const { validate } = Utils.Form
  * @props {...modalProps} 参考antd 模态框组件
  */
 export default class HModal extends React.Component {
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    const { visible } = props
-    this.state = {
-      visible: !!visible,
-    }
-    this.handleCancel = this.handleCancel.bind(this)
-    this.handleOk = this.handleOk.bind(this)
-  }
-
-  componentWillReceiveProps({ visible, confirmLoading }) {
-    // 如果props中的visible属性改变，则显示modal
-    if (visible /* && (visible !== this.props.visible) */) {
-      this.setState({
-        visible: true,
-      })
-    } else {
-      this.setState({
-        visible: false,
-      })
+        const { visible } = props
+        this.state = {
+            visible: !!visible,
+        }
+        this.handleCancel = this.handleCancel.bind(this)
+        this.handleOk = this.handleOk.bind(this)
     }
 
-    // 如果confirmLoading 从true转变为flase,则隐藏modal
-    /* if (confirmLoading === false && this.props.confirmLoading) {
+    componentWillReceiveProps({ visible, confirmLoading }) {
+        // 如果props中的visible属性改变，则显示modal
+        if (visible /* && (visible !== this.props.visible) */) {
+            this.setState({
+                visible: true,
+            })
+        } else {
+            this.setState({
+                visible: false,
+            })
+        }
+
+        // 如果confirmLoading 从true转变为flase,则隐藏modal
+        /* if (confirmLoading === false && this.props.confirmLoading) {
       this.setState({
         visible: false,
       });
     } */
-  }
-
-  handleCancel() {
-    if (this.props.onCancel) {
-      this.props.onCancel()
     }
 
-    this.setState({
-      visible: false,
-    })
-  }
+    handleCancel() {
+        if (this.props.onCancel) {
+            this.props.onCancel()
+        }
 
-  handleOk() {
-    const { confirmLoading, form, onOk } = this.props
-    const hideModal = () => {
-      // 如果没有传递confirmLoading,则直接关闭窗口
-      if (confirmLoading === undefined) {
-        this.handleCancel()
-      }
+        this.setState({
+            visible: false,
+        })
     }
 
-    if (onOk && form) {
-      // 如果配置了form属性，则验证成功后才关闭表单
-      validate(form)((values, originValues) => {
-        onOk(values, originValues)
-        hideModal()
-      })
-    } else {
-      onOk && onOk()
-      hideModal()
-    }
-  }
+    handleOk() {
+        const { confirmLoading, form, onOk } = this.props
+        const hideModal = () => {
+            // 如果没有传递confirmLoading,则直接关闭窗口
+            if (confirmLoading === undefined) {
+                this.handleCancel()
+            }
+        }
 
-  render() {
-    const modalProps = { ...this.props, visible: true, onOk: this.handleOk, onCancel: this.handleCancel }
-    return (
-      <div>{this.state.visible && <Modal {...modalProps} >{this.props.children}</Modal>}</div>
-    )
-  }
+        if (onOk && form) {
+            // 如果配置了form属性，则验证成功后才关闭表单
+            validate(form)((values, originValues) => {
+                onOk(values, originValues)
+                hideModal()
+            })
+        } else {
+            onOk && onOk()
+            hideModal()
+        }
+    }
+
+    render() {
+        const modalProps = { ...this.props, visible: true, onOk: this.handleOk, onCancel: this.handleCancel }
+        return <div>{this.state.visible && <Modal {...modalProps}>{this.props.children}</Modal>}</div>
+    }
 }

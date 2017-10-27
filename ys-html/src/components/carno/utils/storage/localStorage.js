@@ -6,38 +6,39 @@
 const SALT = 'ys_'
 
 export default {
-  /*
+    /*
   * 就算游览器关闭，依然存在
   */
-  get(key) {
-    let data = JSON.parse(localStorage.getItem(SALT + key.toString()))
-    if (data !== null) {
-      if (data.expires_at) {
-        if (data.expires_at < new Date().getTime()) {
-          localStorage.removeItem(SALT + key.toString())
-          return null
+    get (key) {
+        const trueKey = SALT + key.toString()
+        let data = JSON.parse(localStorage.getItem(trueKey))
+        if (data !== null) {
+            if (data.expires_at) {
+                if (data.expires_at < new Date().getTime()) {
+                    localStorage.removeItem(SALT + key.toString())
+                    return null
+                }
+                return data.value
+            }
+            return data
         }
-        return data.value
-      }
-      return data
-    }
-    return null
-  },
-  set(key, jsonValue, ttlSecond) {
-    let strValue
-    if (typeof ttlSecond === 'number') {
-      let data = { value: jsonValue, expires_at: new Date().getTime() + (ttlSecond * 1000) }
-      strValue = JSON.stringify(data)
-    } else {
-      strValue = JSON.stringify(jsonValue)
-    }
-    localStorage.setItem(SALT + key.toString(), strValue)
-  },
+        return null
+    },
+    set (key, jsonValue, ttlSecond) {
+        let strValue
+        if (typeof ttlSecond === 'number') {
+            let data = { value: jsonValue, expires_at: new Date().getTime() + ttlSecond * 1000 }
+            strValue = JSON.stringify(data)
+        } else {
+            strValue = JSON.stringify(jsonValue)
+        }
+        localStorage.setItem(SALT + key.toString(), strValue)
+    },
 
-  remove(key) {
-    localStorage.removeItem(SALT + key)
-  },
-  removeAll() {
-    localStorage.clear()
-  },
+    remove(key) {
+        localStorage.removeItem(SALT + key)
+    },
+    removeAll() {
+        localStorage.clear()
+    },
 }

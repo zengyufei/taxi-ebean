@@ -3,7 +3,8 @@ package com.ys.common.entitys.community;
 import com.ys.admin.validate.annotation.Matche;
 import com.ys.admin.validate.annotation.Matches;
 import com.ys.common.annotations.OptionField;
-import com.ys.common.base.entiry.BaseEntity;
+import com.ys.common.base.entiry.AbstractEntity;
+import com.ys.common.base.entiry.AbstractVoEntity;
 import com.zyf.valid.Insert;
 import com.zyf.valid.Update;
 import io.ebean.annotation.DbComment;
@@ -16,18 +17,14 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity
-@Table(name = "t_building")
-@Matches({
-		@Matche(field = "name", notBlank = true, message = "小区名称不能为空", groups = {Insert.class, Update.class}),
-		@Matche(field = "alias", notBlank = true, message = "小区名称不能为空", groups = {Insert.class, Update.class}),
-})
 @Accessors(chain = true)
 @Data
+@Entity
+@Table(name = "t_building")
 @DbComment("楼栋")
-public class Building extends BaseEntity {
+public class Building extends AbstractEntity {
 
-	@DbComment("楼栋名称，罗马数字")
+	@DbComment("楼栋编号，罗马数字")
 	String name;
 	@DbComment("楼栋别名，中文名")
 	String alias;
@@ -37,4 +34,14 @@ public class Building extends BaseEntity {
 
 	@Formula(select = "coalesce(t1.name, '')", join = "left join t_community t1 on t1.id = ${ta}.community_id") // 注解用法参照 sysMember
 	String communityName;
+
+	@Data
+	@Matches({
+			@Matche(field = "alias", notBlank = true, message = "楼栋别名不能为空", groups = {Insert.class, Update.class}),
+	})
+	public static class Vo extends AbstractVoEntity {
+		String name;
+		String alias;
+		Long communityId;
+	}
 }

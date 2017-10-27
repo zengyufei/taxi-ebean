@@ -38,7 +38,7 @@ public class UserOption extends BaseEntity {
 	@DbComment("所属楼栋编号")
 	Long buildingId;
 	@DbComment("所属单元编号")
-	Long UnitId;
+	Long unitId;
 
 	@DbComment("用户名")
 	String userName;

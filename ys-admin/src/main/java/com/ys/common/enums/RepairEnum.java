@@ -11,16 +11,16 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum RepairEnum implements MarkId {
 
-    Leaking(1, "漏水"),
-    PowerOff(2, "断电"),
-    LightBad(3, "灯坏"),
-    ToLeak(4, "地漏堵"),
-    BadWindowsAndDoors(5, "门窗坏"),
-    LoadedLights(6, "装灯"),
-    RepairToilet(7, "修马桶"),
-    RepairWaterPipe(8, "修水管"),
-    RepairWlectrical(9, "修电器"),
-    Dredge(10, "疏通");
+    Leaking(0, "漏水"),
+    PowerOff(1, "断电"),
+    LightBad(2, "灯坏"),
+    ToLeak(3, "地漏堵"),
+    BadWindowsAndDoors(4, "门窗坏"),
+    LoadedLights(5, "装灯"),
+    RepairToilet(6, "修马桶"),
+    RepairWaterPipe(7, "修水管"),
+    RepairWlectrical(8, "修电器"),
+    Dredge(9, "疏通");
 
     @Setter
     @Getter

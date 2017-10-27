@@ -6,14 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 设备
+ * 审核
+ * @author zengyufei
  */
 @AllArgsConstructor
 public enum AuthEnum implements MarkId {
 
-    Pending(1, "待审核"),
-    NotPass(2, "未通过"),
-    Pass(3, "已通过");
+    /** 审核通过 */
+    Pending(0, "待审核"),
+    NotPass(1, "未通过"),
+    Pass(2, "已通过");
 
     @Setter
     @Getter

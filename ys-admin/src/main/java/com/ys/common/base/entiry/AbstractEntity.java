@@ -7,6 +7,8 @@ import javax.persistence.MappedSuperclass;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @MappedSuperclass
-public abstract class AbstractEntity<T> extends FeaturesAbstractEntity<T> {
+public abstract class AbstractEntity<T> extends AbstractFeaturesEntity<T> {
+
+
 
 }

@@ -52,8 +52,9 @@ public class MatcheValidator implements ConstraintValidator<Matche, Object> {
 						isEnum = true;
 					}
 					Matche annotation = declaredField.getAnnotation(Matche.class);
-					if (declaredField.getName().equals(this.field) && annotation != null)
+					if (declaredField.getName().equals(this.field) && annotation != null) {
 						return true;
+					}
 				} catch (NoSuchFieldException e) {
 					e.printStackTrace();
 				}
@@ -104,8 +105,9 @@ public class MatcheValidator implements ConstraintValidator<Matche, Object> {
 			}
 
 			if (this.max < Integer.MAX_VALUE) {
-				if(fieldValue == null)
+				if(fieldValue == null){
 					return true;
+				}
 				boolean isMatch;
 				try {
 					isMatch = Integer.parseInt(String.valueOf(fieldValue)) <= this.max;
@@ -123,8 +125,9 @@ public class MatcheValidator implements ConstraintValidator<Matche, Object> {
 			}
 
 			if (this.min < Integer.MAX_VALUE) {
-				if(fieldValue == null)
+				if(fieldValue == null){
 					return true;
+				}
 				boolean isMatch;
 				try {
 					isMatch = Integer.parseInt(String.valueOf(fieldValue)) >= this.min;

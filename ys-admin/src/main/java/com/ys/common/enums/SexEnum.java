@@ -11,9 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum SexEnum implements MarkId {
 
-	Free(1, "不限"),
-    Male(2, "男"),
-    Female(3, "女");
+	Free(0, "不限"),
+    Male(1, "男"),
+    Female(2, "女");
 
     @Setter
     @Getter

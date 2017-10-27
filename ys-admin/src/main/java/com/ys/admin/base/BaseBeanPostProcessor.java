@@ -20,7 +20,10 @@ public class BaseBeanPostProcessor implements BeanPostProcessor{
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		boolean b = !"basicErrorController".equals(beanName) && Pattern.compile("Controller$").matcher(beanName).find();
+		String controllerRegex = "Controller$";
+		Pattern pattern = Pattern.compile(controllerRegex);
+		String basicErrorController = "basicErrorController";
+		boolean b = !basicErrorController.equals(beanName) && pattern.matcher(beanName).find();
 		if(b){
 			System.out.println("对象" + beanName + "实例化完成");
 		}

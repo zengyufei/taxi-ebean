@@ -7,7 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("sysOrgService")
 public class SysOrgService {
 
 	@NotNull

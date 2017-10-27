@@ -6,7 +6,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.SecureRandom;
 
-public class AESSecret {
+public class AesSecret {
     
     /**
      * 加密 生成16进制的字符串
@@ -15,7 +15,7 @@ public class AESSecret {
      * @create_time 2017年3月31日 下午11:48:50
      */
     public static String encrypt(String content) throws Exception{
-        return encrypt(content, AESKey.secretKey());
+        return encrypt(content, AesKey.secretKey());
     }
     
     /**
@@ -25,7 +25,7 @@ public class AESSecret {
      * @create_time 2017年3月31日 下午11:49:17
      */
     public static String decrypt(String content) throws Exception{
-        return decrypt(Hex.hexStr2Bytes(content), AESKey.secretKey());
+        return decrypt(Hex.hexStr2Bytes(content), AesKey.secretKey());
     }
 	
 	public static String encrypt(String content, String secureKey) throws Exception{

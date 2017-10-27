@@ -7,40 +7,42 @@ const _ = require('lodash')
 const SALT = 'ys_'
 
 export default {
-  get(key) {
-    let strValue = sessionStorage.getItem(SALT + key)
-    return JSON.parse(strValue)
-  },
-  set(key, jsonValue) {
-    let strValue = JSON.stringify(jsonValue)
-    sessionStorage.setItem(SALT + key, strValue)
-  },
+    get (key) {
+        let strValue = sessionStorage.getItem(SALT + key)
+        return JSON.parse(strValue)
+    },
+    set (key, jsonValue) {
+        let strValue = JSON.stringify(jsonValue)
+        sessionStorage.setItem(SALT + key, strValue)
+    },
 
-  setIds(key, array, filterKey) {
-    array.forEach(e => {
-      let strValue = JSON.stringify(e)
-      sessionStorage.setItem(`${SALT}_${key}_${e[filterKey]}`, strValue)
-    })
-  },
+    setIds(key, array, filterKey) {
+        array.forEach(e => {
+            let strValue = JSON.stringify(e)
+            sessionStorage.setItem(`${SALT}_${key}_${e[filterKey]}`, strValue)
+        })
+    },
 
-  getIds(key, id) {
-    let strValue = sessionStorage.getItem(`${SALT}_${key}_${id}`)
-    return JSON.parse(strValue)
-  },
+    getIds(key, id) {
+        let strValue = sessionStorage.getItem(`${SALT}_${key}_${id}`)
+        return JSON.parse(strValue)
+    },
 
-  existsIds(key, array) {
-    if (!array) return false
-    let exists = true
-    array.forEach(e => {
-      if (!sessionStorage.getItem(`${SALT}_${key}_${e}`)) { exists = false }
-    })
-    return exists
-  },
+    existsIds(key, array) {
+        if (!array) return false
+        let exists = true
+        array.forEach(e => {
+            if (!sessionStorage.getItem(`${SALT}_${key}_${e}`)) {
+                exists = false
+            }
+        })
+        return exists
+    },
 
-  remove(key) {
-    sessionStorage.removeItem(SALT + key)
-  },
-  removeAll() {
-    sessionStorage.clear()
-  },
+    remove(key) {
+        sessionStorage.removeItem(SALT + key)
+    },
+    removeAll() {
+        sessionStorage.clear()
+    },
 }

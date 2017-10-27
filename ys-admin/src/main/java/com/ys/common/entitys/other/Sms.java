@@ -3,8 +3,9 @@ package com.ys.common.entitys.other;
 import com.google.common.collect.Lists;
 import com.ys.admin.validate.annotation.Matches;
 import com.ys.common.base.entiry.BaseEntity;
+import com.ys.common.base.entiry.BaseVoEntity;
+import io.ebean.annotation.DbArray;
 import io.ebean.annotation.DbComment;
-import io.ebean.annotation.Formula;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -25,16 +26,19 @@ import java.util.List;
 public class Sms extends BaseEntity {
 
 	@DbComment("发送目标")
+	@DbArray
 	List<String> target = Lists.newArrayList();
 	@DbComment("短信内容")
 	String content;
 
-	@DbComment("所属小区编号")
-	Long communityId;
 	@DbComment("所属用户，如果有")
 	Long userId;
-	@Formula(select = "coalesce(t1.name, '')", join = "left join t_community t1 on t1.id = ${ta}.community_id") // 注解用法参照 sysMember
-	String communityName;
 
+	@Data
+	public static class Vo extends BaseVoEntity {
+		List<String> target = Lists.newArrayList();
+		String content;
+		Long userId;
+	}
 
 }

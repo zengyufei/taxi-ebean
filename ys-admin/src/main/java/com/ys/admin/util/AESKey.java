@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 
 import java.util.List;
 
-public class AESKey {
+public class AesKey {
 
     public static String secretKey(){
         return "ys!@#2017";

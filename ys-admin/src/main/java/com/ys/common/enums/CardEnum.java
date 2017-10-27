@@ -11,8 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum CardEnum implements MarkId {
 
-    UserCard(1, "住户卡"),
-    ManageCard(2, "物管卡");
+    UserCard(0, "住户卡"),
+    ManageCard(1, "物管卡");
 
     @Setter
     @Getter

@@ -11,10 +11,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum EquEnum implements MarkId {
 
-    DoorMachine(1, "门口机"),
-    CenterMachine(2, "中心机"),
-    WallMachine(3, "围墙机"),
-    IndoorMachine(4, "室内机");
+    DoorMachine(0, "门口机"),
+    CenterMachine(1, "中心机"),
+    WallMachine(2, "围墙机"),
+    IndoorMachine(3, "室内机");
 
     @Setter
     @Getter

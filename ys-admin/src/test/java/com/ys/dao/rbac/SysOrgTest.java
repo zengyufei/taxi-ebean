@@ -1,6 +1,6 @@
 package com.ys.dao.rbac;
 
-import com.ys.admin.Application;
+import com.ys.Application;
 import com.ys.common.entitys.rbac.SysOrg;
 import io.ebean.EbeanServer;
 import io.ebean.annotation.Transactional;

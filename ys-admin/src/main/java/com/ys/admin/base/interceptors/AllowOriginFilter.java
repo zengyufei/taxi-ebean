@@ -24,7 +24,18 @@ public class AllowOriginFilter implements Filter {
 			throws IOException, ServletException {
 
 		// 支持测试环境的跨域请求
-			HttpServletResponse resp = (HttpServletResponse) response;
+		HttpServletResponse resp = (HttpServletResponse) response;
+		/*resp.addHeader("Access-Control-Allow-Credentials", "true");
+		resp.addHeader("Access-Control-Allow-Origin", "*");
+		resp.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+		resp.addHeader("Access-Control-Request-Headers", "token");
+		resp.addHeader("Access-Control-Expose-Headers", "token");
+		resp.addHeader("Access-Control-Allow-Headers", "DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,Accept,token");
+		//30 min
+		resp.addHeader("Access-Control-Max-Age", "1800");
+
+		resp.addHeader("Content-Type", "application/json");*/ //返回数据格式是json
+
 			resp.addHeader("Access-Control-Allow-Origin", "*");
 			resp.addHeader("Access-Control-Allow-Credentials", "true");
 			resp.addHeader("Access-Control-Allow-Methods", "*");

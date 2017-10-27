@@ -350,32 +350,32 @@ Model.extend({
       //发送请求前，显示loading状态，完成后结束loading状态.如果请求成功则提示加载用户成功,失败则提示
       const users = yield callLoading(service.user.getList,null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
       // 等同
-      const users = yield getLoading('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
-      const users = yield postLoading('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield getLoading('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield postLoading('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
 
 
 
       //发送请求前，显示ConfirmLoading状态，完成后结束ConfirmLoading状态.如果请求成功则提示加载用户成功,失败则提示
       const users = yield callConfirmLoading(service.user.getList,null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
       // 等同
-      const users = yield getConfirmLoading('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
-      const users = yield postConfirmLoading('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield getConfirmLoading('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield postConfirmLoading('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
 
 
 
       //发送请求前，显示spinning状态，完成后结束spinning状态.如果请求成功则提示加载用户成功,失败则提示
       const users = yield callSpinning(service.user.getList,null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
       // 等同
-      const users = yield getSpinning('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
-      const users = yield postSpinning('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield getSpinning('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield postSpinning('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
 
 
 
       //仅处理成功/失败的消息提示
       const users = yield callMessage(service.user.getList,null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
       // 等同
-      const users = yield getMessage('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
-      const users = yield postMessage('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield getMessage('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield postMessage('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
 
 
       
@@ -383,8 +383,8 @@ Model.extend({
       //仅处理成功/失败的消息提示
       const users = yield callMessage(service.user.getList,null, '用户');
       // 等同
-      const users = yield getMessage('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
-      const users = yield postMessage('/user/getList.htm',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield getMessage('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
+      const users = yield postMessage('/user/getList',null,{successMsg:'加载用户成功',errorMsg:'加载用户失败'});
 
 
 

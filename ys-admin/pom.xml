@@ -33,7 +33,7 @@
 	<dependencies>
 
 		<dependency>
-			<!-- 将 DO 赋值给 VO 的一款工具框架 -->
+			<!-- 将 DO 赋值给 Vo 的一款工具框架 -->
 			<groupId>net.sf.dozer</groupId>
 			<artifactId>dozer</artifactId>
 			<version>5.5.1</version>
@@ -42,13 +42,29 @@
 		<dependency>
 			<groupId>com.zyf</groupId>
 			<artifactId>lombok</artifactId>
-			<version>0.0.1</version>
+			<version>0.0.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.googlecode.log4jdbc</groupId>
 			<artifactId>log4jdbc</artifactId>
 			<version>1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>cn.afterturn</groupId>
+			<artifactId>easypoi-base</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.afterturn</groupId>
+			<artifactId>easypoi-web</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.afterturn</groupId>
+			<artifactId>easypoi-annotation</artifactId>
+			<version>3.0.3</version>
 		</dependency>
 
 		<!--<dependency>

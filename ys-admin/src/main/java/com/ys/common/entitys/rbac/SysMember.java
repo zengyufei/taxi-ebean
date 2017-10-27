@@ -3,7 +3,8 @@ package com.ys.common.entitys.rbac;
 import com.ys.admin.validate.annotation.Matche;
 import com.ys.admin.validate.annotation.Matches;
 import com.ys.common.annotations.OptionField;
-import com.ys.common.annotations.OptionFieldLike;
+import com.ys.common.annotations.VoFieldLike;
+import com.ys.common.base.entiry.AbstractVoEntity;
 import com.ys.common.base.entiry.BaseEntity;
 import com.ys.common.enums.SexEnum;
 import com.zyf.valid.Insert;
@@ -11,32 +12,20 @@ import com.zyf.valid.Update;
 import io.ebean.annotation.DbComment;
 import io.ebean.annotation.Formula;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
 // @Cache(enableQueryCache = true)
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "t_sys_member")
-@Matches({
-		@Matche(field = "account", notBlank = true, message = "账号不能为空", groups = { Insert.class, Update.class }),
-		@Matche(field = "password", notBlank = true, message = "密码不能为空", groups = { Insert.class, Update.class }),
-		@Matche(field = "realName", notBlank = true, message = "真实姓名不能为空", groups = { Insert.class, Update.class }),
-		@Matche(field = "identity", notBlank = true, message = "身份证不能为空", groups = { Insert.class, Update.class }),
-		@Matche(field = "mobile", notBlank = true, message = "手机不能为空", groups = { Insert.class, Update.class }),
-		@Matche(field = "sex", notNull = true, enumType = SexEnum.class, message = "性别错误", groups = { Insert.class, Update.class }),
-		@Matche(field = "roleId", notNull = true, min = 1, message = "角色不能为空", groups = { Insert.class, Update.class }),
-		@Matche(field = "orgNo", notBlank = true, message = "组织机构编号不能为空", groups = { Insert.class, Update.class }),
-})
 @Accessors(chain=true)
 @Data
 @DbComment("后台用户")
 public class SysMember extends BaseEntity {
 
-	@OptionFieldLike
+	@VoFieldLike
 	@DbComment("账号")
 	String account;
 	@DbComment("密码")
@@ -82,4 +71,29 @@ public class SysMember extends BaseEntity {
 	*/
 	@Formula(select = "coalesce(t.org_name, '')", join = "left join t_sys_org t on t.org_no = ${ta}.org_no")
 	String orgName;
+
+	@Data
+	@Matches({
+			@Matche(field = "account", notBlank = true, message = "账号不能为空", groups = { Insert.class, Update.class }),
+			@Matche(field = "password", notBlank = true, message = "密码不能为空", groups = { Insert.class, Update.class }),
+			@Matche(field = "realName", notBlank = true, message = "真实姓名不能为空", groups = { Insert.class, Update.class }),
+			@Matche(field = "identity", notBlank = true, message = "身份证不能为空", groups = { Insert.class, Update.class }),
+			@Matche(field = "mobile", notBlank = true, message = "手机不能为空", groups = { Insert.class, Update.class }),
+			@Matche(field = "sex", notNull = true, enumType = SexEnum.class, message = "性别错误", groups = { Insert.class, Update.class }),
+			@Matche(field = "roleId", notNull = true, min = 1, message = "角色不能为空", groups = { Insert.class, Update.class }),
+			@Matche(field = "orgNo", notBlank = true, message = "组织机构编号不能为空", groups = { Insert.class, Update.class }),
+	})
+	public static class Vo extends AbstractVoEntity {
+		String account;
+		String password;
+		String realName;
+		String identity;
+		String mobile;
+		String email;
+		String qq;
+		String remark;
+		SexEnum sexEnum;
+		Long roleId;
+		String orgNo;
+	}
 }

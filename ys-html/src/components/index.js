@@ -1,5 +1,3 @@
 import * as Layout from './layout'
 
-export {
-  Layout,
-}
+export { Layout }

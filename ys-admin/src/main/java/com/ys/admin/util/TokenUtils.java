@@ -1,6 +1,6 @@
 package com.ys.admin.util;
 
-import com.ys.admin.base.shiroRealm.Token;
+import com.ys.admin.base.realm.Token;
 import com.ys.common.entitys.rbac.SysMember;
 import io.ebean.Ebean;
 import io.ebeaninternal.server.util.Md5;
@@ -35,7 +35,7 @@ public class TokenUtils {
 		long memberId = sysMember.getId();
 		String account = sysMember.getAccount();
 		long expireTime = Instant.now().plusSeconds(timeout).toEpochMilli();
-		String tocken = AESSecret.encrypt(memberId + "|" + expireTime + "|" + account + "|" + Md5.hash(memberId + expireTime + account));
+		String tocken = AesSecret.encrypt(memberId + "|" + expireTime + "|" + account + "|" + Md5.hash(memberId + expireTime + account));
 		return tocken;
 	}
 
@@ -44,7 +44,7 @@ public class TokenUtils {
 			return null;
 		}
 
-		String content = AESSecret.decrypt(tokenStr);
+		String content = AesSecret.decrypt(tokenStr);
 		long memberId = Long.parseLong(StringUtils.split(content, "|")[0]);
 		long expireTime = Long.parseLong(StringUtils.split(content, "|")[1]);
 		String account = StringUtils.split(content, "|")[2];
@@ -62,7 +62,7 @@ public class TokenUtils {
 		return new Token(memberId, expireTime, account, md5Code);
 	}
 
-	public static SysMember getMember(Token token) throws Exception {
+	public static SysMember getMember(Token token) {
 		return Ebean.find(SysMember.class, token.getMemberId());
 	}
 

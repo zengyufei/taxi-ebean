@@ -1,3 +1,4 @@
+/*
 package com.ys.common.entitys.other;
 
 import com.ys.common.base.entiry.IdAbstractEntity;
@@ -31,3 +32,4 @@ public class Area extends IdAbstractEntity {
 	String fullName;
 
 }
+*/

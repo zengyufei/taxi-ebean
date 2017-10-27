@@ -1,10 +1,10 @@
 package com.ys.common.entitys.device;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.ys.admin.validate.annotation.Matche;
 import com.ys.admin.validate.annotation.Matches;
-import com.ys.common.annotations.OptionField;
-import com.ys.common.annotations.OptionFieldIn;
 import com.ys.common.base.entiry.BaseEntity;
+import com.ys.common.base.entiry.BaseVoEntity;
 import com.ys.common.enums.EquEnum;
 import com.ys.common.enums.OnlineEnum;
 import com.zyf.valid.Insert;
@@ -18,29 +18,37 @@ import lombok.experimental.Accessors;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * @author zengyufei
+ */
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "t_device")
-@Matches({
-		@Matche(field = "name", notBlank = true, message = "设备名称不能为空", groups = {Insert.class, Update.class}),
-		@Matche(field = "equEnum", notNull = true, enumType = EquEnum.class, message = "设备类型不能为空", groups = {Insert.class, Update.class}),
-		@Matche(field = "onlineEnum", notNull = true, enumType = OnlineEnum.class, message = "在线情况不能为空", groups = {Insert.class, Update.class}),
-})
 @Accessors(chain = true)
 @Data
 @DbComment("设备")
 public class Device extends BaseEntity {
 
+	@Excel(name = "设备号", height = 10, width = 10)
 	@DbComment("设备号")
 	String equNo;
+	@Excel(name = "设备名称", height = 10, width = 10)
 	@DbComment("设备名称")
 	String name;
+	@Excel(name = "设备类型",
+			replace = {"门口_DoorMachine", "中心_CenterMachine", "围墙_WallMachine", "室内_IndoorMachine"},
+			suffix = "机",
+			height = 10,
+			width = 10)
 	@DbComment("设备类型")
 	EquEnum equEnum;
+	@Excel(name = "Ip地址", height = 10, width = 10)
 	@DbComment("Ip地址")
 	String ip;
+	@Excel(name = "Mac地址", height = 10, width = 10)
 	@DbComment("Mac地址")
 	String mac;
+	@Excel(name = "密码", height = 10, width = 10)
 	@DbComment("密码")
 	String password;
 	@DbComment("在线情况")
@@ -50,35 +58,27 @@ public class Device extends BaseEntity {
 	@DbComment("蓝牙开门灵敏度")
 	Integer keenNumb;
 
-	@OptionField
-	@DbComment("所属小区编号")
-	Long communityId;
-	@DbComment("所属楼栋编号")
-	Long buildingId;
-	@DbComment("所属单元编号")
-	Long unitId;
-	@DbComment("所属房间编号，如果有")
+	@DbComment("所属房间编号")
 	Long roomId;
-
-	@Formula(select = "coalesce(t1.name, '')", join = "left join t_community t1 on t1.id = ${ta}.community_id") // 注解用法参照 sysMember
-	String communityName;
-	@Formula(select = "coalesce(t2.name, '')", join = "left join t_building t2 on t2.id = ${ta}.building_id") // 注解用法参照 sysMember
-	String buildingName;
-	@Formula(select = "coalesce(t3.name, '')", join = "left join t_unit t3 on t3.id = ${ta}.unit_id") // 注解用法参照 sysMember
-	String unitName;
-	@Formula(select = "coalesce(t4.name, '')", join = "left join t_room t4 on t4.id = ${ta}.room_id") // 注解用法参照 sysMember
+	@Formula(select = "coalesce(c4.name, '')", join = "left join t_room c4 on c4.id = ${ta}.room_id") // 注解用法参照 sysMember
 	String roomName;
 
-
-	@Accessors(chain = true)
 	@Data
-	public static class Option {
-		@OptionFieldIn(fieldName = "buildingId")
-		String buildingIds;
-		@OptionFieldIn(fieldName = "unitId")
-		String unitIds;
-		@OptionFieldIn(fieldName = "roomId")
-		String roomIds;
+	@Matches({
+			@Matche(field = "name", notBlank = true, message = "设备名称不能为空", groups = {Insert.class, Update.class}),
+			@Matche(field = "equEnum", notNull = true, enumType = EquEnum.class, message = "设备类型不能为空", groups = {Insert.class, Update.class}),
+	})
+	public static class Vo extends BaseVoEntity {
+		String equNo;
+		String name;
+		EquEnum equEnum;
+		String ip;
+		String mac;
+		String password;
+		OnlineEnum onlineEnum;
+		Long times;
+		Integer keenNumb;
 	}
+
 
 }

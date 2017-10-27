@@ -1,6 +1,6 @@
 package ebean.curd;
 
-import com.ys.admin.Application;
+import com.ys.Application;
 import ebean.entity.TestSysMember;
 import io.ebean.EbeanServer;
 import io.ebean.annotation.Transactional;

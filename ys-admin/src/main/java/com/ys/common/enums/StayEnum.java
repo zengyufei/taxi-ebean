@@ -8,8 +8,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum StayEnum implements MarkId {
 
-    Resident(1, "门口机"),
-    Temporary(2, "中心机");
+    Resident(0, "住户"),
+    Temporary(1, "临时");
 
     @Setter
     @Getter

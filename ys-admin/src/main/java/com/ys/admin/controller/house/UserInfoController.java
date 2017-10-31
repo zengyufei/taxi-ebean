@@ -18,6 +18,9 @@ import com.zyf.result.Msg;
 import io.ebean.Ebean;
 import io.ebean.Transaction;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -42,6 +45,11 @@ import java.util.Map;
 @QueryById(UserInfo.class)
 public class UserInfoController extends AbstractRoomController<UserInfo, UserInfo.Vo> {
 
+	@ApiOperation(value = "导入", notes = "导入", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponses(value = {
+			@ApiResponse(code = Msg.SUCCESS_CODE, message = "导入", response = Msg.class),
+			@ApiResponse(code = Msg.ERROR_CODE, message = "系统错误", response = Msg.class)
+	})
 	@PostMapping("import")
 	public Msg importFile(@RequestParam("file") MultipartFile file) throws Exception {
 		Transaction tx = Ebean.beginTransaction();
@@ -93,6 +101,11 @@ public class UserInfoController extends AbstractRoomController<UserInfo, UserInf
 		return Msg.ok("导入成功");
 	}
 
+	@ApiOperation(value = "导出", notes = "导出", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponses(value = {
+			@ApiResponse(code = Msg.SUCCESS_CODE, message = "导出", response = Msg.class),
+			@ApiResponse(code = Msg.ERROR_CODE, message = "系统错误", response = Msg.class)
+	})
 	@GetMapping("export")
 	public void export(HttpServletResponse resp) throws Exception {
 		List<UserInfo> list = Ebean.find(entityClass).findList();

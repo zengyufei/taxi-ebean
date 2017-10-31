@@ -16,6 +16,9 @@ const List = options => {
 
     const btns = (
         <div>
+            <Button type="primary" icon="plus-circle-o" onClick={openAddPage} style={{ marginRight: 5 }}>
+                新增{name}
+            </Button>
             <Popconfirm title="是否确定要导出" onConfirm={toExport}>
                 <Button type="primary" icon="export">
                     导出

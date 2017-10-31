@@ -1,14 +1,17 @@
 import ZForm from 'ZForm'
 import ZModal from 'ZModal'
 import { getFields, validate } from 'FormUtils'
+import { Select, AutoComplete } from 'antd'
+
+const AOption = AutoComplete.Option
 
 import { prefix, name, storeName } from './constant'
 import fields from './fields'
 
 const Add = options => {
     const { form, methods } = options
-    const { confirmLoading, visible: { add } } = options[storeName]
-    const { onOk, onCancel } = methods
+    const { confirmLoading, visible: { add }, userInfoList } = options[storeName]
+    const { onOk, onCancel, onSelect } = methods
 
     const addPageModalProps = {
         maskClosable: false,
@@ -19,10 +22,22 @@ const Add = options => {
         form,
     }
 
+    fields.forEach(function (x) {
+        if (x.key === 'userId') {
+            x.onSelect = onSelect
+        }
+    })
+
     const formProps = {
         formType: 'addOrUpdate',
-        fields: getFields(fields).values(),
-        item: {},
+        fields: getFields(fields, ['communityId', 'cardNo', 'cardEnum', 'userId', 'validDate', 'validTime',]).values(),
+        item: {
+            userId: userInfoList.map(function (x) {
+                return <AOption key={x.id} value={x.id + ''}>
+                    {x.phone}
+                </AOption>
+            }),
+        },
         form,
     }
 
@@ -37,6 +52,13 @@ const Add = options => {
 
 function mapDispatchToProps(dispatch, { form }) {
     return {
+        onSelect(val) {
+            dispatch({
+                type: `${storeName}/queryByPhone`,
+                phone: val,
+            })
+        },
+
         onOk() {
             validate(form, fields)(values => {
                 dispatch({

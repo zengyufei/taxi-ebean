@@ -25,6 +25,11 @@ import java.util.List;
 @QueryAll(CatchPhoto.class)
 public class CatchPhotoController extends AbstractCommunityController<CatchPhoto, CatchPhoto> {
 
+	@ApiOperation(value = "导出", notes = "导出", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponses(value = {
+			@ApiResponse(code = Msg.SUCCESS_CODE, message = "导出", response = Msg.class),
+			@ApiResponse(code = Msg.ERROR_CODE, message = "系统错误", response = Msg.class)
+	})
 	@GetMapping("export")
 	public void export(HttpServletResponse resp) throws Exception {
 		List<CatchPhoto> list = Ebean.find(entityClass).findList();

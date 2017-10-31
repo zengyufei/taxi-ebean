@@ -11,9 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public enum UserEnum implements MarkId {
 
-    Tourists(0, "待审核"),
-    Member(1, "未通过"),
-    Owner(2, "已通过");
+    Tourists(0, "游客"),
+    Member(1, "注册用户"),
+    Owner(2, "业主");
 
     @Setter
     @Getter

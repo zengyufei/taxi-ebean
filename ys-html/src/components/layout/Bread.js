@@ -64,7 +64,7 @@ const Bread = option => {
         <div className={styles.bread}>
             <Breadcrumb>
                 <Breadcrumb.Item key="home" style={{ fontWeight: 800 }}>
-                    <Link to="/">{projectConfig.name}</Link>
+                    <Link to="/" style={{ color: '#000' }}>{projectConfig.name}</Link>
                 </Breadcrumb.Item>
                 {breads}
             </Breadcrumb>

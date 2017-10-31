@@ -36,7 +36,8 @@ const Menus = option => {
             return (
                 hasPermission(item.permission) && (
                     <Menu.Item key={item.id}>
-                        <Link to={item.url}>
+                        <Link to={item.url}
+                              style={{ color: '#000' }}>
                             {item.icon && <Icon type={item.icon}/>}
                             {item.name}
                         </Link>
@@ -134,12 +135,12 @@ const Menus = option => {
             onClick={onClick}
             className={styles.menuStyle}
         >
-            <Menu.Item key="0">
+            {/*<Menu.Item key="0">
                 <Link to="/">
                     <Icon type="home"/>
                     <span>主页</span>
                 </Link>
-            </Menu.Item>
+            </Menu.Item>*/}
             {menuItems}
         </Menu>
     )

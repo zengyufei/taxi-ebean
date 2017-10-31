@@ -120,7 +120,7 @@ public abstract class AbstractController<T extends AbstractIdEntity> {
 	protected Page setPage(ExpressionList where, int pageNo, int pageSize) {
 		PagedList<?> pagedList = where
 				.setFirstRow((pageNo - 1) * pageSize)
-				.setMaxRows(pageNo * pageSize)
+				.setMaxRows(pageSize)
 				.findPagedList();
 		Page page = new Page();
 		page.setDataList(pagedList.getList());

@@ -9,6 +9,7 @@ import com.ys.admin.validate.annotation.Matches;
 import com.ys.common.base.entiry.AbstractDeletedEntity;
 import com.ys.common.base.entiry.AbstractEntity;
 import com.ys.common.base.entiry.AbstractVoEntity;
+import com.ys.common.entitys.house.User;
 import com.ys.common.entitys.house.UserInfo;
 import com.ys.common.enums.CardEnum;
 import com.zyf.valid.Insert;
@@ -66,6 +67,10 @@ public class Card  extends AbstractDeletedEntity {
 	@DbArray
 	List<Long> permissions = Lists.newArrayList();
 
+	@DbComment("持卡人，与 realName 互斥")
+	@OneToOne(optional = false, cascade = CascadeType.REFRESH)
+	@PrimaryKeyJoinColumn(columnDefinition = "userId")
+	User user;
 	@DbComment("持卡人，与 realName 互斥")
 	@OneToOne(optional = false, cascade = CascadeType.REFRESH)
 	@PrimaryKeyJoinColumn(columnDefinition = "userInfoId")

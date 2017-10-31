@@ -111,7 +111,7 @@ export default extend({
                             </TreeSelect>
                         ),
                     }
-                    initialValue && (result.initialValue = initialValue)
+                    initialValue && +initialValue !== -1 && (result.initialValue = initialValue)
                     return result
                 },
             })

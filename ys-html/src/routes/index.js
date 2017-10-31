@@ -15,24 +15,57 @@ const Routers = function ({ history, app }) {
         {
             path: '/',
             component: App,
-            getIndexRoute(nextState, cb) {
-                require.ensure(
+            /*indexRoute: {
+                getComponent(nextState, cb) {
+                    require.ensure(
+                    [],
+                    require => {
+                        // if (auth('car:car:*')) {
+                        if (true) {
+                            registerModel(app, require('models/community/roomStore'))
+                            cb(null, require('pages/community/room'))
+                        }
+                    },
+                    'room',
+                )
+                },
+            },*/
+            /*getIndexRoute(nextState, cb) {
+                /!*require.ensure(
                     [],
                     require => {
                         if (isLoginAndRedirectLoginPage()) {
-                            registerModel(app, require('models/homeStore'))
-                            cb(null, { component: require('pages/home') })
+                            //registerModel(app, require('models/homeStore'))
+                            //cb(null, { component: require('pages/home') })
                         }
                     },
                     'home',
+                )*!/
+                require.ensure(
+                    [],
+                    require => {
+                        // if (auth('car:car:*')) {
+                        if (true) {
+                            registerModel(app, require('models/community/roomStore'))
+                            cb(null, require('pages/community/room'))
+                        }
+                    },
+                    'room',
                 )
-            },
-            onEnter(nextState) {
+            },*/
+            onEnter(_, replaceState) {
                 // 一进来变更 活动的 namespace
                 app._store.dispatch({
                     type: 'appStore/changeActiveModel',
-                    activeModel: `${nextState.location.pathname.replace('/', '')}Store`,
+                    activeModel: `${_.location.pathname.replace('/', '')}Store`,
                 })
+
+                if (isLoginAndRedirectLoginPage()) {
+                    if (_.location.pathname === '/') {
+                        return replaceState('/room')
+                    }
+                }
+
             },
             onChange(prevState, nextState) {
                 // 监听变更 活动的 namespace

@@ -1,11 +1,12 @@
 import { extend } from 'ModelUtils'
-import { Select } from 'antd'
+import { Select, AutoComplete } from 'antd'
 
 const Option = Select.Option
 const prefix = 'card'
 const storeName = `${prefix}Store`
 const name = '物理卡'
 const queryPageUrl = `${prefix}/queryPage`
+const queryByPhoneUrl = `/user/queryByPhone`
 const addUrl = `${prefix}/insert`
 const updateUrl = `${prefix}/update`
 const deleteByIdUrl = `${prefix}/removeById`
@@ -24,15 +25,35 @@ export default extend({
         },
         page: {},
         [prefix]: {},
+        userInfoList: [],
     },
     effects: {
-        * init({}, {}) {
-            //
+        * init({}, { formBindType, select }) {
+            yield formBindType({
+                auto: ({ showPlaceholder, field, initialValue }) => {
+                    return {
+                        input: (
+                            <AutoComplete
+                                optionLabelProp="value"
+                                dataSource={initialValue}
+                                style={{ width: 200 }}
+                                onChange={field.onSelect}
+                                placeholder={showPlaceholder}
+                            />
+                        ),
+                    }
+                },
+            })
         },
 
         * queryPage(payload, { getMessage, update }) {
             const { result } = yield getMessage(queryPageUrl, payload)
             yield update({ page: result })
+        },
+
+        * queryByPhone(payload, { getMessage, update }) {
+            const { result } = yield getMessage(queryByPhoneUrl, payload)
+            yield update({ userInfoList: result })
         },
 
         /*

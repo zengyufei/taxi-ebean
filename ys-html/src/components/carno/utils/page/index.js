@@ -11,25 +11,29 @@ function extend({ prefix, mapStateToProps = true, mapDispatchToProps, formOption
     const storeName = `${prefix}Store`
 
     let newMapStateToProps = {}
-    if (prefix !== undefined && typeof mapStateToProps === 'boolean' && mapStateToProps) {
-        newMapStateToProps = state => {
-            return {
-                loading: state.loading.models[storeName],
-                [storeName]: state[storeName],
+    if (prefix !== undefined) {
+        if (typeof mapStateToProps === 'boolean' && mapStateToProps) {
+            newMapStateToProps = state => {
+                return {
+                    loading: state.loading.models[storeName],
+                    [storeName]: state[storeName],
+                }
+            }
+        } else if (typeof mapStateToProps === 'function' && mapStateToProps) {
+            newMapStateToProps = state => {
+                return {
+                    loading: state.loading.models[storeName],
+                    [storeName]: state[storeName],
+                    ...mapStateToProps(state),
+                }
             }
         }
-    } else if (prefix !== undefined && typeof mapStateToProps === 'function' && mapStateToProps) {
-        newMapStateToProps = state => {
-            return {
-                loading: state.loading.models[storeName],
-                [storeName]: state[storeName],
-                ...mapStateToProps(state),
-            }
-        }
-    } else if (prefix === undefined && typeof mapStateToProps === 'function') {
-        newMapStateToProps = state => {
-            return {
-                ...mapStateToProps(state),
+    } else {
+        if (typeof mapStateToProps === 'function') {
+            newMapStateToProps = state => {
+                return {
+                    ...mapStateToProps(state),
+                }
             }
         }
     }

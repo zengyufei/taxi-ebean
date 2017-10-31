@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * 设备
+ * 开门留影类型
  */
 @AllArgsConstructor
 public enum CatchPhotoEnum implements MarkId {

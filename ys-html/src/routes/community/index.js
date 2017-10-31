@@ -69,7 +69,7 @@ module.exports = (app, auth) => {
                             cb(null, require('pages/community/room'))
                         }
                     },
-                    'unit',
+                    'room',
                 )
             },
         },

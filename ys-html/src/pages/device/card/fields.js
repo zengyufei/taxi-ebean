@@ -33,6 +33,16 @@ module.exports = [
         },
     },
     {
+        key: 'userId',
+        name: '持卡人 id',
+        type: 'auto',
+        form: {
+            addOrUpdate: {
+                required: true,
+            },
+        },
+    },
+    {
         key: 'realName',
         name: '持卡人',
         render(text, record) {
@@ -99,6 +109,7 @@ module.exports = [
     {
         key: 'validDate',
         name: '有效期',
+        type: 'date',
         form: {
             addOrUpdate: {
                 required: true,
@@ -108,6 +119,7 @@ module.exports = [
     {
         key: 'validTime',
         name: '有效时段',
+        type: 'datetime',
         form: {
             addOrUpdate: {
                 required: true,

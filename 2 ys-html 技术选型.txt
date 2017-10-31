@@ -1,0 +1,31 @@
+全部文档来自： https://ant.design/index-cn 及 antd github
+主要：
+	基于 roadhog + dvajs + antd 设计。
+
+roadhog: 0.6.0 可升级
+dvajs: 1.2.0 可升级
+antd: 2.11.2 可升级
+
+工具类：
+	1 axios 【封装的工具类 ys-html\src\components\carno\utils\http\index.js，不直接使用，已经二次封装到 model 中】
+	2 ejs-loader 【生成 index.html 工具】
+	3 just-compare 【判断 json 对象是否相同，是否不同】
+	4 lodash 【常用的集合、对象繁琐的工具类包，非常非常常用】
+	5 sync-request 【同步请求，某些地方需要特殊处理，例如同步请求，不能用异步请求】
+	6 tree-flatten、tree-transform 【一个是将 array 转成 tree、另一个是将 tree 转成 array】
+	7 cooldb 【mock 临时数据库，具体实现看 mock 文件夹】
+	
+脚本命令：
+	"dev": "set BROWSER=none&&set HOST=0.0.0.0&&roadhog server --debug", 【本地开发，连接 localhost，没有端口，一般用于嵌入 tomcat 中】
+	"remote": "npm run dev-remote",【跨域请求，请求地址在 domains.js 中声明同名 key，一般以测试服务器 IP 地址的目标】
+	"local": "npm run dev-local",【跨域请求，请求地址在 domains.js 中声明同名 key，一般以本地 localhost:8080 地址的目标】
+	"localIp": "npm run dev-localIp", 【同上】
+	"dev-remote": "set BROWSER=none&&set NODE_ENV=remote&&roadhog server",
+	"dev-local": "set BROWSER=none&&set NODE_ENV=local&&roadhog server",
+	"dev-localIp": "set BROWSER=none&&set NODE_ENV=localIp&&roadhog server",
+	"lint": "eslint --fix --ext .js src", 【无用过】
+	"build": "roadhog build", 【打包文件，跨域地址请求地址在 domain.js 中声明key = production】
+	"build-online": "set DOMAIN=test&&set NODE_ENV=production&&roadhog build" 【打包文件，跨域地址请求地址在 domain.js 中声明key = test
+	
+注意：
+	入口 index.js 和 routes/index.js 有特殊中间处理

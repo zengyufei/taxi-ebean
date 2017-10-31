@@ -2,14 +2,18 @@ package com.ys.admin.controller.house;
 
 import com.ys.admin.base.annotations.RestFullController;
 import com.ys.admin.base.control.BaseController;
+import com.ys.common.entitys.device.Card;
 import com.ys.common.entitys.house.User;
 import com.zyf.result.Msg;
+import io.ebean.Ebean;
 import io.swagger.annotations.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Slf4j
 @Api(value = "用户", description = "用户管理", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -36,5 +40,14 @@ public class UserController extends BaseController<User> {
 	                     @RequestParam(required = false, defaultValue = "1") int pageNo,
 	                     @RequestParam(required = false, defaultValue = "10") int pageSize) {
 		return Msg.ok(setPage(setParams(vo), pageNo, pageSize));
+	}
+
+	@GetMapping({"queryByPhone"})
+	public Msg queryByPhone(String phone) {
+		List<User> phoneList = Ebean.find(User.class).where()
+				.like("phone", phone + "%")
+				.setMaxRows(10)
+				.findList();
+		return Msg.ok(phoneList);
 	}
 }

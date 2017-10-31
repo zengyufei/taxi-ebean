@@ -63,62 +63,62 @@ export default function (options) {
         // formType === undefined 时，则使用平级属性，不去 field.form 查找，只在 field 查找。
         newField = field
     } else {
-        // 需要判断是否需要取 field.form 来表达行为
-        if (typeof formType === 'boolean') {
-            // 为 boolean 且属性为 false，则只做表达使用。
-            if (!formType) {
-                isText = true
-                newField = _.cloneDeep(field)
-                delete newField.form
-            }
-            // 如果为 string ，则需要用 formType 作为 key 去 field.form 查找
-        } else if (typeof formType === 'string') {
-            if (field.form !== undefined) {
-                // 为 boolean 时，说明不想用双绑，后续只需要判断 field.form 的属性做判断
-                if (typeof field.form === 'boolean') {
-                    if (!field.form) {
-                        isText = true
-                        newField = _.cloneDeep(field)
-                    }
-                    // 最正常的流程
-                } else if (typeof field.form === 'object') {
-                    // formType 作为 key 有可能取不到值
-                    newField = field.form[formType]
-                    // 取到值之后移除其他属性
-                    if (newField !== undefined) {
-                        isActive = typeof newField === 'boolean' ? newField : true
-                        if (typeof newField === 'boolean' && !newField) {
-                            isText = true
-                            newField = { form: false }
-                        } else {
-                            if (newField.render) newField.formRender = newField.render
-                            Object.keys(field.form).forEach(e => e === formType || delete field.form[e])
-                        }
-                        // 当发生取不到值，就在 field.form 中查找这些属性
-                    } else if (
-                        /type|rules|enums|render|meta|required|disabled|placeholder/i.test(
-                            Object.keys(field.form).toString(),
-                        )
-                    ) {
-                        newField = _.cloneDeep(field.form)
-                        Object.keys(newField).forEach(e => {
-                            /type|rules|enums|render|meta|required|disabled|placeholder/i.test(e) || delete newField[e]
-                        })
-                    } else {
-                        newField = _.cloneDeep(field)
-                        delete newField.form
-                    }
-                    // 为 string 的情况下， field.form 为空，则报错
-                } else {
-                    throw new Error('field.form 只能是 boolean 或 object')
+        switch (typeof formType) {
+            case 'boolean':
+                if (!formType) {
+                    isText = true
+                    newField = _.cloneDeep(field)
+                    delete newField.form
                 }
-            } else {
-                newField = field
-                delete newField.form
-            }
-            // 如果为 其他，则报错
-        } else {
-            throw new Error('formType 只能是 boolean 或 string')
+                break
+            case 'string':
+                if (field.form !== undefined) {
+                    switch (typeof field.form) {
+                        case 'boolean':
+                            if (!field.form) {
+                                isText = true
+                                newField = _.cloneDeep(field)
+                            }
+                            break
+                        case 'object':
+                            // formType 作为 key 有可能取不到值
+                            newField = field.form[formType]
+                            // 取到值之后移除其他属性
+                            if (newField !== undefined) {
+                                isActive = typeof newField === 'boolean' ? newField : true
+                                if (typeof newField === 'boolean' && !newField) {
+                                    isText = true
+                                    newField = { form: false }
+                                } else {
+                                    if (newField.render) newField.formRender = newField.render
+                                    Object.keys(field.form).forEach(e => e === formType || delete field.form[e])
+                                }
+                                // 当发生取不到值，就在 field.form 中查找这些属性
+                            } else if (
+                                /type|rules|enums|render|meta|required|disabled|placeholder/i.test(
+                                    Object.keys(field.form).toString(),
+                                )
+                            ) {
+                                newField = _.cloneDeep(field.form)
+                                Object.keys(newField).forEach(e => {
+                                    /type|rules|enums|render|meta|required|disabled|placeholder/i.test(e) || delete newField[e]
+                                })
+                            } else {
+                                newField = _.cloneDeep(field)
+                                delete newField.form
+                            }
+                            // 为 string 的情况下， field.form 为空，则报错
+                            break
+                        default:
+                            throw new Error('field.form 只能是 boolean 或 object')
+                    }
+                } else {
+                    newField = field
+                    delete newField.form
+                }
+                break
+            default:
+                throw new Error('formType 只能是 boolean 或 string')
         }
     }
 

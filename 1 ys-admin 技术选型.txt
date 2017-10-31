@@ -1,0 +1,33 @@
+主要：
+	1 springBoot
+	2 jdk 1.8
+	3 编码格式 UTF-8
+	
+Spring:
+	1 springBoot 1.5.3【提供 Web 和 Aop 核心包，以及 junit 测试包】
+
+代码精简：
+	1 com.zyf.lombok 【基于 lombok 14 版本自己编译基础上添加自定义注解】
+	
+ORM:
+	1 ebean 10.2.2 【ActiveRecord 风格 orm 框架，以代码看 SQL，支持多数据源，
+								支持自动优化语句，在实体类注解上，使用方式与 hibernate 类似，文档齐全】
+	2 mysql-jdbc 5.1.40 【支持连接 mysql】
+	
+权限：
+	1 shiro 1.4.0 【权限框架，本项目为了实现无 session，只有 token，继承重写了一些 shiro 方法，并自定义一些 token 过滤器及工具类】
+
+测试：
+	1 junit 【测试工具类】
+	
+数据解析：
+	1 com.alibaba.fastjson 【高效序列号成 json 工具】
+	2 com.fasterxml.jackson.module.jackson-module-jaxb-annotations 【针对 json 日期格式化】
+	3 com.fasterxml.jackson.datatype.jackson-datatype-jsr310 【针对 json 日期格式化】
+	
+接口文档：
+	1 io.springfox.springfox-swagger2 【注解式声明文档】
+	2 io.springfox.springfox-swagger-ui 【文档显示扩展，本地开发才允许访问 /swagger-ui.html】
+	
+execl 导出导入：
+	1 cn.afterturn.easypoi-base 3.0.3 【注解式导入导出 execl 文档，使用方便，功能不错】

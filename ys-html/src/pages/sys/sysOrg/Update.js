@@ -82,19 +82,6 @@ const fields = [
         required: true,
     },
     {
-        key: 'priority',
-        name: '排序',
-        type: 'number',
-        required: true,
-    },
-    {
-        key: 'available',
-        name: '是否有效',
-        hasFeedback: false,
-        type: 'switch',
-    },
-
-    {
         key: 'description',
         name: '描述',
         type: 'textarea',

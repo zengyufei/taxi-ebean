@@ -80,7 +80,6 @@ module.exports = [
         render: (text, record) => record.buildingName,
         type: 'buildingId',
         form: {
-            required: true,
             disabled: true,
         },
     },
@@ -90,7 +89,6 @@ module.exports = [
         render: (text, record) => record.unitName,
         type: 'unitId',
         form: {
-            required: true,
             disabled: true,
         },
     },
@@ -100,7 +98,6 @@ module.exports = [
         render: (text, record) => record.roomName,
         type: 'roomId',
         form: {
-            required: true,
             disabled: true,
         },
     },

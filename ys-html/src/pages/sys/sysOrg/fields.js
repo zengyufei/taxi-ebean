@@ -14,20 +14,6 @@ module.exports = [
         required: false,
     },
     {
-        key: 'priority',
-        name: '排序',
-        type: 'number',
-    },
-    {
-        key: 'available',
-        name: '有效性',
-        enums: {
-            true: '有效',
-            false: '无效',
-        },
-        hasFeedback: false,
-    },
-    {
         key: 'description',
         name: '描述',
         type: 'textarea',

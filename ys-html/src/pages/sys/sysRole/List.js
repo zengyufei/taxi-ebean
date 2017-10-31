@@ -24,7 +24,7 @@ const List = option => {
         showReset: true,
         btns,
         searchCacheKey: 'sysRole_condin',
-        searchFields: getSearchFields(fields, ['orgNo', 'roleName', 'relyRoleid', 'createTime']).values(),
+        searchFields: getSearchFields(fields, ['orgNo', 'roleName', 'createTime']).values(),
         fields: getFields(fields, local.get('sysRole_condin') || ['roleName']).values(),
         onSearch,
         onReset: onSearch,

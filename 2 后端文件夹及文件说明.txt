@@ -1,0 +1,240 @@
+ys-admin 项目
+
+|   Backup not auth.postman_dump	【postman 测试接口，不带 token。导入导出文件】
+|   Backup.postman_dump				【postman 测试接口，正常带 token。导入导出文件】
+|   database-create-all.sql					【非测试 ebean 自动建表生成的建表语句文件。】
+|   database-drop-all.sql					【非测试 ebean 自动建表需要删除旧表的删除表语句文件。】
+|   db-create-all.sql							【非测试 ebean 自动建表生成的建表语句文件。】
+|   db-drop-all.sql								【非测试 ebean 自动建表需要删除旧表的删除表语句文件。】
+|   pom.xml
+|   test-create-all.sql							【test 运行测试 ebean 自动建表生成的建表语句文件。】
+|   test-drop-all.sql							【test 运行测试 ebean 自动建表生成的建表语句文件。】
++---src
+|   +---main
+|   |   +---java
+|   |   |   \---com
+|   |   |       +---ys
+|   |   |       |   |   Application.java						【启动类，main 类，主入口】
+|   |   |       |   |   ServletInitializer.java				【Servlet 初始化类】
+|   |   |       |   |   ShiroConfig.java					【shiro 配置类】
+|   |   |       |   |   SpringConfiguration.java		【spring 配置类】
+|   |   |       |   |   WebConfiguration.java			【web 相关配置类】
+|   |   |       |   |   
+|   |   |       |   +---admin
+|   |   |       |   |   +---base
+|   |   |       |   |   |   |   BaseBeanPostProcessor.java								【待定，用于切入 bean 初始化生命周期。】
+|   |   |       |   |   |   |   CurrentUser.java												【ebean 创建者，修改者字段读入配置】
+|   |   |       |   |   |   |   
+|   |   |       |   |   |   +---annotations
+|   |   |       |   |   |   |       RestFullController.java									【用于 Controller 类注解，包含常用三个注解】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   +---control
+|   |   |       |   |   |   |       AbstractBuildingController.java						【Controller 抽象父类，包含分页查询、根据小区查询和根据楼栋查询方法】
+|   |   |       |   |   |   |       AbstractCommunityController.java					【Controller 抽象父类，包含分页查询和根据小区查询方法】
+|   |   |       |   |   |   |       AbstractController.java									【Controller 抽象父类，包含分页查询所需方法】
+|   |   |       |   |   |   |       AbstractRoomController.java							【Controller 抽象父类，包含分页查询、根据小区查询、根据楼栋查询、根据单元查询和根据房间查询方法】
+|   |   |       |   |   |   |       AbstractUnitController.java							【Controller 抽象父类，包含分页查询、根据小区查询、根据楼栋查询和根据单元查询方法】
+|   |   |       |   |   |   |       BaseController.java										【继承 AbstractController 的抽象类】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   +---converters
+|   |   |       |   |   |   |       StringToLocalDateConverter.java					【接收日期类型自动转换类型】
+|   |   |       |   |   |   |       StringToLocalDateTimeConverter.java			【接收日期时间类型自动转换类型】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   +---interceptors
+|   |   |       |   |   |   |       AllowOriginFilter.java										【跨域配置】
+|   |   |       |   |   |   |       MyArgumentsResolver.java							【待启用，mvc 自定义入参配置】
+|   |   |       |   |   |   |       TokenFilter.java												【token 过滤器】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   +---poi
+|   |   |       |   |   |   |       UserInfoMapImportHanlder.java					【easyPoi 导入转换类型工具类】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   \---realm																【shiro 配置包】
+|   |   |       |   |   |           CustomAuthenticationFilter.java					【shiro 自定义登录过滤器】
+|   |   |       |   |   |           CustomCredentialsMatcher.java						【shiro 非明文配置】
+|   |   |       |   |   |           CustomExceptionHandler.java						【shiro 手动处理错误类型，并返回配置】
+|   |   |       |   |   |           CustomPermssion.java									【shiro 权限转换配置】
+|   |   |       |   |   |           CustomSubjectFactory.java							【shiro 设置 session 不创建配置】
+|   |   |       |   |   |           ShiroDbRealm.java											【shiro 认证与授权配置】
+|   |   |       |   |   |           Token.java														【shiro token 对象类】
+|   |   |       |   |   |           
+|   |   |       |   |   +---controller
+|   |   |       |   |   |   |   AreaController.java											【待启用，区域控制器】
+|   |   |       |   |   |   |   LoginController.java											【登录控制器】
+|   |   |       |   |   |   |   
+|   |   |       |   |   |   +---community
+|   |   |       |   |   |   |       BuildingController.java									【楼栋控制器】
+|   |   |       |   |   |   |       CommunityController.java								【小区控制器】
+|   |   |       |   |   |   |       RoomController.java										【房间控制器】
+|   |   |       |   |   |   |       UnitController.java											【单元控制器】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   +---device
+|   |   |       |   |   |   |       CardController.java										【物理卡控制器】
+|   |   |       |   |   |   |       CatchPhotoController.java								【留影控制器】
+|   |   |       |   |   |   |       DeviceController.java										【设备控制器】
+|   |   |       |   |   |   |       OpenDoorLogController.java							【开门记录控制器】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   +---house
+|   |   |       |   |   |   |       ComplainController.java									【投诉控制器】
+|   |   |       |   |   |   |       RepairController.java										【报修控制器】
+|   |   |       |   |   |   |       UserController.java											【用户控制器，抽取公共信息，以后手机需要使用】
+|   |   |       |   |   |   |       UserInfoController.java									【住户控制器】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   +---other
+|   |   |       |   |   |   |       SmsController.java											【短信控制器】
+|   |   |       |   |   |   |       
+|   |   |       |   |   |   \---rbac
+|   |   |       |   |   |           SysMemberController.java								【后台用户控制器】
+|   |   |       |   |   |           SysOrgController.java										【后台组织机构控制器】
+|   |   |       |   |   |           SysResourceController.java								【后台资源控制器】
+|   |   |       |   |   |           SysRoleController.java									【后台角色控制器】
+|   |   |       |   |   |           
+|   |   |       |   |   +---service
+|   |   |       |   |   |   \---rbac
+|   |   |       |   |   |           SysOrgService.java											【组织机构 Service】
+|   |   |       |   |   |           
+|   |   |       |   |   +---util
+|   |   |       |   |   |       AesKey.java														【token 加密需要的工具类】
+|   |   |       |   |   |       AesSecret.java													【token 加密需要的工具类】
+|   |   |       |   |   |       DownloadFileUtil.java										【文件下载、execl 导出工具类】
+|   |   |       |   |   |       Hex.java																【token 加密需要的工具类】
+|   |   |       |   |   |       TokenUtils.java													【token 核心工具类】
+|   |   |       |   |   |       
+|   |   |       |   |   \---validate
+|   |   |       |   |       |   BindExceptionHandler.java									【jsr 303 验证不过的异常处理类】
+|   |   |       |   |       |   
+|   |   |       |   |       +---annotation
+|   |   |       |   |       |       IdCheck.java													【封装 jsr 303 部分注解】
+|   |   |       |   |       |       Matche.java													【自定义 jsr 303 注解，用于实体类】
+|   |   |       |   |       |       Matches.java													【自定义 jsr 303 注解，用于实体类】
+|   |   |       |   |       |       
+|   |   |       |   |       \---factory
+|   |   |       |   |               MatcheValidator.java										【自定义 jsr 303 注解处理器】
+|   |   |       |   |               
+|   |   |       |   \---common
+|   |   |       |       +---annotations
+|   |   |       |       |       OptionField.java												【分页查询条件设置注解】
+|   |   |       |       |       VoFieldIn.java													【分页查询条件设置注解，用于生成 in (list) 语句情况】
+|   |   |       |       |       VoFieldLike.java													【分页查询条件设置注解，用于生成 like '%...%' 语句情况】
+|   |   |       |       |       VoFieldLikeLeft.java											【分页查询条件设置注解，用于生成 like '%...' 语句情况】
+|   |   |       |       |       VoFieldLikeRight.java											【分页查询条件设置注解，用于生成 like '...%' 语句情况】
+|   |   |       |       |       
+|   |   |       |       +---base
+|   |   |       |       |   |   ExtensionFeatures.java										【扩展字段接口】
+|   |   |       |       |   |   MarkId.java														【枚举类接口】
+|   |   |       |       |   |   Page.java															【分页实体】
+|   |   |       |       |   |   
+|   |   |       |       |   \---entiry
+|   |   |       |       |           AbstractDateTimeEntity.java							【二级抽象类，继承顶级抽象类，包含 id、createTime，updateTime】
+|   |   |       |       |           AbstractDeletedEntity.java								【四级抽象类，继承顶级、二级、三级抽象类，包含 id、createTime，updateTime， features， deleted， whoCreated， whoModified】
+|   |   |       |       |           AbstractEntity.java											【继承四级抽象类】
+|   |   |       |       |           AbstractFeaturesEntity.java							【三级抽象类，继承顶级、二级抽象类，包含 id、createTime，updateTime， features】
+|   |   |       |       |           AbstractIdEntity.java										【顶级抽象类，只包含 id】
+|   |   |       |       |           AbstractVoEntity.java										【vo 类公共接口，继承顶级抽象类，包含 id， deleted】
+|   |   |       |       |           BaseEntity.java												【实体类实际使用公共接口，继承四级抽象类，包含四级所包含属性，并添加 communityId，buildingId， unitId， communityName， buildingName， unitName】
+|   |   |       |       |           BaseVoEntity.java											【vo 类实际使用公共接口，继承四级抽象类，包含四级所包含属性，并添加 id， deleted， communityId， buildingId， unitId】
+|   |   |       |       |           
+|   |   |       |       +---entitys
+|   |   |       |       |   +---community														【小区管理】
+|   |   |       |       |   |       Building.java													【楼栋实体】
+|   |   |       |       |   |       Community.java												【小区实体】
+|   |   |       |       |   |       Room.java														【房间实体】
+|   |   |       |       |   |       Unit.java														【单元实体】
+|   |   |       |       |   |       
+|   |   |       |       |   +---device																【设备管理】
+|   |   |       |       |   |       Card.java														【物理卡实体】
+|   |   |       |       |   |       CatchPhoto.java											【留影实体】
+|   |   |       |       |   |       Device.java													【设备实体】
+|   |   |       |       |   |       OpenDoorLog.java											【开门实体】
+|   |   |       |       |   |       
+|   |   |       |       |   +---house																【住户管理】
+|   |   |       |       |   |       Complain.java												【投诉实体】
+|   |   |       |       |   |       Repair.java														【报修实体】
+|   |   |       |       |   |       User.java														【用户实体】
+|   |   |       |       |   |       UserInfo.java													【住户实体】
+|   |   |       |       |   |       
+|   |   |       |       |   +---other
+|   |   |       |       |   |       Area.java														【待启用，区域实体】
+|   |   |       |       |   |       Sms.java														【待启用，短信实体】
+|   |   |       |       |   |       
+|   |   |       |       |   \---rbac																	【系统管理】
+|   |   |       |       |           SysMember.java											【后台用户实体】
+|   |   |       |       |           SysOrg.java													【组织机构实体】
+|   |   |       |       |           SysResource.java											【后台资源实体】
+|   |   |       |       |           SysRole.java													【后台角色实体】
+|   |   |       |       |           
+|   |   |       |       +---enums
+|   |   |       |       |       AuthEnum.java													【审核状态枚举】
+|   |   |       |       |       CardEnum.java													【物理卡类型枚举】
+|   |   |       |       |       CatchPhotoEnum.java										【开门留影类型枚举】
+|   |   |       |       |       ComplainEnum.java											【投诉类型枚举】
+|   |   |       |       |       EquEnum.java													【设备类型枚举】
+|   |   |       |       |       OnlineEnum.java												【在线状态枚举】
+|   |   |       |       |       RepairEnum.java												【报修类型枚举】
+|   |   |       |       |       SexEnum.java													【性别类型枚举】
+|   |   |       |       |       StayEnum.java													【停留类型枚举】
+|   |   |       |       |       SuccessFailEnum.java											【成功失败类型枚举】
+|   |   |       |       |       UserEnum.java													【用户类型枚举】
+|   |   |       |       |       
+|   |   |       |       \---utils
+|   |   |       |               EnumUtils.java													【枚举处理工具类】
+|   |   |       |               
+|   |   |       \---zyf
+|   |   |           +---result
+|   |   |           |       Msg.java																【控制器返回公用类】
+|   |   |           |       
+|   |   |           \---valid
+|   |   |                   DeleteById.java														【jsr 303 验证组别】
+|   |   |                   Insert.java																【jsr 303 验证组别】
+|   |   |                   QueryAll.java															【jsr 303 验证组别】
+|   |   |                   QueryById.java														【jsr 303 验证组别】
+|   |   |                   QueryPage.java														【jsr 303 验证组别】
+|   |   |                   RemoveById.java													【jsr 303 验证组别】
+|   |   |                   Update.java															【jsr 303 验证组别】
+|   |   |                   
+|   |   \---resources
+|   |       |   application-dev.yml															【开发环境 springboot 配置文件】
+|   |       |   application-prod.yml															【部署环境 springboot 配置文件】
+|   |       |   application.yml																	【总 springboot 配置文件，在这里指定开发环境】
+|   |       |   ebean.properties																【ebean 配置，配置多数据源，配置默认数据源】
+|   |       |   
+|   |       +---config
+|   |       |       logback-dev.xml															【开发环境 log 配置】
+|   |       |       logback-prod.xml															【部署环境 log 配置】
+|   |       |       
+|   |       \---sql
+|   |               init.sql																			【数据库初始化脚本】
+|   |               t_area.sql																		【数据库区域信息初始化脚本】
+|   |               
+|   \---test
+|       |   +---com
+|       |   |   +---ys
+|       |   |   |   +---core
+|       |   |   |   |   \---validate
+|       |   |   |   |           TwoPasswords.java
+|       |   |   |   |           TwoPasswordsTest.java
+|       |   |   |   |           
+|       |   |   |   \---dao
+|       |   |   |       \---rbac
+|       |   |   |               SysMemberTest.java
+|       |   |   |               SysOrgTest.java
+|       |   |   |               SysResourceTest.java
+|       |   |   |               SysRoleTest.java
+|       |   |   |               
+|       |   |   \---zzsim
+|       |   \---ebean
+|       |       +---connect
+|       |       |       ConnectTest.java														【测试 ebean 连接、自动建表】
+|       |       |       
+|       |       +---curd
+|       |       |       CurdTest.java															【测试 ebean 增删改查】
+|       |       |       
+|       |       \---entity
+|       |               TestSysMember.java
+|       |               
+|       \---resources
+|               application-create.yml														【test springboot 建表配置】
+|               application-ebean.yml														【test springboot ebean 配置】
+|               application-test.yml															【test springboot test 配置】
+|               application.yml																	【test springboot 总配置】
+|               test-ebean.properties														【test ebean 配置】
+               

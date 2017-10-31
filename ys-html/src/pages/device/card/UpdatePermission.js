@@ -37,7 +37,7 @@ let UpdatePage = option => {
 
     return (
         <div>
-            <ZModal title="修改角色" {...updatePageModalProps}>
+            <ZModal title="修改物理卡权限" {...updatePageModalProps}>
                 <Permission
                     permissions={
                         card && typeof card.permissions === 'string' ? (

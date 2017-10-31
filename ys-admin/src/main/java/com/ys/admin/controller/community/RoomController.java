@@ -9,6 +9,9 @@ import com.ys.common.entitys.community.Room;
 import com.zyf.result.Msg;
 import io.ebean.Ebean;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.QueryById;
 import lombok.QueryByIds;
 import lombok.Update;
@@ -30,6 +33,11 @@ import java.util.List;
 @QueryByIds(Room.class)
 public class RoomController extends AbstractUnitController<Room, Room.Vo> {
 
+	@ApiOperation(value = "导出", notes = "导出", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ApiResponses(value = {
+			@ApiResponse(code = Msg.SUCCESS_CODE, message = "导出", response = Msg.class),
+			@ApiResponse(code = Msg.ERROR_CODE, message = "系统错误", response = Msg.class)
+	})
 	@GetMapping("export")
 	public void export(HttpServletResponse resp) throws Exception {
 		List<Room> list = Ebean.find(entityClass).findList();
